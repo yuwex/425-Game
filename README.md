@@ -1,1 +1,1 @@
-this class is 425 yuji 🥺
+### Left is Right Games
