@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public float speed = 15.0f;
     public float gravity = -40f;
+    public float jumpHeight = 3;
     
     private Vector3 velocity;
     private float groundDistance = 0.4f;
-    private float jumpHeight = 3;
     private bool isGrounded;
 
 
