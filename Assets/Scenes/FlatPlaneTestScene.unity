@@ -202,8 +202,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 15
-  gravity: -30
-  jumpHeight: 5
+  gravity: -9.81
 --- !u!1001 &143855500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -767,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33140f1e808e38040b97050b7c7c1e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 800
+  sens: 150
   player: {fileID: 137966334}
 --- !u!1 &1425057287
 GameObject:
