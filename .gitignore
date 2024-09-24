@@ -87,3 +87,4 @@ crashlytics-build.properties
 
 # MACOS Gitignore
 .DS_STORE
+/.vscode
