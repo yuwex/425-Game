@@ -9,7 +9,7 @@ public class TowerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TowerPlaceHolder.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
     }
 
     // Update is called once per frame
