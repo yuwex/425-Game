@@ -9,10 +9,18 @@ public class BuildModeButton : MonoBehaviour
 {
 
     public Button button;
+    public TowerSpawner towerSpawner;
     private bool buildEnabled = true;
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            ToggleBuildMode();
+        }
+    }
 
     public void ToggleBuildMode() {
         buildEnabled = !buildEnabled;
+        towerSpawner.buildEnabled = buildEnabled;
 
         if (buildEnabled) {
             button.image.color = Color.green;
