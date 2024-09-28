@@ -8,11 +8,18 @@ public class Tower : MonoBehaviour
 {
 
     private Transform target;
+
+    [Header("Attributes")]
     public float range = 20f;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
+    [Header("Setup")]
 
     public string enemyTag = "Enemy";
-
     private UnityEngine.Vector3 enemyTarget = UnityEngine.Vector3.zero;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
 
     void Start()
@@ -54,6 +61,19 @@ public class Tower : MonoBehaviour
         {
             return;
         }
+
+        if (fireCountdown <= 0)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     void OnDrawGizmosSelected()
