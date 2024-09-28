@@ -10,7 +10,7 @@ public class BuildModeButton : MonoBehaviour
 
     public Button button;
     public TowerSpawner towerSpawner;
-    private bool buildEnabled = true;
+    private bool buildEnabled = false;
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {

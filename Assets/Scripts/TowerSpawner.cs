@@ -7,7 +7,7 @@ using UnityEngine;
 public class TowerSpawner : MonoBehaviour
 {
     public GameObject TowerPlaceHolder;
-    public bool buildEnabled = true;
+    public bool buildEnabled = false;
     // Start is called before the first frame update
     void Start()
     {
