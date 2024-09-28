@@ -3,17 +3,19 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 
-    private Transform target;
+    private GameObject target;
 
     [Header("Attributes")]
     public float range = 20f;
     public float fireRate = 1f;
+
+    public int damage = 30;
     private float fireCountdown = 0f;
 
     [Header("Setup")]
 
     public string enemyTag = "Enemy";
-    private UnityEngine.Vector3 enemyTarget = UnityEngine.Vector3.zero;
+    private Vector3 enemyTarget = Vector3.zero;
     public GameObject bulletPrefab;
     public Transform firePoint;
 
@@ -31,8 +33,8 @@ public class Tower : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            float distanceToTarget = UnityEngine.Vector3.Distance(enemy.transform.position, enemyTarget);
-            float distanceFromTower = UnityEngine.Vector3.Distance(enemy.transform.position, transform.position);
+            float distanceToTarget = Vector3.Distance(enemy.transform.position, enemyTarget);
+            float distanceFromTower = Vector3.Distance(enemy.transform.position, transform.position);
 
             if (distanceFromTower < range && distanceToTarget < shortestDistance)
             {
@@ -43,7 +45,7 @@ public class Tower : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            target = closestEnemy.transform;
+            target = closestEnemy;
         }
         else
         {
@@ -73,6 +75,7 @@ public class Tower : MonoBehaviour
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null) {
+            bullet.damage = damage;
             bullet.Seek(target);
         }
     }
