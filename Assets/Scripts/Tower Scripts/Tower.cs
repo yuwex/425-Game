@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -73,7 +69,12 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if (bullet != null) {
+            bullet.Seek(target);
+        }
     }
 
     void OnDrawGizmosSelected()
