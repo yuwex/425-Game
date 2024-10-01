@@ -12,6 +12,10 @@ public class BuildModeButton : MonoBehaviour
     public TowerSpawner towerSpawner;
     private bool buildEnabled = false;
 
+    void Start() {
+        UpdateBuildMode();
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
             ToggleBuildMode();
@@ -20,6 +24,10 @@ public class BuildModeButton : MonoBehaviour
 
     public void ToggleBuildMode() {
         buildEnabled = !buildEnabled;
+        UpdateBuildMode();
+    }
+
+    public void UpdateBuildMode() {
         towerSpawner.buildEnabled = buildEnabled;
 
         if (buildEnabled) {
@@ -29,7 +37,6 @@ public class BuildModeButton : MonoBehaviour
         }
 
         TMP_Text text = button.GetComponentInChildren<TMP_Text>(true);
-        Debug.Log(text);
         if (text != null) {
             if (buildEnabled) {
                 text.text = "ON";
@@ -37,7 +44,6 @@ public class BuildModeButton : MonoBehaviour
                 text.text = "OFF";
             }
         }
-
     }
 
 }
