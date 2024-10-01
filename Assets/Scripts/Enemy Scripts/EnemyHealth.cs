@@ -3,7 +3,15 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
 
+    public InfoBar bar;
     public int health = 100;
+    private int maxHealth;
+
+    void Start() {
+        maxHealth = health;
+        bar.setMaxValue(maxHealth);
+        bar.setValue(maxHealth);
+    }
 
     public void Damage(int damage)
     {
@@ -12,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
             Die();
         }
         health -= damage;
+        bar.setValue(health);
     }
 
     void Die() 
