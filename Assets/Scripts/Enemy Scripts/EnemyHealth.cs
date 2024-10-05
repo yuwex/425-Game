@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public InfoBar bar;
     public int health = 100;
     private int maxHealth;
+    
 
     void Start() {
         maxHealth = health;
@@ -26,5 +27,6 @@ public class EnemyHealth : MonoBehaviour
     void Die() 
     {
         Destroy(gameObject);
+        GameManager.Instance.updateCoins(100);
     }
 }

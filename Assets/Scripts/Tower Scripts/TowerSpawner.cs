@@ -12,7 +12,10 @@ public class TowerSpawner : MonoBehaviour
     public bool buildEnabled = false;
 
     private GameObject TowerIndicator;
-    public Material IndicatorMaterial;
+    public Material IndicatorMaterialCanBuy;
+    public Material IndicatorMaterialCantBuy;
+    private bool canPlace;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +28,29 @@ public class TowerSpawner : MonoBehaviour
         TowerIndicator.GetComponent<Tower>().enabled = false;
 
         var renderer = TowerIndicator.GetComponent<MeshRenderer>();
-        renderer.material = IndicatorMaterial;
+        renderer.material = IndicatorMaterialCanBuy;
+
+        canPlace = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Update tower material depending whether or not player has enough coins
+        var renderer = TowerIndicator.GetComponent<MeshRenderer>();
+        if (GameManager.Instance.playerCoins >= 100)
+        {
+            renderer.material = IndicatorMaterialCanBuy;
+            canPlace = true;
+        } else
+        {
+            renderer.material = IndicatorMaterialCantBuy;
+            canPlace = false;
+        }
+
         TowerIndicator.SetActive(false);
-        if (buildEnabled) {
+        if (buildEnabled) 
+        {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Vector3 pos;
@@ -44,9 +62,12 @@ public class TowerSpawner : MonoBehaviour
                     TowerIndicator.SetActive(true);
                     TowerIndicator.transform.position = pos + new Vector3(0, 0.1f, 0);
 
-                    if (Input.GetMouseButtonDown(0)) {
+                    if (Input.GetMouseButtonDown(0) && canPlace) {
                         var tower = Instantiate(TowerPlaceHolder, pos, Quaternion.identity);
                         board.SetObjectAtPos(pos, tower);
+
+                        // Subtract tower price from user coins
+                        GameManager.Instance.updateCoins(-100);
                     }
                 }                
             }
