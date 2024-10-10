@@ -12,9 +12,11 @@ public class TowerSpawner : MonoBehaviour
     public bool buildEnabled = false;
 
     private GameObject TowerIndicator;
-    public Material IndicatorMaterialCanBuy;
-    public Material IndicatorMaterialCantBuy;
+    public Material IndicatorMaterialCanPlace;
+    public Material IndicatorMaterialCantPlace;
     private bool canPlace;
+
+    public CharacterController player;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class TowerSpawner : MonoBehaviour
         TowerIndicator.GetComponent<Tower>().enabled = false;
 
         var renderer = TowerIndicator.GetComponent<MeshRenderer>();
-        renderer.material = IndicatorMaterialCanBuy;
+        renderer.material = IndicatorMaterialCanPlace;
 
         canPlace = true;
     }
@@ -38,16 +40,8 @@ public class TowerSpawner : MonoBehaviour
     {
         // Update tower material depending whether or not player has enough coins
         var renderer = TowerIndicator.GetComponent<MeshRenderer>();
-        if (GameManager.Instance.playerCoins >= 100)
-        {
-            renderer.material = IndicatorMaterialCanBuy;
-            canPlace = true;
-        } else
-        {
-            renderer.material = IndicatorMaterialCantBuy;
-            canPlace = false;
-        }
-
+        
+        
         TowerIndicator.SetActive(false);
         if (buildEnabled) 
         {
@@ -55,12 +49,22 @@ public class TowerSpawner : MonoBehaviour
             RaycastHit hit;
             Vector3 pos;
 
+            canPlace = GameManager.Instance.playerCoins >= 100;
+            canPlace = canPlace && !player.bounds.Intersects(renderer.bounds);
+
             if (Physics.Raycast(ray, out hit)) {
 
                 pos = board.NormalizePos(hit.point);
                 if (board.GetObjectFromPos(pos) is null) {
+                        
                     TowerIndicator.SetActive(true);
                     TowerIndicator.transform.position = pos + new Vector3(0, 0.1f, 0);
+
+                    if (canPlace) {
+                        renderer.material = IndicatorMaterialCanPlace;
+                    } else {
+                        renderer.material = IndicatorMaterialCantPlace;
+                    }
 
                     if (Input.GetMouseButtonDown(0) && canPlace) {
                         var tower = Instantiate(TowerPlaceHolder, pos, Quaternion.identity);

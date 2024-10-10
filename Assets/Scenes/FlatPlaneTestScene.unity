@@ -1377,8 +1377,9 @@ MonoBehaviour:
   TowerPlaceHolder: {fileID: 2828344199180963318, guid: 22c98714105e26146a017277fffc4c3d, type: 3}
   board: {fileID: 2078896064}
   buildEnabled: 0
-  IndicatorMaterialCanBuy: {fileID: 2100000, guid: 55a78f14c40834c4d8671ae5f20dca8c, type: 2}
-  IndicatorMaterialCantBuy: {fileID: 2100000, guid: 4ec01b4a525536642a525f7fcde68d5d, type: 2}
+  IndicatorMaterialCanPlace: {fileID: 2100000, guid: 55a78f14c40834c4d8671ae5f20dca8c, type: 2}
+  IndicatorMaterialCantPlace: {fileID: 2100000, guid: 4ec01b4a525536642a525f7fcde68d5d, type: 2}
+  player: {fileID: 137966333}
 --- !u!4 &966329819
 Transform:
   m_ObjectHideFlags: 0
