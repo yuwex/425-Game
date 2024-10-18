@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundMask;
     public float speed = 15.0f;
-    public float gravity = -40f;
+    public float gravity = -70f;
     
     private Vector3 velocity;
     private float groundDistance = 0.4f;
