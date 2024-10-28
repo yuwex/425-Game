@@ -12,35 +12,47 @@ public class BuildModeButton : MonoBehaviour
     public TowerSpawner towerSpawner;
     private bool buildEnabled = false;
 
-    void Start() {
+    void Start()
+    {
         UpdateBuildMode();
     }
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             ToggleBuildMode();
         }
     }
 
-    public void ToggleBuildMode() {
+    public void ToggleBuildMode()
+    {
         buildEnabled = !buildEnabled;
         UpdateBuildMode();
     }
 
-    public void UpdateBuildMode() {
+    public void UpdateBuildMode()
+    {
         towerSpawner.buildEnabled = buildEnabled;
 
-        if (buildEnabled) {
+        if (buildEnabled)
+        {
             button.image.color = Color.green;
-        } else {
+        }
+        else
+        {
             button.image.color = Color.red;
         }
 
         TMP_Text text = button.GetComponentInChildren<TMP_Text>(true);
-        if (text != null) {
-            if (buildEnabled) {
+        if (text != null)
+        {
+            if (buildEnabled)
+            {
                 text.text = "ON";
-            } else {
+            }
+            else
+            {
                 text.text = "OFF";
             }
         }

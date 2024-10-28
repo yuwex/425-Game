@@ -9,8 +9,8 @@ public class TowerSpawner : MonoBehaviour
 {
     public GameObject TowerPlaceHolder;
     public GameBoard board;
+    public Camera buildCamera;
     public bool buildEnabled = false;
-
     private GameObject TowerIndicator;
     public Material IndicatorMaterialCanPlace;
     public Material IndicatorMaterialCantPlace;
@@ -40,40 +40,46 @@ public class TowerSpawner : MonoBehaviour
     {
         // Update tower material depending whether or not player has enough coins
         var renderer = TowerIndicator.GetComponent<MeshRenderer>();
-        
-        
+
+
         TowerIndicator.SetActive(false);
-        if (buildEnabled) 
+        if (buildEnabled)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = buildCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Vector3 pos;
 
             canPlace = GameManager.Instance.playerCoins >= 100;
             canPlace = canPlace && !player.bounds.Intersects(renderer.bounds);
 
-            if (Physics.Raycast(ray, out hit)) {
+            if (Physics.Raycast(ray, out hit))
+            {
 
                 pos = board.NormalizePos(hit.point);
-                if (board.GetObjectFromPos(pos) is null) {
-                        
+                if (board.GetObjectFromPos(pos) is null)
+                {
+
                     TowerIndicator.SetActive(true);
                     TowerIndicator.transform.position = pos + new Vector3(0, 0.1f, 0);
 
-                    if (canPlace) {
+                    if (canPlace)
+                    {
                         renderer.material = IndicatorMaterialCanPlace;
-                    } else {
+                    }
+                    else
+                    {
                         renderer.material = IndicatorMaterialCantPlace;
                     }
 
-                    if (Input.GetMouseButtonDown(0) && canPlace) {
+                    if (Input.GetMouseButtonDown(0) && canPlace)
+                    {
                         var tower = Instantiate(TowerPlaceHolder, pos, Quaternion.identity);
                         board.SetObjectAtPos(pos, tower);
 
                         // Subtract tower price from user coins
                         GameManager.Instance.updateCoins(-100);
                     }
-                }                
+                }
             }
         }
     }

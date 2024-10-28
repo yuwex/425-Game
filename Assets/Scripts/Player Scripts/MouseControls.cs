@@ -13,8 +13,8 @@ public class MouseControls : MonoBehaviour
     void Start()
     {
         // lock cursor to center and make it invisible
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
