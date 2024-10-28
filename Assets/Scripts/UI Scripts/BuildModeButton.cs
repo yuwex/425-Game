@@ -38,10 +38,16 @@ public class BuildModeButton : MonoBehaviour
         if (buildEnabled)
         {
             button.image.color = Color.green;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
         }
         else
         {
             button.image.color = Color.red;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
         }
 
         TMP_Text text = button.GetComponentInChildren<TMP_Text>(true);
