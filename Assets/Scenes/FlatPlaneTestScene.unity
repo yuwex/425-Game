@@ -1391,11 +1391,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TowerPlaceHolder: {fileID: 2828344199180963318, guid: 22c98714105e26146a017277fffc4c3d, type: 3}
+  WallPlaceHolder: {fileID: 1544814128502929562, guid: d6ef20f76d1ecaa4b8884134f4006135, type: 3}
+  IndicatorMaterialCanPlace: {fileID: 2100000, guid: 55a78f14c40834c4d8671ae5f20dca8c, type: 2}
+  IndicatorMaterialCantPlace: {fileID: 2100000, guid: 4ec01b4a525536642a525f7fcde68d5d, type: 2}
+  towerScale: {x: 4, y: 4, z: 4}
+  towerPrice: 100
+  wallScale: {x: 2.5, y: 3, z: 2.5}
+  wallPrice: 50
   board: {fileID: 2078896064}
   buildCamera: {fileID: 2044575077}
   buildEnabled: 0
-  IndicatorMaterialCanPlace: {fileID: 2100000, guid: 55a78f14c40834c4d8671ae5f20dca8c, type: 2}
-  IndicatorMaterialCantPlace: {fileID: 2100000, guid: 4ec01b4a525536642a525f7fcde68d5d, type: 2}
   player: {fileID: 137966333}
 --- !u!4 &966329819
 Transform:
@@ -2500,7 +2505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20229f2441b8f1546bfcf0d5e383783f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCoins: 0
+  playerCoins: 1000
 --- !u!4 &1971817243
 Transform:
   m_ObjectHideFlags: 0
@@ -2699,7 +2704,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044575076}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!4 &2044575079
 Transform:
   m_ObjectHideFlags: 0
@@ -2746,6 +2751,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardLength: 50
   TileSize: 5
+  NoConnections: {fileID: 4944460709725596326, guid: b1d449c244e6b164fb9048d6f1621fdc, type: 3}
+  TwoConnections: {fileID: -6281424698479989189, guid: 906a1f7960d62404f9027ca5595ab3d7, type: 3}
+  Corner: {fileID: 3227207113615882163, guid: 1f74cbf3cd56077468b274b7c717ec02, type: 3}
+  ThreeConnections: {fileID: -7456400094900589534, guid: 10cc482c102ed264589897f04ed31d5c, type: 3}
+  FourConnections: {fileID: 8778923403477707949, guid: e593624b24ba0144e9b5cbed9e33d44f, type: 3}
+  ConnectWallPrefab: {fileID: 1544814128502929562, guid: c349df42cc3235f4e9741b3ad2197ceb, type: 3}
 --- !u!4 &2078896065
 Transform:
   m_ObjectHideFlags: 0
