@@ -103,10 +103,7 @@ public class TowerSpawner : MonoBehaviour
                         // Subtract tower price from user coins
                         GameManager.Instance.updateCoins(-currPrice);
 
-                        if (currObject == WallPlaceHolder)
-                        {
-                            board.UpdateWalls(pos);
-                        }
+                        board.UpdateWalls(pos);
                     }
                 }
             }

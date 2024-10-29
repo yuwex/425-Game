@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -87,7 +89,7 @@ public class GameBoard : MonoBehaviour
         {
             (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
             var obj = GetBoard(coord.Item1, coord.Item2);
-            if (obj != null && obj.tag == "Wall")
+            if (obj != null)
             {
                 UpdateWall(coord);
             }
@@ -98,65 +100,79 @@ public class GameBoard : MonoBehaviour
     void UpdateWall((int, int) mid)
     {
         GameObject midWall = GetBoard(mid.Item1, mid.Item2);
-        (int, int)[] neighbors = { (0, 1), (1, 0), (0, -1), (-1, 0) };
-        List<(int, int)> walls = new List<(int, int)>();
-        foreach ((int, int) diff in neighbors)
+        Transform[] Children = midWall.GetComponentsInChildren<Transform>();
+
+        foreach (Transform Child in Children)
+        {
+            if (Child.CompareTag("ConnectorWall"))
+            {
+                Destroy(Child.gameObject);
+            }
+        }
+
+        (int, int)[] diffs = { (0, 1), (1, 0), (0, -1), (-1, 0) };
+        List<(int, int)> neighbors = new List<(int, int)>();
+        foreach ((int, int) diff in diffs)
         {
             (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
             var obj = GetBoard(coord.Item1, coord.Item2);
-            if (obj != null && obj.tag == "Wall")
+            if (obj != null)
             {
-                walls.Add(diff);
+                neighbors.Add(diff);
             }
         }
 
-        if (walls.Count == 0)
+        if (midWall.CompareTag("Wall"))
         {
-            UpdateWallTexture(midWall, NoConnections, (0, 1));
-        }
-        else if (walls.Count == 1)
-        {
-            UpdateWallTexture(midWall, NoConnections, (0, 1));
-        }
-        else if (walls.Count == 2)
-        {
-            if (walls[0].Item1 == -walls[1].Item1 && walls[0].Item2 == -walls[1].Item2)
+
+            if (neighbors.Count == 0)
             {
-                UpdateWallTexture(midWall, TwoConnections, walls[0]);
+                UpdateWallTexture(midWall, NoConnections, (0, 1));
             }
-            else
+            else if (neighbors.Count == 1)
             {
-                if (walls[0] == (0, 1) && walls[1] == (-1, 0))
+                UpdateWallTexture(midWall, NoConnections, (0, 1));
+            }
+            else if (neighbors.Count == 2)
+            {
+                if (neighbors[0].Item1 == -neighbors[1].Item1 && neighbors[0].Item2 == -neighbors[1].Item2)
                 {
-                    UpdateWallTexture(midWall, Corner, walls[1]);
+                    UpdateWallTexture(midWall, TwoConnections, neighbors[0]);
                 }
                 else
                 {
-                    UpdateWallTexture(midWall, Corner, walls[0]);
+                    if (neighbors[0] == (0, 1) && neighbors[1] == (-1, 0))
+                    {
+                        UpdateWallTexture(midWall, Corner, neighbors[1]);
+                    }
+                    else
+                    {
+                        UpdateWallTexture(midWall, Corner, neighbors[0]);
+                    }
                 }
             }
-        }
-        else if (walls.Count == 3)
-        {
-            foreach (var neighbor in neighbors)
+            else if (neighbors.Count == 3)
             {
-                if (!walls.Contains(neighbor))
+                foreach (var diff in diffs)
                 {
-                    UpdateWallTexture(midWall, ThreeConnections, neighbor);
-                    midWall.transform.Rotate(0f, -90f, 0f);
+                    if (!neighbors.Contains(diff))
+                    {
+                        UpdateWallTexture(midWall, ThreeConnections, diff);
+                        midWall.transform.Rotate(0f, -90f, 0f);
+                    }
                 }
             }
-        }
-        else
-        {
-            UpdateWallTexture(midWall, FourConnections, (0, 1));
+            else
+            {
+                UpdateWallTexture(midWall, FourConnections, (0, 1));
+            }
         }
 
-        foreach ((int, int) wall in walls)
+        foreach ((int, int) neighbor in neighbors)
         {
-            var connectPos = new Vector3(midWall.transform.position.x + wall.Item1 * 2.5f, midWall.transform.position.y, midWall.transform.position.z + wall.Item2 * 2.5f);
+            var connectPos = new Vector3(midWall.transform.position.x + neighbor.Item1 * 2.5f, midWall.transform.position.y, midWall.transform.position.z + neighbor.Item2 * 2.5f);
             Quaternion direction = new Quaternion();
-            switch (wall)
+            switch (neighbor)
             {
                 case (0, 1):
                     direction = Quaternion.Euler(0f, 0f, 0f);
@@ -171,7 +187,8 @@ public class GameBoard : MonoBehaviour
                     direction = Quaternion.Euler(0f, 270f, 0f);
                     break;
             }
-            Instantiate(ConnectWallPrefab, connectPos, direction);
+            GameObject Connector = Instantiate(ConnectWallPrefab, connectPos, direction);
+            Connector.transform.parent = midWall.transform;
         }
     }
 

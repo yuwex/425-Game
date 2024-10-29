@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 906a1f7960d62404f9027ca5595ab3d7, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: ConnectorWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
