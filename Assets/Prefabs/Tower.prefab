@@ -148,9 +148,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01d4a935918c404f98287ba8da499c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
-  fireRate: 1
-  damage: 50
+  baseStats:
+  - statType: 0
+    statValue: 5
+  - statType: 1
+    statValue: 1
+  - statType: 2
+    statValue: 50
+  - statType: 3
+    statValue: 1
+  - statType: 4
+    statValue: 20
+  modifiers:
+  - {fileID: 11400000, guid: 6b3ac0a5f04ff4e2cbd78712d927cf9d, type: 2}
+  - {fileID: 11400000, guid: ca45b977415f04cfca88f103c6734aa4, type: 2}
   enemyTag: Enemy
   bulletPrefab: {fileID: 4785582861802605554, guid: d4d9643ea8a33d84dbe21a09860b8dc0, type: 3}
   firePoint: {fileID: 5312119144668759836}

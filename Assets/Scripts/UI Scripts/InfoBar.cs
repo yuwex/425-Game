@@ -34,7 +34,6 @@ public class InfoBar : MonoBehaviour
     }
 
     public void setMaxValue(int v) {
-        Debug.Log("in mv," + v + " / " + maxValue);
         slider.maxValue = v;
         maxValue = v;
         text.text = (int)value + " / " + (int)maxValue;

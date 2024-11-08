@@ -1,11 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private GameObject target;
 
-    public float speed = 70f;
-    public int damage = 30;
+    public List<StatInfo> stats = new();
+
+    private bool GetStat(Stat type, out float result) 
+    {
+        foreach (var s in stats) {
+            if (s.statType == type) {
+                result = s.statValue;
+                return true;
+            }
+        }
+
+        result = 0;
+        return false;
+    }
 
     public void Seek(GameObject target)
     {
@@ -21,7 +34,8 @@ public class Bullet : MonoBehaviour
         }
 
         Vector3 direction = target.transform.position - transform.position;
-        float distance = speed * Time.deltaTime;
+        GetStat(Stat.ProjectileVelocity, out float velocity);
+        float distance = velocity * Time.deltaTime;
 
         if (direction.magnitude <= distance)
         {
@@ -37,7 +51,9 @@ public class Bullet : MonoBehaviour
     {
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
         if (enemyHealth != null) {
-            enemyHealth.Damage(damage);
+            GetStat(Stat.ProjectileDamage, out float damage);
+
+            enemyHealth.Damage((int)damage);
         }
         Destroy(gameObject);
     }
