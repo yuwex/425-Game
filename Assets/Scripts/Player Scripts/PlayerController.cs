@@ -5,6 +5,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public struct WeaponStats
+    {
+        public WeaponStats(float attackDistance, float attackDelay, float attackSpeed, int attackDamage, GameObject go, MeshRenderer[] meshes, Action<float> animate)
+        {
+            this.attackDistance = attackDistance;
+            this.attackDelay = attackDelay;
+            this.attackSpeed = attackSpeed;
+            this.attackDamage = attackDamage;
+            this.animate = animate;
+            this.go = go;
+            this.meshes = meshes;
+        }
+
+        public void Animate()
+        {
+            animate(attackSpeed);
+        }
+
+        public void ToggleMesh()
+        {
+            foreach (MeshRenderer mesh in meshes)
+            {
+                mesh.enabled = !mesh.enabled;
+            }
+        }
+
+        public float attackDistance { get; set; }
+        public float attackDelay { get; set; }
+        public float attackSpeed { get; set; }
+        public int attackDamage { get; set; }
+        public GameObject go { get; set; }
+        public MeshRenderer[] meshes { get; set; }
+        private Action<float> animate;
+
+    }
 
     public CharacterController player;
     public Transform groundCheck;
@@ -17,24 +52,54 @@ public class PlayerController : MonoBehaviour
     private float jumpHeight = 3;
     private bool isGrounded;
 
-    [Header("Attacking")]
+    [Header("Knife Stats")]
 
-    public float attackDistance;
-    public float attackDelay;
-    public float attackSpeed;
-    public int attackDamage;
+    public float knifeAttackDistance;
+    public float knifeAttackDelay;
+    public float knifeAttackSpeed;
+    public int knifeAttackDamage;
+    public GameObject knife;
+    public MeshRenderer[] knifeMeshes;
+
+    [Header("Gun Stats")]
+
+    public float gunAttackDistance;
+    public float gunAttackDelay;
+    public float gunAttackSpeed;
+    public int gunAttackDamage;
+    public GameObject gun;
+    public MeshRenderer[] gunMeshes;
+
+    [Header("Attacking Misc")]
+
     public LayerMask attackLayer;
     bool attacking = false;
     public string enemyTag = "Enemy";
 
     public TowerSpawner towerSpawner;
 
-    public GameObject knife;
     public GameObject fppCamera;
+
+    WeaponStats knifeStats;
+    WeaponStats gunStats;
+
+    int currWeapon;
+    List<WeaponStats> weapons;
 
     void Start()
     {
+        knifeStats = new WeaponStats(knifeAttackDistance, knifeAttackDelay, knifeAttackSpeed, knifeAttackDamage, knife, knifeMeshes, (attackSpeed) => { knife.transform.rotation *= Quaternion.Euler(90 * Time.deltaTime / attackSpeed, 0, 0); });
+        gunStats = new WeaponStats(gunAttackDistance, gunAttackDelay, gunAttackSpeed, gunAttackDamage, gun, gunMeshes, (attackSpeed) => {gun.transform.rotation *= Quaternion.Euler(-20 * Time.deltaTime / attackSpeed, 0, 0); });
 
+        weapons = new List<WeaponStats> { knifeStats, gunStats };
+        currWeapon = 0;
+
+        foreach (WeaponStats weapon in weapons)
+        {
+            weapon.ToggleMesh();
+        }
+
+        weapons[currWeapon].ToggleMesh();
     }
 
     // Update is called once per frame
@@ -77,7 +142,14 @@ public class PlayerController : MonoBehaviour
 
         if (attacking)
         {
-            knife.transform.rotation *= Quaternion.Euler(90 * Time.deltaTime / attackSpeed, 0, 0);
+            weapons[currWeapon].Animate();
+        }
+
+        if (!attacking && Input.GetKeyDown(KeyCode.E))
+        {
+            weapons[currWeapon].ToggleMesh();
+            currWeapon = (currWeapon + 1) % weapons.Count;
+            weapons[currWeapon].ToggleMesh();
         }
     }
 
@@ -87,24 +159,24 @@ public class PlayerController : MonoBehaviour
 
         attacking = true;
 
-        Invoke(nameof(ResetAttack), attackSpeed);
-        Invoke(nameof(AttackRaycast), attackDelay);
+        Invoke(nameof(ResetAttack), weapons[currWeapon].attackSpeed);
+        Invoke(nameof(AttackRaycast), weapons[currWeapon].attackDelay);
     }
 
     void ResetAttack()
     {
-        knife.transform.rotation = fppCamera.transform.rotation;
+        weapons[currWeapon].go.transform.rotation = fppCamera.transform.rotation;
         attacking = false;
     }
 
     void AttackRaycast()
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, attackDistance, attackLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, weapons[currWeapon].attackDistance, attackLayer))
         {
             GameObject target = hit.transform.gameObject;
             if (target.CompareTag(enemyTag))
             {
-                target.GetComponent<EnemyHealth>().Damage(attackDamage);
+                target.GetComponent<EnemyHealth>().Damage(weapons[currWeapon].attackDamage);
             }
         }
     }
