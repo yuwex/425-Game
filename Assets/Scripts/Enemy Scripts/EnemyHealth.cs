@@ -31,11 +31,4 @@ public class EnemyHealth : MonoBehaviour
         GameManager.Instance.updateCoins(100);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            Damage(10);
-        }
-    }
 }

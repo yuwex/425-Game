@@ -3,9 +3,10 @@ using System;
 public enum Stat : int
 {
     ProjectileVelocity,
-    ProjectileCooldown,
     ProjectileDamage,
     ProjectileCount,
+    ProjectileLifetime,
+    TowerCooldown,
     TowerRange
 }
 

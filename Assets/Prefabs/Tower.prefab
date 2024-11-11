@@ -150,20 +150,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
   - statType: 0
-    statValue: 5
+    statValue: 40
   - statType: 1
-    statValue: 1
-  - statType: 2
     statValue: 50
-  - statType: 3
+  - statType: 2
     statValue: 1
+  - statType: 3
+    statValue: 10
   - statType: 4
+    statValue: 1
+  - statType: 5
     statValue: 20
   modifiers:
   - {fileID: 11400000, guid: 6b3ac0a5f04ff4e2cbd78712d927cf9d, type: 2}
-  - {fileID: 11400000, guid: ca45b977415f04cfca88f103c6734aa4, type: 2}
   enemyTag: Enemy
-  bulletPrefab: {fileID: 4785582861802605554, guid: d4d9643ea8a33d84dbe21a09860b8dc0, type: 3}
+  projectilePrefab: {fileID: 4785582861802605554, guid: d4d9643ea8a33d84dbe21a09860b8dc0, type: 3}
   firePoint: {fileID: 5312119144668759836}
 --- !u!4 &3173802696969262924 stripped
 Transform:
