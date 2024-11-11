@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ModifierBase : ScriptableObject
+public class ModifierBase : ScriptableObject
 {
     public List<StatInfo> statsInfo = new();
     protected Dictionary<Stat, float> stats;
 
-    protected abstract float ModifyStat(StatInfo stat);
+    protected virtual float ModifyStat(StatInfo stat)
+    {
+        return stat.statValue;
+    }
 
     public List<StatInfo> ApplyModifiers(List<StatInfo> input) 
     {
@@ -35,8 +38,15 @@ public abstract class ModifierBase : ScriptableObject
         return output;
     }
 
-    public void SetupBullet() {}
-    public void UpdateBullet() {}
-    public void DestroyBullet() {}
+    public void SetupProjectile(TowerProjectile projectile) {}
+    public void UpdateProjectile(TowerProjectile projectile) {}
+    public void OnProjectileCollide(TowerProjectile projectile, Collider collider) {}
+
+    // should destroy, priority
+    public (bool, int) ShouldDestroyProjectile(TowerProjectile projectile) {
+        return (false, -1);
+    }
+
+    public void BeforeDestroyProjectile(TowerProjectile projectile) {}
 
 }

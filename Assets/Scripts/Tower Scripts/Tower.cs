@@ -1,8 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -21,7 +17,7 @@ public class Tower : MonoBehaviour
 
     public string enemyTag = "Enemy";
     private Vector3 enemyTarget = Vector3.zero;
-    public GameObject bulletPrefab;
+    public GameObject projectilePrefab;
     public Transform firePoint;
 
 
@@ -93,23 +89,35 @@ public class Tower : MonoBehaviour
 
         if (fireCountdown <= 0)
         {
-            Shoot();
-            GetStat(Stat.ProjectileCooldown, out float cooldown);
-            print(cooldown);
+            CreateProjectile();
+            GetStat(Stat.TowerCooldown, out float cooldown);
             fireCountdown = cooldown;
         }
 
         fireCountdown -= Time.deltaTime;
     }
 
-    void Shoot()
+    void CreateProjectile()
     {
-        GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         
-        if (bulletGO.TryGetComponent<Bullet>(out var bullet)) {
-            bullet.stats = stats;
-            bullet.Seek(target);
+        GetStat(Stat.ProjectileCount, out var count);
+
+        for (int i = 0; i < (int)count; i++)
+        {
+            var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation).GetComponent<TowerProjectile>();
+
+            projectile.stats = stats;
+            projectile.modifiers = new(modifiers);
+            projectile.target = target;
+            projectile.batchCount = (int)count;
+            projectile.batchIndex = i;
+
+            foreach (var mod in projectile.modifiers)
+            {
+                mod.SetupProjectile(projectile);
+            }
         }
+
     }
 
     void OnDrawGizmosSelected()
