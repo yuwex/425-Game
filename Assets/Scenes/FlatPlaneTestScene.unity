@@ -822,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyObject: {fileID: 6396368751894682176, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
+  homeBase: {fileID: 1522048266}
 --- !u!4 &162686915
 Transform:
   m_ObjectHideFlags: 0

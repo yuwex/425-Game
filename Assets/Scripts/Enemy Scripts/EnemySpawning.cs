@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySpawning : MonoBehaviour
 {
     public GameObject enemyObject;
-
+    public Transform homeBase;
 
 
 
@@ -48,7 +48,8 @@ public class EnemySpawning : MonoBehaviour
         // Instantiate the enemy prefab at the spawn position
         GameObject enemy = Instantiate(enemyObject, spawnPosition, Quaternion.identity);
         enemy.transform.localScale = new Vector3(5f, 5f, 5f);
-        EnemyMover mover = enemy.GetComponent<EnemyMover>();
-        mover.moveSpeed = moveSpeed;
+        // EnemyMover mover = enemy.GetComponent<EnemyMover>();
+        // mover.moveSpeed = moveSpeed;
+        enemy.GetComponent<EnemyAI>().homeBase = homeBase;
     }
 }
