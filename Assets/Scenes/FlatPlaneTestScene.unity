@@ -821,9 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d929db081c1314105a4916ea430c89cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 465979039}
-  homeBase: {fileID: 1522048266}
-  spawnInterval: 3
+  enemyObject: {fileID: 6396368751894682176, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
 --- !u!4 &162686915
 Transform:
   m_ObjectHideFlags: 0
