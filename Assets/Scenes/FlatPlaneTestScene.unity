@@ -821,7 +821,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d929db081c1314105a4916ea430c89cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyObject: {fileID: 6396368751894682176, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
+  enemyPrefab: {fileID: 465979039}
+  homeBase: {fileID: 1522048266}
+  spawnInterval: 3
 --- !u!4 &162686915
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1419,7 @@ GameObject:
   - component: {fileID: 900211941}
   - component: {fileID: 900211940}
   - component: {fileID: 900211943}
+  - component: {fileID: 900211944}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -1510,6 +1513,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &900211944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900211938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 1
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 8c93ed4fb7226d64b8d165c18ce22084, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &947899509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,7 +2592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 1522048268}
-  health: 100
+  health: 2147483647
 --- !u!114 &1522048268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3235,7 +3269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20229f2441b8f1546bfcf0d5e383783f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCoins: 200
+  playerCoins: 100000000
 --- !u!4 &1971817243
 Transform:
   m_ObjectHideFlags: 0
@@ -3689,6 +3723,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1536426376650575084, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
+      propertyPath: health
+      value: 10000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869247443694887320, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5636205357197560548, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3719,7 +3761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6021215743304466682, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40.69111
+      value: -89
       objectReference: {fileID: 0}
     - target: {fileID: 6021215743304466682, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3753,6 +3795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7993871524618787626, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
+      propertyPath: homeBase
+      value: 
+      objectReference: {fileID: 1522048266}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
