@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerProjectile : MonoBehaviour
@@ -12,13 +13,42 @@ public class TowerProjectile : MonoBehaviour
     public int batchIndex;
     public int batchCount;
 
-    private float deleteAt = float.MaxValue;
+    public float deleteAt = float.MaxValue;
 
     private bool anyEnemyHit = false;
 
-    private List<GameObject> enemiesHit = new();
+    public List<GameObject> enemiesHit = new();
 
-    private bool GetStat(Stat type, out float result) 
+    public static bool CalculateLateralTrajectory(Vector3 pos, Vector3 target, float velocity, float maxHeight, out Vector3 force, out Vector3 gravity) {
+    
+        // Adapted from https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/
+        // Credit: Forest Smith
+        
+        force = Vector3.zero;
+        gravity = Vector3.zero;
+
+        Vector3 diff = target - pos;
+        Vector3 diffXZ = new(diff.x, 0f, diff.z);
+        float lateralDist = diffXZ.magnitude;
+
+        if (lateralDist == 0)
+            return false;
+
+        float time = lateralDist / velocity;
+
+        force = diffXZ.normalized * velocity;
+
+        float a = pos.y;        // initial
+        float b = maxHeight;    // peak
+        float c = target.y;     // final
+
+        gravity.y = 4*(a - 2*b + c) / (time * time);
+        force.y = -(3*a - 4*b + c) / time;
+
+        return true;
+    }
+
+    public bool GetStat(Stat type, out float result) 
     {
         foreach (var s in stats) {
             if (s.statType == type) {
@@ -33,17 +63,26 @@ public class TowerProjectile : MonoBehaviour
 
     void Start()
     {
+
         // Center of target
         Vector3 targetPos = target.GetComponent<Renderer>().bounds.center;
-
-        // Direction to center of target
-        Vector3 dir = (targetPos - transform.position).normalized;
 
         // Get Velocity
         GetStat(Stat.ProjectileVelocity, out var velocity);
 
-        // Add force
-        GetComponent<Rigidbody>().AddForce(dir * velocity, ForceMode.Impulse);
+        // Find fancy arc
+        CalculateLateralTrajectory(transform.position, targetPos, velocity, 5f, out var force, out var gravity);
+        
+        // Set custom gravity and force
+        GetComponent<ConstantForce>().force = gravity;
+        GetComponent<Rigidbody>().velocity = force;
+
+        // Ensure modifier setups run after all setup
+        foreach (var mod in modifiers)
+        {
+            mod.SetupProjectile(this);
+        }
+
     }
 
     void Setup()
@@ -55,6 +94,7 @@ public class TowerProjectile : MonoBehaviour
 
         foreach (var mod in modifiers)
         {
+            if (mod == null) continue;
             mod.SetupProjectile(this);
         }
     }
@@ -64,6 +104,7 @@ public class TowerProjectile : MonoBehaviour
         // Run all modifiers update methods
         foreach (var mod in modifiers) 
         {
+            if (mod == null) continue;
             mod.UpdateProjectile(this);
         }
 
@@ -73,6 +114,7 @@ public class TowerProjectile : MonoBehaviour
             // Call pre-death modifiers
             foreach (var mod in modifiers)
             {
+                if (mod == null) continue;
                 mod.BeforeDestroyProjectile(this);
             }
 
@@ -96,6 +138,7 @@ public class TowerProjectile : MonoBehaviour
         // Override death modifiers using priority system
         foreach (var mod in modifiers)
         {
+            if (mod == null) continue;
             var (cdie, cweight) = mod.ShouldDestroyProjectile(this);
             if (cweight >= weight) {
                 die = cdie;
@@ -117,6 +160,7 @@ public class TowerProjectile : MonoBehaviour
         // Let all modifiers deal with trigger first
         foreach (var mod in modifiers)
         {
+            if (mod == null) continue;
             mod.OnProjectileCollide(this, other);
         }
 
@@ -134,7 +178,7 @@ public class TowerProjectile : MonoBehaviour
                 enemiesHit.Add(other.gameObject);
 
                 GetStat(Stat.ProjectileDamage, out float damage);
-                other.gameObject.GetComponent<EnemyHealth>().Damage((int) damage);
+                other.gameObject.GetComponent<EnemyHealth>().Damage(damage);
             }
             
         }

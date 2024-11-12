@@ -38,15 +38,15 @@ public class ModifierBase : ScriptableObject
         return output;
     }
 
-    public void SetupProjectile(TowerProjectile projectile) {}
-    public void UpdateProjectile(TowerProjectile projectile) {}
-    public void OnProjectileCollide(TowerProjectile projectile, Collider collider) {}
+    public virtual void SetupProjectile(TowerProjectile projectile) {}
+    public virtual void UpdateProjectile(TowerProjectile projectile) {}
+    public virtual void OnProjectileCollide(TowerProjectile projectile, Collider collider) {}
 
     // should destroy, priority
-    public (bool, int) ShouldDestroyProjectile(TowerProjectile projectile) {
+    public virtual (bool, int) ShouldDestroyProjectile(TowerProjectile projectile) {
         return (false, -1);
     }
 
-    public void BeforeDestroyProjectile(TowerProjectile projectile) {}
+    public virtual void BeforeDestroyProjectile(TowerProjectile projectile) {}
 
 }

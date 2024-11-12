@@ -111,11 +111,6 @@ public class Tower : MonoBehaviour
             projectile.target = target;
             projectile.batchCount = (int)count;
             projectile.batchIndex = i;
-
-            foreach (var mod in projectile.modifiers)
-            {
-                mod.SetupProjectile(projectile);
-            }
         }
 
     }

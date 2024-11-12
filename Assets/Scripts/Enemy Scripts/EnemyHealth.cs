@@ -4,25 +4,25 @@ public class EnemyHealth : MonoBehaviour
 {
 
     public InfoBar bar;
-    public int health = 100;
-    private int maxHealth;
+    public float health = 100;
+    private float maxHealth;
 
 
     void Start()
     {
         maxHealth = health;
-        bar.setMaxValue(maxHealth);
-        bar.setValue(maxHealth);
+        bar.setMaxValue((int)maxHealth);
+        bar.setValue((int)maxHealth);
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         if (health - damage <= 0)
         {
             Die();
         }
         health -= damage;
-        bar.setValue(health);
+        bar.setValue((int)health);
     }
 
     void Die()
