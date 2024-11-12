@@ -4,8 +4,11 @@ using UnityEngine;
 public class EnemySpawning : MonoBehaviour
 {
     public GameObject enemyObject;
+
     public Transform homeBase;
 
+    public int waveNumber = 1;
+    public int enemyType = 1;
 
 
     private int enemiesPerWave = 3;  // Number of enemies per wave
@@ -14,6 +17,12 @@ public class EnemySpawning : MonoBehaviour
     private Vector2 spawnRange = new Vector2(4f, 4f); // Range for random X, Y spawn positions
 
     private Vector3 targetPosition = Vector3.zero; // target position
+
+
+    private int health;
+    private int speed;
+    private int damage;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +37,7 @@ public class EnemySpawning : MonoBehaviour
             // Spawn a wave of enemies
             for (int i = 0; i < enemiesPerWave; i++)
             {
-                SpawnEnemy();
+                SpawnEnemy(enemyType);
             }
 
             // Increase the number of enemies per wave and the move speed based on the difficulty level
@@ -40,16 +49,41 @@ public class EnemySpawning : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(int enemyNumber)
     {
         // Randomly spawn the enemy at a random X, Y position within the defined range
-        Vector3 spawnPosition = new Vector3(Random.Range(-4, 4) * 25, 0f, Random.Range(-4, 4) * 25);
+        Vector3 spawnPosition = new Vector3(Random.Range(-1, 1) * 100, 0f, Random.Range(-1, 1) * 100);
 
         // Instantiate the enemy prefab at the spawn position
         GameObject enemy = Instantiate(enemyObject, spawnPosition, Quaternion.identity);
         enemy.transform.localScale = new Vector3(5f, 5f, 5f);
         // EnemyMover mover = enemy.GetComponent<EnemyMover>();
         // mover.moveSpeed = moveSpeed;
+
+        if(enemyNumber == 1){
+            health = 50;
+            damage = 10;
+            speed = 10;
+        }
+        else if(enemyNumber == 2){
+            health = 100;
+            damage = 50;
+            speed = 8;
+        }
+        else if(enemyNumber == 3){
+            health = 200;
+            damage = 100;
+            speed = 5;
+        }
+        else if(enemyNumber == 4){
+            health = 1000;
+            damage = 500;
+            speed = 3;
+        }
+
         enemy.GetComponent<EnemyAI>().homeBase = homeBase;
+        enemy.GetComponent<EnemyHealth>().health = health;
+        enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed;
+        enemy.GetComponent<EnemyAI>().damageAmount = damage;
     }
 }
