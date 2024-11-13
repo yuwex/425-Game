@@ -11,6 +11,7 @@ public class TowerDamage : MonoBehaviour
         if (health != null && collision.gameObject.tag == "Base")
         {
             health.TowerDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

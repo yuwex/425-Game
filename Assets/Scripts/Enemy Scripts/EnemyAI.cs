@@ -6,9 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public Transform homeBase;    
-    public int damageAmount = 10;   
     private NavMeshAgent agent;     
-    private double deathDistance = 0; 
 
     void Start()
     {
@@ -22,14 +20,8 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (homeBase != null && agent.remainingDistance <= deathDistance && !agent.pathPending)
+        if (homeBase == null)
         {
-            TowerHealth homeHealth = homeBase.GetComponent<TowerHealth>();
-            if (homeHealth != null)
-            {
-                homeHealth.TowerDamage(damageAmount);
-            }
-
             Destroy(gameObject);
         }
     }
