@@ -233,7 +233,8 @@ public class GameBoard : MonoBehaviour
             {
                 GameObject randomObject = TerrainObjects[UnityEngine.Random.Range(0, TerrainObjects.Count)];
 
-                Vector3 spawnPos = new Vector3(x * TileSize - BoardLength / 2 * TileSize, 0, y * TileSize - BoardLength / 2 * TileSize);
+                float offset = (BoardLength * TileSize) / 2.0f - (TileSize / 2.0f);
+                Vector3 spawnPos = new Vector3(x * TileSize - offset, 0, y * TileSize - offset);
 
                 GameObject spawnedObject = Instantiate(randomObject, spawnPos, Quaternion.identity);
                 spawnedObject.transform.localScale = new Vector3(TileSize, TileSize, TileSize);

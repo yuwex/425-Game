@@ -4238,12 +4238,6 @@ MonoBehaviour:
   FourConnections: {fileID: 9175019976581058351, guid: 02e0e576f7a096340b1ae48f5ff64e22, type: 3}
   ConnectWallPrefab: {fileID: 1544814128502929562, guid: c349df42cc3235f4e9741b3ad2197ceb, type: 3}
   TerrainObjects:
-  - {fileID: 4433325945679818064, guid: 097ca55729eec6a41b7d5f0eee4c0763, type: 3}
-  - {fileID: 1507527613761571893, guid: 5c59d9e69b100ff4c9ece690b4caf22f, type: 3}
-  - {fileID: 652782504940243172, guid: 38a4e1eb2e32b8e47b7a2e2f1eff6206, type: 3}
-  - {fileID: 753103328602846897, guid: 79521de5631932e4f8db2aea8c1564d6, type: 3}
-  - {fileID: 8061280086440002423, guid: 9809b33a81862b645b274848a92e08a3, type: 3}
-  - {fileID: 8868726512907446439, guid: bf06bb518660a5147b7a7764ba96aefc, type: 3}
   - {fileID: 3938368194271902269, guid: 4c50272019e42c045b9a6957ed7cb43f, type: 3}
   - {fileID: 8021728757554760961, guid: abef7bbc56a7c2c4483aafd483edd8e1, type: 3}
   numObjects: 50
