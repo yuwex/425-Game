@@ -3204,7 +3204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 1522048268}
-  health: 200
+  health: 100
   manager: {fileID: 1971817242}
 --- !u!114 &1522048268
 MonoBehaviour:

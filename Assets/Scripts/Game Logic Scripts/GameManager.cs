@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public void gameOver()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
     }
