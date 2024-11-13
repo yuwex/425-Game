@@ -5,7 +5,7 @@ public class TowerHealth : MonoBehaviour
 
     public InfoBar bar;
     public int health = 100;
-    public GameManager manager = FindObjectOfType<GameManager>();
+    public GameManager manager;
 
 
     void Start()
@@ -19,7 +19,7 @@ public class TowerHealth : MonoBehaviour
         if (health - damage <= 0)
         {
             Destroy(gameObject);
-            manager.restartLevel();
+            manager.gameOver();
         }
         health -= damage;
         bar.setValue(health);

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    public GameObject gameOverUI;
+
     /******************** SINGLETON 😂😂😂😂 ********************/
     private static GameManager _instance;
 
@@ -42,8 +44,14 @@ public class GameManager : MonoBehaviour
         playerCoins += coins;
     }
 
+    public void gameOver()
+    {
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
     public void restartLevel()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
