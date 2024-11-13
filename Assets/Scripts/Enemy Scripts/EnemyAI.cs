@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public Transform homeBase;    
-    private NavMeshAgent agent;     
+    private NavMeshAgent agent;
+    public int damageAmount;
 
     void Start()
     {
@@ -22,6 +23,16 @@ public class EnemyAI : MonoBehaviour
     {
         if (homeBase == null)
         {
+            Destroy(gameObject);
+        } 
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        TowerHealth health = collision.gameObject.GetComponent<TowerHealth>();
+        if (health != null && collision.gameObject.tag == "Base")
+        {
+            health.TowerDamage(damageAmount);
             Destroy(gameObject);
         }
     }

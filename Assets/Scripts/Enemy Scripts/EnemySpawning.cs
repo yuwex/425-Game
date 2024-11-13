@@ -84,5 +84,6 @@ public class EnemySpawning : MonoBehaviour
         enemy.GetComponent<EnemyAI>().homeBase = homeBase;
         enemy.GetComponent<EnemyHealth>().health = health;
         enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed;
+        enemy.GetComponent<EnemyAI>().damageAmount = damage;
     }
 }

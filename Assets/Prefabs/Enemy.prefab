@@ -524,9 +524,6 @@ PrefabInstance:
       addedObject: {fileID: -6422575457921472682}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8933170107628511599}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2869247443694887320}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
       insertIndex: -1
@@ -640,19 +637,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8933170107628511599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6396368751894682176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa4cdcc8454c491ea686fedb998a98a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!195 &2869247443694887320
 NavMeshAgent:
   m_ObjectHideFlags: 0
