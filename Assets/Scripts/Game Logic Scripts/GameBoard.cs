@@ -22,6 +22,11 @@ public class GameBoard : MonoBehaviour
 
     public GameObject ConnectWallPrefab;
 
+    [Header("Terrain Objects")]
+
+    public List<GameObject> TerrainObjects;
+    public int numObjects;
+
     void Awake()
     {
         Tiles = new GameObject[BoardLength, BoardLength];
@@ -37,6 +42,10 @@ public class GameBoard : MonoBehaviour
         Tiles[x, y] = g;
     }
 
+    private void Start()
+    {
+        TerrainSpawner();
+    }
     void Update()
     {
         // if (Input.GetMouseButton(0)) {
@@ -210,6 +219,28 @@ public class GameBoard : MonoBehaviour
             case (-1, 0):
                 wall.transform.Rotate(0f, 270f - wall.transform.eulerAngles.y, 0f);
                 break;
+        }
+    }
+
+    public void TerrainSpawner()
+    {
+        int objectsSpawned = 0;
+        while (objectsSpawned < numObjects)
+        {
+            int x = UnityEngine.Random.Range(0, BoardLength);
+            int y = UnityEngine.Random.Range(0, BoardLength);
+            if (Tiles[x, y] == null)
+            {
+                GameObject randomObject = TerrainObjects[UnityEngine.Random.Range(0, TerrainObjects.Count)];
+
+                Vector3 spawnPos = new Vector3(x * TileSize - BoardLength / 2 * TileSize, 0, y * TileSize - BoardLength / 2 * TileSize);
+
+                GameObject spawnedObject = Instantiate(randomObject, spawnPos, Quaternion.identity);
+                spawnedObject.transform.localScale = new Vector3(TileSize, TileSize, TileSize);
+                SetBoard(x, y, spawnedObject);
+
+                objectsSpawned++;
+            }
         }
     }
 }

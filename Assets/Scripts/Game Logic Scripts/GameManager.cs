@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void quitGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainHub");
+    }
     // Start is called before the first frame update
     void Start()
     {
