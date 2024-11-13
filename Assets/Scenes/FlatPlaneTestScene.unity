@@ -2690,7 +2690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 1522048268}
-  health: 1000
+  health: 200
+  manager: {fileID: 1971817242}
 --- !u!114 &1522048268
 MonoBehaviour:
   m_ObjectHideFlags: 0
