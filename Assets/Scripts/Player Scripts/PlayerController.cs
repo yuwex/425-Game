@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         private Action<float> animate;
 
     }
-
     public CharacterController player;
     public Transform groundCheck;
     public LayerMask groundMask;
