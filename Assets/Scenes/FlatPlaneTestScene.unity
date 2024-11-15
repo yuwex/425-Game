@@ -602,9 +602,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cad3f9cfc03900f42b84831afb26b504, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1522048267}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cad3f9cfc03900f42b84831afb26b504, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1522048271}
   m_SourcePrefab: {fileID: 100100000, guid: cad3f9cfc03900f42b84831afb26b504, type: 3}
 --- !u!1 &162686913
 GameObject:
@@ -2971,7 +2968,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
@@ -3012,28 +3009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainGui: 1
   barContainer: {fileID: 1539769959}
---- !u!64 &1522048271
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522048259}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5622437949473181699, guid: cad3f9cfc03900f42b84831afb26b504, type: 3}
 --- !u!1 &1539769959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,7 +4020,7 @@ MonoBehaviour:
   TerrainObjects:
   - {fileID: 3938368194271902269, guid: 4c50272019e42c045b9a6957ed7cb43f, type: 3}
   - {fileID: 8021728757554760961, guid: abef7bbc56a7c2c4483aafd483edd8e1, type: 3}
-  numObjects: 50
+  numObjects: 100
 --- !u!4 &2078896065
 Transform:
   m_ObjectHideFlags: 0
