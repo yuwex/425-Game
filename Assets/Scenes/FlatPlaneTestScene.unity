@@ -4213,10 +4213,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 137966332}
-  distance: 30
-  heightScale: 2
-  exponential: 2
+  maxHeight: 30
+  minHeight: 15
   boardCenter: {x: 0, y: 0}
+  spread: 10
 --- !u!1 &2078896063
 GameObject:
   m_ObjectHideFlags: 0
@@ -4482,11 +4482,11 @@ PrefabInstance:
       objectReference: {fileID: -6538903991835684241, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
     - target: {fileID: 5636205357197560548, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5636205357197560548, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6021215743304466682, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_LocalScale.x
@@ -4543,6 +4543,10 @@ PrefabInstance:
     - target: {fileID: 6396368751894682176, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396368751894682176, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7214903235917123423, guid: d8beeb7429f4c314e9dd144f62984208, type: 3}
       propertyPath: m_Mesh

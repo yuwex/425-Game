@@ -98,7 +98,7 @@ public class GameBoard : MonoBehaviour
         {
             (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
             var obj = GetBoard(coord.Item1, coord.Item2);
-            if (obj != null)
+            if (obj != null && !obj.CompareTag("Terrain"))
             {
                 UpdateWall(coord);
             }
@@ -125,7 +125,7 @@ public class GameBoard : MonoBehaviour
         {
             (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
             var obj = GetBoard(coord.Item1, coord.Item2);
-            if (obj != null)
+            if (obj != null && !obj.CompareTag("Terrain"))
             {
                 neighbors.Add(diff);
             }
