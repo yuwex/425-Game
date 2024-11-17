@@ -23,11 +23,8 @@ public class EnemySpawning : MonoBehaviour
     private int speed;
     private int damage;
 
+    public List<Transform> spawnPoints;
 
-    public Transform spawnPoint1;
-    public Transform spawnPoint2;
-    public Transform spawnPoint3;
-    public Transform spawnPoint4;
 
 
     // Start is called before the first frame update
@@ -58,7 +55,9 @@ public class EnemySpawning : MonoBehaviour
     void SpawnEnemy(int enemyNumber)
     {
         // Randomly spawn the enemy at a random X, Y position within the defined range
-        Transform spawnPoint = GetRandomSpawnPoint();
+        int spawnVal = Random.Range(0, spawnPoints.Count);
+        Transform spawnPoint = spawnPoints[spawnVal];
+
         Vector3 spawnPosition = spawnPoint.position;
 
         // Instantiate the enemy prefab at the spawn position
@@ -92,17 +91,5 @@ public class EnemySpawning : MonoBehaviour
         enemy.GetComponent<EnemyHealth>().health = health;
         enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed;
         enemy.GetComponent<EnemyAI>().damageAmount = damage;
-    }
-
-    Transform GetRandomSpawnPoint()
-    {
-        switch (Random.Range(0,4))
-        {
-            case 0: return spawnPoint1;
-            case 1: return spawnPoint2;
-            case 2: return spawnPoint3;
-            case 3: return spawnPoint4;
-            default: return spawnPoint1; 
-        }
     }
 }
