@@ -98,7 +98,7 @@ public class GameBoard : MonoBehaviour
         {
             (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
             var obj = GetBoard(coord.Item1, coord.Item2);
-            if (obj != null)
+            if (obj != null && !obj.CompareTag("Terrain"))
             {
                 UpdateWall(coord);
             }
@@ -125,7 +125,7 @@ public class GameBoard : MonoBehaviour
         {
             (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
             var obj = GetBoard(coord.Item1, coord.Item2);
-            if (obj != null)
+            if (obj != null && !obj.CompareTag("Terrain"))
             {
                 neighbors.Add(diff);
             }
@@ -225,11 +225,16 @@ public class GameBoard : MonoBehaviour
     public void TerrainSpawner()
     {
         int objectsSpawned = 0;
+
         while (objectsSpawned < numObjects)
         {
             int x = UnityEngine.Random.Range(0, BoardLength);
             int y = UnityEngine.Random.Range(0, BoardLength);
-            if (Tiles[x, y] == null)
+            int boardLength = BoardLength / 2;
+
+            bool inTowerArea = x >= (boardLength - 1) && x <= (boardLength + 1) && y >= (boardLength - 1) && y <= (boardLength + 1);
+
+            if (Tiles[x, y] == null && !inTowerArea)
             {
                 GameObject randomObject = TerrainObjects[UnityEngine.Random.Range(0, TerrainObjects.Count)];
 
@@ -237,7 +242,6 @@ public class GameBoard : MonoBehaviour
                 Vector3 spawnPos = new Vector3(x * TileSize - offset, 0, y * TileSize - offset);
 
                 GameObject spawnedObject = Instantiate(randomObject, spawnPos, Quaternion.identity);
-                spawnedObject.transform.localScale = new Vector3(TileSize, TileSize, TileSize);
                 SetBoard(x, y, spawnedObject);
 
                 objectsSpawned++;

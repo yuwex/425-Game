@@ -14,10 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsInfo:
   - statType: 2
-    statValue: 2
+    statValue: 1
+    modifierType: 3
   - statType: 4
-    statValue: 0.1
+    statValue: -0.5
+    modifierType: 2
   - statType: 1
-    statValue: 0.05
+    statValue: -0.5
+    modifierType: 2
   - statType: 0
-    statValue: 1.5
+    statValue: 0.5
+    modifierType: 2
+  statMaxes:
+  - statType: 2
+    statValue: 2
+    modifierType: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MortarModifier", menuName = "TowerModifiers/MortarGun")]
-public class MortarModifier : MultiplicitiveModifier
+[CreateAssetMenu(fileName = "MortarModifier", menuName = "TowerModifiers/Mortar")]
+public class MortarModifier : ModifierBase
 {
 
     public float height = 20f;
