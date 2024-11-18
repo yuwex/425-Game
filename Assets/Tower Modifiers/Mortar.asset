@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsInfo:
   - statType: 1
-    statValue: 3
+    statValue: 2
+    modifierType: 2
   - statType: 3
-    statValue: 1.5
+    statValue: 1
+    modifierType: 2
   - statType: 4
-    statValue: 2.5
+    statValue: 1.5
+    modifierType: 2
   height: 20

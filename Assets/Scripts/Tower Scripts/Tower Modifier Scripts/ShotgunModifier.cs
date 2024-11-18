@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShotgunModifier", menuName = "TowerModifiers/Shotgun")]
-public class ShotgunModifier : MultiplicitiveModifier
+public class ShotgunModifier : AdditiveMaximumModifier
 {
 
     public override void SetupProjectile(TowerProjectile projectile)

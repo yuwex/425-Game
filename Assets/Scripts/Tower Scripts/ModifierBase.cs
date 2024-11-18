@@ -1,41 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "StatModifier", menuName = "TowerModifiers/Stats")]
 public class ModifierBase : ScriptableObject
 {
     public List<StatInfo> statsInfo = new();
     protected Dictionary<Stat, float> stats;
 
-    protected virtual float ModifyStat(StatInfo stat)
+    public virtual float ModifyCustomStat(StatInfo info, float currentValue)
     {
-        return stat.statValue;
-    }
-
-    public List<StatInfo> ApplyModifiers(List<StatInfo> input) 
-    {
-
-        stats = new();
-        foreach (var s in statsInfo)
-        {
-            stats.Add(s.statType, s.statValue);
-        }
-
-        List<StatInfo> output = new();
-
-        foreach (var stat in input)
-        {
-
-            var nstat = stat;
-
-            if (stats.ContainsKey(stat.statType)) {
-                nstat.statValue = ModifyStat(stat);
-            }
-            
-            output.Add(nstat);
-
-        }
-
-        return output;
+        return currentValue;
     }
 
     public virtual void SetupProjectile(TowerProjectile projectile) {}

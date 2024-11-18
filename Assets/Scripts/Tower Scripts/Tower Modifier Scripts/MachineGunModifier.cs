@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MachineGunModifier", menuName = "TowerModifiers/MachineGun")]
-public class MachineGunModifier : MultiplicitiveModifier
+[CreateAssetMenu(fileName = "MachineGunModifier", menuName = "TowerModifiers/Machinegun")]
+public class MachineGunModifier : AdditiveMaximumModifier
 {
     public override void SetupProjectile(TowerProjectile projectile)
     {
