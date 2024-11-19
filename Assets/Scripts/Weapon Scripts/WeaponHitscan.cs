@@ -29,7 +29,7 @@ public class WeaponHitscan : WeaponBase
             GameObject target = hit.transform.gameObject;
             if (target.CompareTag(enemyTag))
             {
-                target.GetComponent<EnemyHealth>().Damage(attackDamage);
+                target.GetComponent<Enemy>().Hurt(attackDamage);
             }
         }
     }
