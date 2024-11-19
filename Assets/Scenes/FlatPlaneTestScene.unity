@@ -566,7 +566,7 @@ MonoBehaviour:
   gravity: -9.81
   weapons:
   - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
-  - {fileID: 11400000, guid: 8c8db0eecb4e60b4f91f611509e2ed22, type: 2}
+  - {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
   attackLayer:
     serializedVersion: 2
     m_Bits: 64

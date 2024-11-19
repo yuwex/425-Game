@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaa1e8c0bcdcea48b7bd54cb9d98e06, type: 3}
+  m_Name: BowPlaceholder
+  m_EditorClassIdentifier: 
+  attacking: 0
+  prefab: {fileID: 100006, guid: e28d41bd6402fcc46b30fb30c73caa90, type: 3}
+  position: {x: 1.11, y: -0.45, z: 1.1}
+  scale: {x: 20, y: 20, z: 20}
+  animateRotation: -40
+  maxChargeTime: 2
+  maxChargeDistance: 100
+  maxChargeVelocity: 100
+  attackDelay: 0.2
+  maxDamage: 50
+  projectile: {fileID: 2826926921770460256, guid: 3268f1d2d6942e144a75dbd417b619d6, type: 3}

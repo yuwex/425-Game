@@ -54,6 +54,8 @@ public class WeaponBase : ScriptableObject
 
     public virtual void Attack() {}
 
+    public virtual void Release() {}
+
     public virtual void Animate() {}
 
 }

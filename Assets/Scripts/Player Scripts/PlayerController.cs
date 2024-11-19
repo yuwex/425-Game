@@ -74,6 +74,10 @@ public class PlayerController : MonoBehaviour
         {
             weapons[currWeapon].Attack();
         }
+        else
+        {
+            weapons[currWeapon].Release();
+        }
 
         if (weapons[currWeapon].attacking)
         {
