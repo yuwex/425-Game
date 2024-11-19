@@ -55,6 +55,7 @@ public class EnemySpawning : MonoBehaviour
     void SpawnEnemy(int enemyNumber)
     {
         // Randomly spawn the enemy at a random X, Y position within the defined range
+        Debug.Log(spawnPoints.Count);
         int spawnVal = Random.Range(0, spawnPoints.Count);
         Transform spawnPoint = spawnPoints[spawnVal];
 

@@ -712,7 +712,11 @@ MonoBehaviour:
   homeBase: {fileID: 1522048266}
   waveNumber: 1
   enemyType: 1
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 963041948}
+  - {fileID: 935085665}
+  - {fileID: 414630076}
+  - {fileID: 2143683652}
 --- !u!4 &162686915
 Transform:
   m_ObjectHideFlags: 0
