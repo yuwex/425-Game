@@ -45,10 +45,7 @@ public class EnemySpawner : MonoBehaviour
    
         // Instantiate the enemy prefab at the spawn position
         Enemy enemy = Instantiate(prefab, spawnPoints[spawnVal].position, Quaternion.identity).GetComponent<Enemy>();
-        
-        // Resize Enemy
-        enemy.transform.localScale = new Vector3(5f, 5f, 5f);
-        
+                
         // Set up starting vars
         enemy.target = mainBase;
         enemy.mainBase = mainBase;

@@ -449,6 +449,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.72047
       objectReference: {fileID: 0}
@@ -488,9 +500,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28df541137b2f2145878178d5e2bfc35, type: 2}
     - target: {fileID: 919132149155446097, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: FastEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c238d6a17e25a1d4f9f2f2921f2de3df, type: 3}
       propertyPath: m_Layer
@@ -654,7 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d8b74c5de844ab9bd8eb3aaaa92a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: f34897ba6d1644c2ab84b542b8f142c7, type: 2}
+  data: {fileID: 11400000, guid: 8b26b9d6f5a0d41beb20b62626365d81, type: 2}
   target: {fileID: 0}
   mainBase: {fileID: 0}
   health: 1
