@@ -565,8 +565,8 @@ MonoBehaviour:
   speed: 20
   gravity: -9.81
   weapons:
-  - {fileID: 11400000, guid: 042a7c2b04965cb41b10d663f5345c8b, type: 2}
-  - {fileID: 11400000, guid: ba1f7b577c305db46b4db3b458f3fbfd, type: 2}
+  - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
+  - {fileID: 11400000, guid: 8c8db0eecb4e60b4f91f611509e2ed22, type: 2}
   attackLayer:
     serializedVersion: 2
     m_Bits: 64

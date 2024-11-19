@@ -23,18 +23,15 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask attackLayer;
     public string enemyTag = "Enemy";
-
-    bool attacking = false;
     public TowerSpawner towerSpawner;
 
     private int currWeapon = 0;
 
     void Awake()
     {
-
         foreach (WeaponBase weapon in weapons)
         {
-            weapon.Init(attackLayer, enemyTag);
+            weapon.Init(attackLayer, enemyTag, towerSpawner, this);
         }
 
         weapons[currWeapon].ToggleMesh();
@@ -75,15 +72,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            Attack();
+            weapons[currWeapon].Attack();
         }
 
-        if (attacking)
+        if (weapons[currWeapon].attacking)
         {
             weapons[currWeapon].Animate();
         }
 
-        if (!attacking && Input.GetKeyDown(KeyCode.E))
+        if (!weapons[currWeapon].attacking && Input.GetKeyDown(KeyCode.E))
         {
             weapons[currWeapon].ToggleMesh();
             currWeapon = (currWeapon + 1) % weapons.Count;
@@ -91,24 +88,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Attack()
-    {
-        if (attacking || towerSpawner.buildEnabled) return;
-
-        attacking = true;
-
-        Invoke(nameof(ResetAttack), weapons[currWeapon].attackSpeed);
-        Invoke(nameof(Damage), weapons[currWeapon].attackDelay);
-    }
-
-    void ResetAttack()
-    {
-        weapons[currWeapon].Reset();
-        attacking = false;
-    }
-
-    void Damage()
-    {
-        weapons[currWeapon].Damage();
-    }
 }
