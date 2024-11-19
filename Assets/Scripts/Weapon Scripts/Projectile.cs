@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyHealth>().Damage(damage);
+            other.gameObject.GetComponent<Enemy>().Hurt(damage);
         }
         Destroy(gameObject);
     }

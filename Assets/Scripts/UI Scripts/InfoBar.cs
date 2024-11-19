@@ -28,12 +28,12 @@ public class InfoBar : MonoBehaviour
         }
     }
 
-    public void setValue(int value) {
+    public void SetValue(int value) {
         slider.value = value;
         text.text = (int)value + " / " + (int)maxValue;
     }
 
-    public void setMaxValue(int v) {
+    public void SetMaxValue(int v) {
         slider.maxValue = v;
         maxValue = v;
         text.text = (int)value + " / " + (int)maxValue;

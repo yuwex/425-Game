@@ -10,8 +10,8 @@ public class TowerHealth : MonoBehaviour
 
     void Start()
     {
-        bar.setMaxValue(health);
-        bar.setValue(health);
+        bar.SetMaxValue(health);
+        bar.SetValue(health);
     }
 
     public void TowerDamage(int damage)
@@ -22,6 +22,6 @@ public class TowerHealth : MonoBehaviour
             manager.gameOver();
         }
         health -= damage;
-        bar.setValue(health);
+        bar.SetValue(health);
     }
 }
