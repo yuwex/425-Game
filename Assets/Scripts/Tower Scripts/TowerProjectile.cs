@@ -178,7 +178,7 @@ public class TowerProjectile : MonoBehaviour
                 enemiesHit.Add(other.gameObject);
 
                 GetStat(Stat.ProjectileDamage, out float damage);
-                other.gameObject.GetComponent<EnemyHealth>().Damage(damage);
+                other.gameObject.GetComponent<Enemy>().Hurt(damage);
             }
             
         }

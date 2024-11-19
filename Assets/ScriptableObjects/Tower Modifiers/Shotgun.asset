@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faeb92c178ed447d8bd6420fd8061f1, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  statsInfo: []
+  statsInfo:
+  - statType: 1
+    statValue: -0.1
+    modifierType: 2
+  - statType: 2
+    statValue: 5
+    modifierType: 1
+  - statType: 5
+    statValue: -0.5
+    modifierType: 2
+  - statType: 4
+    statValue: -0.1
+    modifierType: 2
