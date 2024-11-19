@@ -8,7 +8,6 @@ public class WeaponCharger : WeaponBase
 {
     [Header("Weapon Stats")]
     public float maxChargeTime;
-    public float maxChargeDistance;
     public float maxChargeVelocity;
     public float attackDelay;
     public int maxDamage;
@@ -34,11 +33,10 @@ public class WeaponCharger : WeaponBase
     {
         if (attacking && chargeTime > 0)
         {
-            Projectile projectile = Instantiate(this.projectile, gameObject.transform.position, fppCamera.transform.rotation).GetComponent<Projectile>();
+            GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position, fppCamera.transform.rotation);
 
-            projectile.target = fppCamera.transform.position + (fppCamera.transform.forward * (20 + ((maxChargeDistance - 20) * (chargeTime / maxChargeTime))));
-            projectile.velocity = maxChargeVelocity * ((maxChargeTime + chargeTime) / (2 * maxChargeTime));
-            projectile.damage = 5 + (int) Math.Floor(Math.Pow(Math.Pow(maxDamage - 5, 1/1.5f) * (chargeTime/maxChargeTime), 1.5f));
+            projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * maxChargeVelocity * ((maxChargeTime + chargeTime) / (2 * maxChargeTime));
+            projectile.GetComponent<Projectile>().damage = 5 + (int)Math.Floor(Math.Pow(Math.Pow(maxDamage - 5, 1 / 1.5f) * (chargeTime / maxChargeTime), 1.5f));
 
             chargeTime = 0;
             player.StartCoroutine(ResetAttack());
