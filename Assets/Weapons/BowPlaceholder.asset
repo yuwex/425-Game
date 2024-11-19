@@ -17,8 +17,7 @@ MonoBehaviour:
   position: {x: 1.11, y: -0.45, z: 1.1}
   scale: {x: 20, y: 20, z: 20}
   animateRotation: -40
-  maxChargeTime: 2
-  maxChargeDistance: 100
+  maxChargeTime: 1.5
   maxChargeVelocity: 100
   attackDelay: 0.2
   maxDamage: 50
