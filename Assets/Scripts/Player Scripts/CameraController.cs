@@ -19,8 +19,8 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            mainCamera.SetActive(mainCamera.gameObject.activeSelf);
-            buildCamera.SetActive(!buildCamera.gameObject.activeSelf);
+            mainCamera.SetActive(!mainCamera.activeSelf);
+            buildCamera.SetActive(!buildCamera.activeSelf);
         }
     }
 }

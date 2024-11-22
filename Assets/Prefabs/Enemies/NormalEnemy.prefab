@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5086a056b97b4784a2c74d693e95b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainGui: 1
+  faceCamera: 1
   barContainer: {fileID: 3968667063941597648}
 --- !u!114 &6538092072608227305
 MonoBehaviour:

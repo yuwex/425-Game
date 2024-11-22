@@ -5663,7 +5663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5086a056b97b4784a2c74d693e95b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainGui: 1
+  faceCamera: 1
   barContainer: {fileID: 1539769959}
 --- !u!1 &1525123610 stripped
 GameObject:
@@ -7499,7 +7499,7 @@ GameObject:
   - component: {fileID: 2044575080}
   m_Layer: 0
   m_Name: BuildCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
