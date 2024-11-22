@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ff6b74eb1944e2584792a9ad602956, type: 3}
   m_Name: Mortar
   m_EditorClassIdentifier: 
+  modifierMaterial: {fileID: 2100000, guid: a53d6ada98c8c46bc9200e6013eb04ab, type: 2}
   statsInfo:
   - statType: 1
     statValue: 2

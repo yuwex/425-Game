@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatModifier", menuName = "TowerModifiers/Stats")]
 public class ModifierBase : ScriptableObject
 {
+
+    public Material modifierMaterial;
     public List<StatInfo> statsInfo = new();
     protected Dictionary<Stat, float> stats;
 

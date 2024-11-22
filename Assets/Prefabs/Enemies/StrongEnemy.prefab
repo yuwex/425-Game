@@ -673,5 +673,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 6ed44a710dfed4fb58f0b793b85f37ec, type: 2}
   target: {fileID: 0}
   mainBase: {fileID: 0}
+  modifierDrop: {fileID: 0}
+  modifierPrefab: {fileID: 4447672129588550576, guid: bffee88492c504fd1bc00a641a2b475b, type: 3}
   health: 1
   activationDistance: 10
