@@ -12,12 +12,12 @@ public class CoinUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text.text = "Coins: 0";
+        text.text = "0";
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "Coins: " + GameManager.Instance.playerCoins;
+        text.text = "" + GameManager.Instance.playerCoins;
     }
 }
