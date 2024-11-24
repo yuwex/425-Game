@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject gameOverUI;
+    public GameObject ui;
 
     /******************** SINGLETON ********************/
     private static GameManager _instance;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
+        ui.SetActive(false);
     }
 
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     public void restartLevel()
     {
         Time.timeScale = 1f;
+        ui.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
