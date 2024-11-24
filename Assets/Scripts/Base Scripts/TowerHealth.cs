@@ -4,6 +4,7 @@ public class TowerHealth : MonoBehaviour
 {
 
     public InfoBar bar;
+    public InfoBar uibar;
     public int health = 100;
     public GameManager manager;
 
@@ -12,6 +13,8 @@ public class TowerHealth : MonoBehaviour
     {
         bar.SetMaxValue(health);
         bar.SetValue(health);
+        uibar.SetMaxValue(health);
+        uibar.SetValue(health);
     }
 
     public void TowerDamage(int damage)
@@ -23,5 +26,6 @@ public class TowerHealth : MonoBehaviour
         }
         health -= damage;
         bar.SetValue(health);
+        uibar.SetValue(health);
     }
 }
