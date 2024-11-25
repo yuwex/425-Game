@@ -59,6 +59,8 @@ public class Enemy : MonoBehaviour
 
     public void Hurt(float damage)
     {
+        if (health <= 0)
+            return;
 
         health = Mathf.Clamp(health - damage, 0, Mathf.Infinity);
         healthBar.SetValue((int)health);
@@ -79,7 +81,7 @@ public class Enemy : MonoBehaviour
         upgradePickup.modifier = modifierDrop;
     }
 
-    public virtual void OnHurt(float dmg) { }
+    public virtual void OnHurt(float dmg) {}
 
     public virtual void OnEnemyDie()
     {

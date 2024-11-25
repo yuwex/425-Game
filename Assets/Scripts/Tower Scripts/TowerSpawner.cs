@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TowerSpawner : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class TowerSpawner : MonoBehaviour
         // Set options for the indicator
         TowerIndicator = Instantiate(TowerPlaceHolder, Vector3.zero, Quaternion.identity);
         TowerIndicator.GetComponent<MeshCollider>().enabled = false;
+        TowerIndicator.GetComponent<NavMeshObstacle>().enabled = false;
         TowerIndicator.GetComponent<MeshRenderer>().material = IndicatorMaterialCanPlace;
 
         currObject = TowerPlaceHolder;
