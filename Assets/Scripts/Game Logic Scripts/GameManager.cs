@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverUI;
     public GameObject ui;
+    public int enemyWave = 1;
 
     /******************** SINGLETON ********************/
     private static GameManager _instance;
@@ -89,7 +90,8 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "MainHub")
         {
             scene = "Game";
-        } else
+        }
+        else
         {
             scene = "MainHub";
         }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -57,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     public void Hurt(float damage)
     {
-        
+
         health = Mathf.Clamp(health - damage, 0, Mathf.Infinity);
         healthBar.SetValue((int)health);
 
@@ -65,12 +67,11 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             OnEnemyDie();
-            
+
             GameManager.Instance.updateCoins(coinReward);
 
             if (modifierDrop) CreateModifierDrop();
 
-            Destroy(gameObject);
         }
     }
 
@@ -80,8 +81,23 @@ public class Enemy : MonoBehaviour
         upgradePickup.modifier = modifierDrop;
     }
 
-    public virtual void OnHurt(float dmg) {}
+    public virtual void OnHurt(float dmg) { }
 
-    public virtual void OnEnemyDie() {}
-    
+    public virtual void OnEnemyDie()
+    {
+        GetComponentInChildren<AnimationController>().isDead = true;
+        StartCoroutine(PlayDeathAnimationAndDestroy());
+    }
+
+    private IEnumerator PlayDeathAnimationAndDestroy()
+    {
+        Animator animator = GetComponentInChildren<Animator>();
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        float deathAnimationLength = stateInfo.length;
+
+        yield return new WaitForSeconds(deathAnimationLength - 0.3f);
+        Destroy(gameObject);
+    }
+
 }

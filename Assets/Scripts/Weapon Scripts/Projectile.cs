@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public int damage;
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Pickup"))
         {
