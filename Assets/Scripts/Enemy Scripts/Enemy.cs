@@ -59,6 +59,8 @@ public class Enemy : MonoBehaviour
 
     public void Hurt(float damage)
     {
+        if (health <= 0)
+            return;
 
         health = Mathf.Clamp(health - damage, 0, Mathf.Infinity);
         healthBar.SetValue((int)health);
@@ -70,8 +72,6 @@ public class Enemy : MonoBehaviour
 
             GameManager.Instance.updateCoins(coinReward);
 
-            if (modifierDrop) CreateModifierDrop();
-
         }
     }
 
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
         upgradePickup.modifier = modifierDrop;
     }
 
-    public virtual void OnHurt(float dmg) { }
+    public virtual void OnHurt(float dmg) {}
 
     public virtual void OnEnemyDie()
     {
@@ -98,6 +98,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(deathAnimationLength - 0.3f);
         Destroy(gameObject);
+
+        if (modifierDrop) CreateModifierDrop();
     }
 
 }

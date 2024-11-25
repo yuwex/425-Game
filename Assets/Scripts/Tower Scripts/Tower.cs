@@ -38,7 +38,7 @@ public class Tower : MonoBehaviour
     public List<StatInfo> HandleAdditiveModifier(List<StatInfo> mods, List<StatInfo> stats)
     {
 
-        Debug.Log("handle");
+        // Debug.Log("handle");
 
         var statsDict = stats.ToDictionary(x => x.statType, x => x);
 
@@ -46,7 +46,7 @@ public class Tower : MonoBehaviour
         {
             if (statsDict.TryGetValue(mod.statType, out var found))
             {
-                Debug.Log("Modded: " + (statsDict[mod.statType] + mod));
+                // Debug.Log("Modded: " + (statsDict[mod.statType] + mod));
                 statsDict[mod.statType] += mod;
             }
             else

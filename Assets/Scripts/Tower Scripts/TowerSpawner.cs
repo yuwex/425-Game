@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TowerSpawner : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class TowerSpawner : MonoBehaviour
     [Header("PathFinding")]
     public Transform homeBase;
     public List<Transform> spawnPoints;
+    public CoinWarning coinWarning;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,7 @@ public class TowerSpawner : MonoBehaviour
         // Set options for the indicator
         TowerIndicator = Instantiate(TowerPlaceHolder, Vector3.zero, Quaternion.identity);
         TowerIndicator.GetComponent<MeshCollider>().enabled = false;
+        TowerIndicator.GetComponent<NavMeshObstacle>().enabled = false;
         TowerIndicator.GetComponent<MeshRenderer>().material = IndicatorMaterialCanPlace;
 
         currObject = TowerPlaceHolder;
@@ -66,6 +69,20 @@ public class TowerSpawner : MonoBehaviour
         // Update tower material depending whether or not player has enough coins
         var renderer = TowerIndicator.GetComponent<MeshRenderer>();
 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currObject != TowerPlaceHolder)
+        {
+            mesh.sharedMesh = TowerPlaceHolder.GetComponent<MeshFilter>().sharedMesh;
+            mesh.transform.localScale = towerScale;
+            currPrice = towerPrice;
+            currObject = TowerPlaceHolder;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currObject != WallPlaceHolder)
+        {
+            mesh.sharedMesh = WallPlaceHolder.GetComponent<MeshFilter>().sharedMesh;
+            mesh.transform.localScale = wallScale;
+            currPrice = wallPrice;
+            currObject = WallPlaceHolder;
+        }
         if (buildEnabled)
         {
             Ray ray = buildCamera.ScreenPointToRay(Input.mousePosition);
@@ -106,22 +123,12 @@ public class TowerSpawner : MonoBehaviour
                         // Subtract tower price from user coins
                         GameManager.Instance.updateCoins(-towerPrice);
                     }
-                } 
+                    else if (Input.GetMouseButtonDown(0) && !canPlace)
+                    {
+                        coinWarning.ShowWarning();
+                    }
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currObject != TowerPlaceHolder)
-        {
-            mesh.sharedMesh = TowerPlaceHolder.GetComponent<MeshFilter>().sharedMesh;
-            mesh.transform.localScale = towerScale;
-            currPrice = towerPrice;
-            currObject = TowerPlaceHolder;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && currObject != WallPlaceHolder)
-        {
-            mesh.sharedMesh = WallPlaceHolder.GetComponent<MeshFilter>().sharedMesh;
-            mesh.transform.localScale = wallScale;
-            currPrice = wallPrice;
-            currObject = WallPlaceHolder;
         }
     }
 

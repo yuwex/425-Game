@@ -13,29 +13,43 @@ public class InfoBar : MonoBehaviour
     private Slider slider;
     private TMP_Text text; 
 
-    private float value, maxValue;
+    public bool easing = true;
+
+    private float value, targetValue, maxValue;
 
     void Awake() {
         slider = barContainer.GetComponentInChildren<Slider>(true);
         text = barContainer.GetComponentInChildren<TMP_Text>(true);
-        value = slider.value;
+        targetValue = slider.value;
         maxValue = slider.maxValue;
     }
 
     void Update() {
-        if (faceCamera) {
+        if (faceCamera) 
+        {
             barContainer.transform.rotation = Camera.main.transform.rotation;
         }
+
+        if (easing)
+        {
+            value += (targetValue - value) * Time.deltaTime * 5;
+        }
+        else
+        {
+            value = targetValue;
+        }
+
+        slider.value = value;
+        text.text = Math.Round(value) + " / " + (int)maxValue;
+
     }
 
     public void SetValue(int value) {
-        slider.value = value;
-        text.text = (int)value + " / " + (int)maxValue;
+        targetValue = value;
     }
 
     public void SetMaxValue(int v) {
         slider.maxValue = v;
         maxValue = v;
-        text.text = (int)value + " / " + (int)maxValue;
     }
 }

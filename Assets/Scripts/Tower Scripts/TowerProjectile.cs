@@ -65,7 +65,7 @@ public class TowerProjectile : MonoBehaviour
     {
 
         // Center of target
-        Vector3 targetPos = target.GetComponent<Renderer>().bounds.center;
+        Vector3 targetPos = target.GetComponent<Collider>().bounds.center;
 
         // Get Velocity
         GetStat(Stat.ProjectileVelocity, out var velocity);
