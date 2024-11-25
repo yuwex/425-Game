@@ -37,6 +37,9 @@ public class TowerSpawner : MonoBehaviour
 
     private bool canPlace;
 
+    [Header("PathFinding")]
+    public Transform homeBase;
+    public List<Transform> spawnPoints;
 
     // Start is called before the first frame update
     void Start()
@@ -46,47 +49,44 @@ public class TowerSpawner : MonoBehaviour
         // Set options for the indicator
         TowerIndicator = Instantiate(TowerPlaceHolder, Vector3.zero, Quaternion.identity);
         TowerIndicator.GetComponent<MeshCollider>().enabled = false;
-        TowerIndicator.GetComponent<Tower>().enabled = false;
-
-        mesh = TowerIndicator.GetComponent<MeshFilter>();
+        TowerIndicator.GetComponent<MeshRenderer>().material = IndicatorMaterialCanPlace;
 
         currObject = TowerPlaceHolder;
         currPrice = towerPrice;
 
-        var renderer = TowerIndicator.GetComponent<MeshRenderer>();
-        renderer.material = IndicatorMaterialCanPlace;
-
+        mesh = TowerIndicator.GetComponent<MeshFilter>();
         canPlace = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        TowerIndicator.SetActive(false);
+
         // Update tower material depending whether or not player has enough coins
         var renderer = TowerIndicator.GetComponent<MeshRenderer>();
 
-
-        TowerIndicator.SetActive(false);
         if (buildEnabled)
         {
             Ray ray = buildCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Vector3 pos;
 
             canPlace = GameManager.Instance.playerCoins >= currPrice;
             canPlace = canPlace && !player.bounds.Intersects(renderer.bounds);
 
             if (Physics.Raycast(ray, out hit))
             {
+                Vector3 pos = board.NormalizePos(hit.point);
+                var (towerX, towerY) = board.GetCoordinateFromPos(pos);
 
-                pos = board.NormalizePos(hit.point);
-                if (board.GetObjectFromPos(pos) is null)
+                if (board.GetBoard(towerX, towerY) == null)
                 {
-
                     TowerIndicator.SetActive(true);
                     TowerIndicator.transform.position = pos + new Vector3(0, 0.1f, 0);
 
-                    if (canPlace)
+                    bool validPath = PathToBase(pos);
+
+                    if (validPath && canPlace)
                     {
                         renderer.material = IndicatorMaterialCanPlace;
                     }
@@ -95,26 +95,19 @@ public class TowerSpawner : MonoBehaviour
                         renderer.material = IndicatorMaterialCantPlace;
                     }
 
-                    if (Input.GetMouseButtonDown(0) && canPlace)
+
+                    if (Input.GetMouseButtonDown(0) && canPlace && validPath)
                     {
                         var tower = Instantiate(currObject, pos, Quaternion.identity);
-                        board.SetObjectAtPos(pos, tower);
-
-                        // Subtract tower price from user coins
-                        GameManager.Instance.updateCoins(-currPrice);
+                        board.SetBoard(towerX, towerY, tower);
 
                         board.UpdateWalls(pos);
-                    }
-                }
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && currObject != WallPlaceHolder)
-        {
-            mesh.sharedMesh = WallPlaceHolder.GetComponent<MeshFilter>().sharedMesh;
-            mesh.transform.localScale = wallScale;
-            currPrice = wallPrice;
-            currObject = WallPlaceHolder;
+                        // Subtract tower price from user coins
+                        GameManager.Instance.updateCoins(-towerPrice);
+                    }
+                } 
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha1) && currObject != TowerPlaceHolder)
         {
@@ -123,5 +116,36 @@ public class TowerSpawner : MonoBehaviour
             currPrice = towerPrice;
             currObject = TowerPlaceHolder;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currObject != WallPlaceHolder)
+        {
+            mesh.sharedMesh = WallPlaceHolder.GetComponent<MeshFilter>().sharedMesh;
+            mesh.transform.localScale = wallScale;
+            currPrice = wallPrice;
+            currObject = WallPlaceHolder;
+        }
+    }
+
+
+    private bool PathToBase(Vector3 towerPosition)
+    {
+        var (towerX, towerY) = board.GetCoordinateFromPos(towerPosition);
+
+        board.SetBoard(towerX, towerY, new GameObject("Temp"));
+
+        var (homeX, homeY) = board.GetCoordinateFromPos(homeBase.position);
+
+        foreach (Transform spawn in spawnPoints)
+        {
+            var (startX, startY) = board.GetCoordinateFromPos(spawn.position);
+            if (board.PathExists(startX, startY, homeX, homeY))
+            {
+                board.SetBoard(towerX, towerY, null);
+                return true;
+            }
+        }
+
+        board.SetBoard(towerX, towerY, null);
+
+        return false;
     }
 }

@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +9,8 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private InfoBar healthBar;
 
+    public ModifierBase modifierDrop = null;
+    public GameObject modifierPrefab = null;
     public float health = 0f;
     private float attackDamage;
     private float baseDamage;
@@ -66,10 +64,20 @@ public class Enemy : MonoBehaviour
         OnHurt(damage);
         if (health <= 0)
         {
-            GameManager.Instance.updateCoins(coinReward);
             OnEnemyDie();
+            
+            GameManager.Instance.updateCoins(coinReward);
+
+            if (modifierDrop) CreateModifierDrop();
+
             Destroy(gameObject);
         }
+    }
+
+    void CreateModifierDrop()
+    {
+        var upgradePickup = Instantiate(modifierPrefab, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity).GetComponent<UpgradePickup>();
+        upgradePickup.modifier = modifierDrop;
     }
 
     public virtual void OnHurt(float dmg) {}

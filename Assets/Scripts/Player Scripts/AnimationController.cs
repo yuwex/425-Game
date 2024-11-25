@@ -28,7 +28,7 @@ public class AnimationController : MonoBehaviour
         isMoving = movement.magnitude > Mathf.Epsilon; // Use a small threshold to avoid floating-point inaccuracies
 
         // Update animation states
-        animator.SetBool("isWalking", isMoving);
+        animator.SetBool("isMoving", isMoving);
 
         // Update the previous position for the next frame
         previousPosition = currentPosition;

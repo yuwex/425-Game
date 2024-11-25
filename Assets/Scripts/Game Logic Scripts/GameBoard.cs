@@ -248,4 +248,50 @@ public class GameBoard : MonoBehaviour
             }
         }
     }
+
+    public bool PathExists(int startX, int startY, int targetX, int targetY)
+    {
+        // Bounds check
+        if (startX < 0 || startY < 0 || targetX < 0 || targetY < 0) return false;
+        if (startX >= BoardLength || startY >= BoardLength || targetX >= BoardLength || targetY >= BoardLength) return false;
+
+        // BFS queue
+        Queue<(int, int)> queue = new Queue<(int, int)>();
+        HashSet<(int, int)> visited = new HashSet<(int, int)>();
+        queue.Enqueue((startX, startY));
+
+        // Define movement directions (up, right, down, left)
+        (int, int)[] directions = { (0, 1), (1, 0), (0, -1), (-1, 0) };
+
+        while (queue.Count > 0)
+        {
+            var (x, y) = queue.Dequeue();
+
+            // If we reached the target, return true
+            if (x == targetX && y == targetY) return true;
+
+            // Skip if visited or blocked
+            if (visited.Contains((x, y))) continue;
+            visited.Add((x, y));
+
+            // Check all neighbors
+            foreach (var (dx, dy) in directions)
+            {
+                int nx = x + dx, ny = y + dy;
+
+                // Bounds check and walkable condition
+                if (nx >= 0 && ny >= 0 && nx < BoardLength && ny < BoardLength)
+                {
+                    var neighborTile = GetBoard(nx, ny);
+                    if (neighborTile == null)
+                    {
+                        queue.Enqueue((nx, ny));
+                    }
+                }
+            }
+        }
+
+        // No path found
+        return false;
+    }
 }

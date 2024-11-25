@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> enemies;
+    public List<ModifierBase> possibleModifierDrops;
     public GameObject mainBase;
     public int waveNumber = 1;
     public int enemyType = 1;
@@ -49,5 +50,9 @@ public class EnemySpawner : MonoBehaviour
         // Set up starting vars
         enemy.target = mainBase;
         enemy.mainBase = mainBase;
+
+        // Add possible drop
+        if (Random.value >= 0.5)
+            enemy.modifierDrop = possibleModifierDrops[Random.Range(0, possibleModifierDrops.Count)];
     }
 }

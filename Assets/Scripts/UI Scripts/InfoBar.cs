@@ -8,7 +8,7 @@ using System;
 public class InfoBar : MonoBehaviour
 {
 
-    public bool mainGui = true;
+    public bool faceCamera = false;
     public GameObject barContainer;
     private Slider slider;
     private TMP_Text text; 
@@ -23,7 +23,7 @@ public class InfoBar : MonoBehaviour
     }
 
     void Update() {
-        if (!mainGui) {
+        if (faceCamera) {
             barContainer.transform.rotation = Camera.main.transform.rotation;
         }
     }

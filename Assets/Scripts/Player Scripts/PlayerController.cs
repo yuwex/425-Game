@@ -52,8 +52,23 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        Vector3 move;
+
         // calculate direction for player to move using local player coordinates
-        Vector3 move = transform.right * x + transform.forward * z;
+        if (Camera.main == GetComponentInChildren<Camera>())
+        {
+            move = transform.right * x + transform.forward * z;
+        }
+        else
+        {
+            move = new Vector3(x, 0, z);
+        }
+
+
+
+        // Prevent diagonal being faster
+        if (move.magnitude > 1)
+            move.Normalize();
 
         // move player
         player.Move(speed * Time.deltaTime * move);

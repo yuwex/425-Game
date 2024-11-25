@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faeb92c178ed447d8bd6420fd8061f1, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
+  modifierMaterial: {fileID: 2100000, guid: a91ca2a4cd10e4c7e8ca9999c2fdf0be, type: 2}
   statsInfo:
   - statType: 1
     statValue: -0.1
@@ -25,3 +26,4 @@ MonoBehaviour:
   - statType: 4
     statValue: -0.1
     modifierType: 2
+  statMaxes: []
