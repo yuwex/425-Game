@@ -70,8 +70,6 @@ public class Enemy : MonoBehaviour
 
             GameManager.Instance.updateCoins(coinReward);
 
-            if (modifierDrop) CreateModifierDrop();
-
         }
     }
 
@@ -98,6 +96,8 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(deathAnimationLength - 0.3f);
         Destroy(gameObject);
+
+        if (modifierDrop) CreateModifierDrop();
     }
 
 }
