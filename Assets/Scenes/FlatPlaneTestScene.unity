@@ -799,6 +799,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
   - {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
+  - {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
