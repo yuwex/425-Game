@@ -232,7 +232,7 @@ public class GameBoard : MonoBehaviour
             int y = UnityEngine.Random.Range(0, BoardLength);
             int boardLength = BoardLength / 2;
 
-            bool inTowerArea = x >= (boardLength - 1) && x <= (boardLength + 1) && y >= (boardLength - 1) && y <= (boardLength + 1);
+            bool inTowerArea = x >= (boardLength - 2) && x <= (boardLength + 2) && y >= (boardLength - 2) && y <= (boardLength + 2);
 
             if (Tiles[x, y] == null && !inTowerArea)
             {
@@ -293,5 +293,11 @@ public class GameBoard : MonoBehaviour
 
         // No path found
         return false;
+    }
+
+    public List<(int, int)> GetBaseCoords()
+    {
+        int middle = BoardLength / 2;
+        return new List<(int, int)> {(middle, middle), (middle - 1, middle), (middle, middle - 1), (middle - 1, middle - 1)};
     }
 }

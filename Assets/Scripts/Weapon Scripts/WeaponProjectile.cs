@@ -26,7 +26,7 @@ public class WeaponProjectile : WeaponBase
     private IEnumerator Shoot()
     {
         yield return new WaitForSeconds(attackDelay);
-        GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward, fppCamera.transform.rotation);
+        GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward * 2, fppCamera.transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * velocity;
         projectile.GetComponent<Fireball>().damage = attackDamage;
     }

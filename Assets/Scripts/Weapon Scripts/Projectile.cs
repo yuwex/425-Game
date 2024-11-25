@@ -6,12 +6,15 @@ public class Projectile : MonoBehaviour
 {
     public int damage;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (!other.gameObject.CompareTag("Pickup"))
         {
-            other.gameObject.GetComponent<Enemy>().Hurt(damage);
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                other.gameObject.GetComponent<Enemy>().Hurt(damage);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

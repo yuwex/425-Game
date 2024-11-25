@@ -79,7 +79,7 @@ public class TowerSpawner : MonoBehaviour
                 Vector3 pos = board.NormalizePos(hit.point);
                 var (towerX, towerY) = board.GetCoordinateFromPos(pos);
 
-                if (board.GetBoard(towerX, towerY) == null)
+                if (board.GetBoard(towerX, towerY) == null && !board.GetBaseCoords().Contains((towerX, towerY)))
                 {
                     TowerIndicator.SetActive(true);
                     TowerIndicator.transform.position = pos + new Vector3(0, 0.1f, 0);
