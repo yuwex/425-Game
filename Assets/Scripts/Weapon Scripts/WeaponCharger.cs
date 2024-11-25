@@ -33,7 +33,7 @@ public class WeaponCharger : WeaponBase
     {
         if (attacking && chargeTime > 0)
         {
-            GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position, fppCamera.transform.rotation);
+            GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward * 2, fppCamera.transform.rotation);
 
             projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * maxChargeVelocity * ((maxChargeTime + chargeTime) / (2 * maxChargeTime));
             projectile.GetComponent<Projectile>().damage = 5 + (int)Math.Floor(Math.Pow(Math.Pow(maxDamage - 5, 1 / 1.5f) * (chargeTime / maxChargeTime), 1.5f));

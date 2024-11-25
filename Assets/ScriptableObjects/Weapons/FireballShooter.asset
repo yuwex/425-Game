@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ab6b80825170a47bf5a5cae71033c6, type: 3}
+  m_Name: FireballShooter
+  m_EditorClassIdentifier: 
+  attacking: 0
+  prefab: {fileID: 100004, guid: bc5d76f3ac4971e4b8bddf1909dbe3eb, type: 3}
+  position: {x: 0.8, y: -0.45000005, z: 0.8}
+  scale: {x: 20, y: 20, z: 20}
+  animateRotation: -10
+  velocity: 60
+  attackDelay: 0
+  attackSpeed: 1
+  attackDamage: 20
+  projectile: {fileID: 5423597734023010936, guid: ea15b85e207659b45acf9da02c282be7, type: 3}

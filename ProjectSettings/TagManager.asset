@@ -9,6 +9,7 @@ TagManager:
   - Base
   - ConnectorWall
   - Terrain
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Hittable
   - Player
-  - 
+  - Caves
   - 
   - 
   - 
