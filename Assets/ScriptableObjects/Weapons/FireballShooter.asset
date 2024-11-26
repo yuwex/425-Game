@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: FireballShooter
   m_EditorClassIdentifier: 
   attacking: 0
-  prefab: {fileID: 100004, guid: bc5d76f3ac4971e4b8bddf1909dbe3eb, type: 3}
-  position: {x: 0.8, y: -0.45000005, z: 0.8}
-  scale: {x: 20, y: 20, z: 20}
+  prefab: {fileID: 8557855610428924034, guid: 03bd73dcf1f3530469b0d25d90e112aa, type: 3}
+  position: {x: 0.8, y: -0.45, z: 0.8}
+  scale: {x: 2, y: 2, z: 2}
   animateRotation: -10
+  rotation: {x: -0.00000004371139, y: -1, z: -0.00000004371139, w: 1.9106855e-15}
   velocity: 60
   attackDelay: 0
   attackSpeed: 1
