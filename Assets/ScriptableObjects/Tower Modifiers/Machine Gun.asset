@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4154a6e048824425ae80aaf48512e2a, type: 3}
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
+  modifierName: Machine Gun
+  flavorDescription: <i>bangbangbang</i>
+  modifierDescription: Projectiles fire side-by-side
   modifierMaterial: {fileID: 2100000, guid: 6ac496a783939446f834e164cf902869, type: 2}
   statsInfo:
-  - statType: 2
+  - statType: 3
     statValue: 1
     modifierType: 3
   - statType: 4
@@ -27,6 +30,6 @@ MonoBehaviour:
     statValue: 0.5
     modifierType: 2
   statMaxes:
-  - statType: 2
+  - statType: 3
     statValue: 2
     modifierType: 0

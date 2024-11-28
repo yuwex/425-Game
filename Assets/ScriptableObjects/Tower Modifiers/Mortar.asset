@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ff6b74eb1944e2584792a9ad602956, type: 3}
   m_Name: Mortar
   m_EditorClassIdentifier: 
+  modifierName: Mortar
+  flavorDescription: <i>big booms</i>
+  modifierDescription: Projectiles fire in a wide arc
   modifierMaterial: {fileID: 2100000, guid: a53d6ada98c8c46bc9200e6013eb04ab, type: 2}
   statsInfo:
   - statType: 1
     statValue: 2
     modifierType: 2
-  - statType: 3
+  - statType: 2
     statValue: 1
     modifierType: 2
   - statType: 4

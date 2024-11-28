@@ -70,7 +70,7 @@ public class Tower : MonoBehaviour
         {
             if (modsDict.TryGetValue(stat.statType, out var found))
             {
-                statsDict[stat.statType] *= (found + new StatInfo{statType = stat.statType, statValue = 1f, modifierType = stat.modifierType});
+                statsDict[stat.statType] *= found + new StatInfo{statType = stat.statType, statValue = 1f, modifierType = stat.modifierType};
             }
         }
 
@@ -142,6 +142,15 @@ public class Tower : MonoBehaviour
         // Debug.Log("New stats: " + string.Join(",", stats));
     }
 
+    public string GetDescription()
+    {
+        foreach (StatInfo stat in stats.OrderBy(x => x.statType))
+        {
+            
+        }
+        
+        return "";
+    }
     private bool GetStat(Stat type, out float result) 
     {
         foreach (var s in stats) {

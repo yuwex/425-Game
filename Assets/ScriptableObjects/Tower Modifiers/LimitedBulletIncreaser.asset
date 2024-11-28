@@ -12,15 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807417f6bfcf548c7b1ec447a43d2916, type: 3}
   m_Name: LimitedBulletIncreaser
   m_EditorClassIdentifier: 
+  modifierName: More Bullets
+  flavorDescription: <i>another one</i>
+  modifierDescription: 
   modifierMaterial: {fileID: 2100000, guid: 93d093b942cf34dc88a6060096f08268, type: 2}
   statsInfo:
-  - statType: 2
+  - statType: 3
     statValue: 1
     modifierType: 3
   - statType: 1
     statValue: 5
     modifierType: 1
+  - statType: 4
+    statValue: 5
+    modifierType: 1
+  - statType: 4
+    statValue: -0.5
+    modifierType: 2
   statMaxes:
-  - statType: 2
+  - statType: 3
     statValue: 5
     modifierType: 3

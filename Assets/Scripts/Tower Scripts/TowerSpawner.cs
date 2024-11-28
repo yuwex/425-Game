@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -121,7 +117,7 @@ public class TowerSpawner : MonoBehaviour
                         board.UpdateWalls(pos);
 
                         // Subtract tower price from user coins
-                        GameManager.Instance.updateCoins(-towerPrice);
+                        GameManager.Instance.updateCoins(-currPrice);
                     }
                     else if (Input.GetMouseButtonDown(0) && !canPlace)
                     {

@@ -12,18 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faeb92c178ed447d8bd6420fd8061f1, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
+  modifierName: Shotgun
+  flavorDescription: <i>shotty like a melody</i>
+  modifierDescription: Projectiles fire in a cone spread
   modifierMaterial: {fileID: 2100000, guid: a91ca2a4cd10e4c7e8ca9999c2fdf0be, type: 2}
   statsInfo:
   - statType: 1
     statValue: -0.1
     modifierType: 2
-  - statType: 2
+  - statType: 3
     statValue: 5
-    modifierType: 1
+    modifierType: 3
   - statType: 5
     statValue: -0.5
     modifierType: 2
   - statType: 4
     statValue: -0.1
     modifierType: 2
-  statMaxes: []
+  statMaxes:
+  - statType: 2
+    statValue: 10
+    modifierType: 0
