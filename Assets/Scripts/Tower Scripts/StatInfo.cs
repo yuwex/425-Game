@@ -1,13 +1,25 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 public enum Stat : int
 {
-    ProjectileVelocity,
+    [Description("Projectile Damage")]
     ProjectileDamage,
-    ProjectileCount,
+
+    [Description("Projectile Speed")]
+    ProjectileVelocity,
+
+    [Description("Projectile Lifetime")]
     ProjectileLifetime,
+
+    [Description("Projectiles")]
+    ProjectileCount,
+
+    [Description("Tower Cooldown")]
     TowerCooldown,
+    
+    [Description("Tower Range")]
     TowerRange
 }
 
