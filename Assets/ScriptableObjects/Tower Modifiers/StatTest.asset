@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a49154a2cb44817ac276d087fd9fd4, type: 3}
+  m_Name: StatTest
+  m_EditorClassIdentifier: 
+  modifierName: Weird Booster
+  flavorDescription: <i>weird test item</i>
+  modifierDescription: 
+  modifierMaterial: {fileID: 2100000, guid: 749f3c932f6e14dac93c000cfea24bf9, type: 2}
+  statsInfo:
+  - statType: 1
+    statValue: 0.1
+    modifierType: 2
+  - statType: 2
+    statValue: 1
+    modifierType: 1
+  - statType: 0
+    statValue: 10
+    modifierType: 1
+  - statType: 0
+    statValue: -0.1
+    modifierType: 2
+  - statType: 5
+    statValue: 0.25
+    modifierType: 2
