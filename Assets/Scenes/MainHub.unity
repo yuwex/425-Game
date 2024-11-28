@@ -24550,7 +24550,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 650053661}
   ui: {fileID: 0}
-  enemyWave: 1
   playerCoins: 0
   trans: {fileID: 1025288782}
 --- !u!4 &726039532

@@ -5,7 +5,7 @@ using System.Collections;
 public class CoinWarning : MonoBehaviour
 {
     public TextMeshProUGUI warningText;
-    private float fadeDuration = 0.05f;
+    private float fadeDuration = 0.1f;
 
     void start()
     {
@@ -33,7 +33,7 @@ public class CoinWarning : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         // Fade out
         timer = 0f;

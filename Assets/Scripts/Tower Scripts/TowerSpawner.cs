@@ -123,7 +123,7 @@ public class TowerSpawner : MonoBehaviour
                         // Subtract tower price from user coins
                         GameManager.Instance.updateCoins(-towerPrice);
                     }
-                    else if (Input.GetMouseButtonDown(0) && GameManager.Instance.playerCoins < currPrice)
+                    else if (Input.GetMouseButtonDown(0) && !canPlace)
                     {
                         coinWarning.ShowWarning();
                     }

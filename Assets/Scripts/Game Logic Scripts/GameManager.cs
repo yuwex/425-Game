@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "MainHub")
         {
             scene = "Game";
-        } else
+        }
+        else
         {
             scene = "MainHub";
         }
