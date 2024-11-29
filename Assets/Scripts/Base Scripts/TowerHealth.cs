@@ -6,7 +6,7 @@ public class TowerHealth : MonoBehaviour
     public InfoBar bar;
     public InfoBar uibar;
     public int health = 100;
-    public GameManager manager;
+    public UiTasks manager;
 
 
     void Start()

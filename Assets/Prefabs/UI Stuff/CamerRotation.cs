@@ -12,7 +12,7 @@ public class CamerRotation : MonoBehaviour
     {
         if (rotationPoint != null)
         {
-            transform.RotateAround(rotationPoint.position, Vector3.up, rotationSpeed * Time.deltaTime);
+            transform.RotateAround(rotationPoint.position, Vector3.up, rotationSpeed * Time.unscaledDeltaTime);
             transform.LookAt(rotationPoint);
         }
     }

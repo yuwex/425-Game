@@ -132,8 +132,8 @@ public class TowerSpawner : MonoBehaviour
     private bool PathToBase(Vector3 towerPosition)
     {
         var (towerX, towerY) = board.GetCoordinateFromPos(towerPosition);
-
-        board.SetBoard(towerX, towerY, new GameObject("Temp"));
+        var temp = new GameObject("Temp");
+        board.SetBoard(towerX, towerY, temp);
 
         var (homeX, homeY) = board.GetCoordinateFromPos(homeBase.position);
 
@@ -143,12 +143,13 @@ public class TowerSpawner : MonoBehaviour
             if (board.PathExists(startX, startY, homeX, homeY))
             {
                 board.SetBoard(towerX, towerY, null);
+                Destroy(temp);
                 return true;
             }
         }
 
         board.SetBoard(towerX, towerY, null);
-
+        Destroy(temp);
         return false;
     }
 }

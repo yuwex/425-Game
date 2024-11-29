@@ -7,9 +7,6 @@ using System.Runtime.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
-
-    public GameObject gameOverUI;
-    public GameObject ui;
     public int enemyWave = 1;
 
     /******************** SINGLETON ********************/
@@ -49,25 +46,6 @@ public class GameManager : MonoBehaviour
     public void updateCoins(int coins)
     {
         playerCoins += coins;
-    }
-
-    public void gameOver()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        gameOverUI.SetActive(true);
-        Time.timeScale = 0f;
-        ui.SetActive(false);
-    }
-
-
-
-
-    public void restartLevel()
-    {
-        Time.timeScale = 1f;
-        ui.SetActive(true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
