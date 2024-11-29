@@ -55,11 +55,11 @@ public class BuildModeButton : MonoBehaviour
         {
             if (buildEnabled)
             {
-                text.text = "ON";
+                text.text = "BUILD ON";
             }
             else
             {
-                text.text = "OFF";
+                text.text = "BUILD OFF";
             }
         }
     }
