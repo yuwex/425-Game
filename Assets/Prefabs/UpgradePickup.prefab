@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5038142207598650113}
   m_Layer: 0
   m_Name: UpgradePickup
-  m_TagString: Undefined
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
