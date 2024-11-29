@@ -20,7 +20,7 @@ public class WeaponCharger : WeaponBase
     {
         if (towerSpawner.buildEnabled || (attacking && chargeTime == 0)) return;
 
-        chargeTime += Time.deltaTime;
+        chargeTime += Time.unscaledDeltaTime;
         if (chargeTime >= maxChargeTime)
         {
             chargeTime = maxChargeTime;
@@ -55,7 +55,7 @@ public class WeaponCharger : WeaponBase
     {
         if (!doneAnimating)
         {
-            gameObject.transform.rotation *= Quaternion.Euler(animateRotation * (Time.deltaTime / maxChargeTime), 0, 0);
+            gameObject.transform.rotation *= Quaternion.Euler(animateRotation * (Time.unscaledDeltaTime / maxChargeTime), 0, 0);
             if (chargeTime == maxChargeTime) doneAnimating = true;
         }
     }
