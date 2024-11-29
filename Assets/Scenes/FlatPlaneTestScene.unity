@@ -2165,6 +2165,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4609885367123540964, guid: 8c374a0caa6f7734486120cf87213617, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 4713342377942078472, guid: 8c374a0caa6f7734486120cf87213617, type: 3}
       propertyPath: m_LocalPosition.x
       value: -83.3576
@@ -3241,6 +3245,7 @@ MonoBehaviour:
   - {fileID: 414630076}
   - {fileID: 2143683652}
   coinWarning: {fileID: 139692828}
+  infoPanel: {fileID: 0}
 --- !u!4 &966329819
 Transform:
   m_ObjectHideFlags: 0
