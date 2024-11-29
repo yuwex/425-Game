@@ -151,19 +151,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01d4a935918c404f98287ba8da499c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: []
   baseStats:
   - statType: 0
     statValue: 50
+    modifierType: 0
   - statType: 1
     statValue: 50
+    modifierType: 0
   - statType: 2
-    statValue: 1
-  - statType: 3
     statValue: 10
+    modifierType: 0
+  - statType: 3
+    statValue: 1
+    modifierType: 0
   - statType: 4
     statValue: 1
+    modifierType: 0
   - statType: 5
     statValue: 50
+    modifierType: 0
   modifiers: []
   enemyTag: Enemy
   projectilePrefab: {fileID: 4785582861802605554, guid: d4d9643ea8a33d84dbe21a09860b8dc0, type: 3}

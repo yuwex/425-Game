@@ -85,7 +85,7 @@ public class TowerProjectile : MonoBehaviour
 
     }
 
-    void Setup()
+    public void Setup()
     {
 
         GetStat(Stat.ProjectileLifetime, out var lifetime);

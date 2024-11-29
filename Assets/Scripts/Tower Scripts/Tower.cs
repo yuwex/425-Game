@@ -225,6 +225,8 @@ public class Tower : MonoBehaviour
             projectile.target = target;
             projectile.batchCount = (int)count;
             projectile.batchIndex = i;
+
+            projectile.Setup();
         }
 
     }
