@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Tower : MonoBehaviour
 {
@@ -13,6 +12,9 @@ public class Tower : MonoBehaviour
     public List<StatInfo> stats = new();
 
     [Header("Attributes")]
+
+    public int unlockedModifierSlots = 1;
+    public int maxModifierSlots = 4;
 
     public List<StatInfo> baseStats = new();
     public List<ModifierBase> modifiers = new();
@@ -151,7 +153,7 @@ public class Tower : MonoBehaviour
         
         return "";
     }
-    private bool GetStat(Stat type, out float result) 
+    public bool GetStat(Stat type, out float result) 
     {
         foreach (var s in stats) {
             if (s.statType == type) {
