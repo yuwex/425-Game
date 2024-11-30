@@ -1,14 +1,20 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System.Linq;
-using Microsoft.Unity.VisualStudio.Editor;
 
+public enum SelectedPanelType
+{
+    None,
+    Tower,
+}
 
 public class ObjectInfoPanel : MonoBehaviour
 {
     public TMP_Text title;
     public GameObject panel;
+    public GameObject selected;
+    public SelectedPanelType selectedType;
 
     [Header("Tower Panel")]
     public GameObject TowerPanel;
@@ -17,18 +23,57 @@ public class ObjectInfoPanel : MonoBehaviour
     public GameObject upgradesBoxContainer;
     public GameObject upgradeBoxTemplate;
     public List<Stat> statsToDisplay;
+    public int towerPage = 0;
+    public int towerItemsPerPage = 4;
     public Sprite openSlot;
     // lock icon by aji nugroho
     public Sprite lockedSlot;
+
+    void Start()
+    {
+        selectedType = SelectedPanelType.None;
+        selected = null;
+    }
+
+    void Update()
+    {
+        if (selectedType == SelectedPanelType.Tower)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                towerPage = (towerPage + 1) % Mathf.CeilToInt((float)statsToDisplay.Count / towerItemsPerPage);
+                SelectTower(selected.GetComponent<Tower>());
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                towerPage = (towerPage - 1) % Mathf.CeilToInt((float)statsToDisplay.Count / towerItemsPerPage);
+                if (towerPage < 0)
+                    towerPage = Mathf.CeilToInt((float)statsToDisplay.Count / towerItemsPerPage) - 1;
+
+                SelectTower(selected.GetComponent<Tower>());
+            }
+        }
+
+
+    }
 
     public void SelectGameObject(GameObject gameObject)
     {
         panel.SetActive(gameObject != null);
 
-        if (!gameObject) return;
+        if (!gameObject)
+        {
+            selected = null;
+            selectedType = SelectedPanelType.None;
+
+            towerPage = 0;
+            return;
+        };
 
         if (gameObject.TryGetComponent<Tower>(out var tower))
         {
+            if (gameObject != selected) towerPage = 0;
             SelectTower(tower);
         }
 
@@ -42,6 +87,9 @@ public class ObjectInfoPanel : MonoBehaviour
     public void SelectTower(Tower tower)
     {
 
+        selected = tower.gameObject;
+        selectedType = SelectedPanelType.Tower;
+
         title.text = "Tower";
 
         TowerPanel.SetActive(true);    
@@ -49,11 +97,27 @@ public class ObjectInfoPanel : MonoBehaviour
         ClearChildrenWhere(statsBoxContainer, x => x.activeSelf);
         ClearChildrenWhere(upgradesBoxContainer, x => x.activeSelf);
 
+        int item = 0;
+
         foreach (Stat stat in statsToDisplay)
         {
+            if (item >= towerPage * towerItemsPerPage && item < (towerPage + 1) * towerItemsPerPage)
+            {
+                item++;
+            }
+            else
+            {
+                item++;
+                continue;
+            }
+
             tower.GetStat(stat, out float res);
             GameObject statBox = Instantiate(statBoxTemplate, statsBoxContainer.transform);
             TMP_Text[] texts = statBox.GetComponentsInChildren<TMP_Text>();
+            
+            Tooltip tooltip = statBox.GetComponentInChildren<Tooltip>();
+            tooltip.title = "";
+            tooltip.message = tower.statChangeDescriptions[stat];
 
             foreach (TMP_Text t in texts)
             {
