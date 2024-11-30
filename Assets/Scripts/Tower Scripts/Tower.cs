@@ -30,6 +30,9 @@ public class Tower : MonoBehaviour
 
     public Dictionary<ModifierType, ModifierHandler> modHandlers = new();
 
+    public Dictionary<Stat, string> statChangeDescriptions = new();
+    public string _statChangeDescOut = "";
+
 
     void Awake()
     {
@@ -91,7 +94,8 @@ public class Tower : MonoBehaviour
         stats = new(baseStats);
 
         Dictionary<ModifierType, List<StatInfo>> modsDict = new();
-        
+        List<(ModifierType, List<StatInfo>)> statChanges = new(); 
+
         // Generate list of all modifiers, organized by ModifierType
         foreach (var mod in modifiers)
         {
@@ -114,7 +118,12 @@ public class Tower : MonoBehaviour
             if (modsDict.TryGetValue(modType, out var specificTypeMods))
             {
                 if (modHandlers.TryGetValue(modType, out var fn))
-                    stats = fn(specificTypeMods, stats);
+                {
+                    var updated = fn(specificTypeMods, stats);
+                    statChanges.Add((modType, updated));
+                    stats = updated;
+
+                }
             }
         }
 
@@ -140,11 +149,102 @@ public class Tower : MonoBehaviour
             }
         }
 
-        // Prints new stats
-        // Debug.Log("New stats: " + string.Join(",", stats));
+        statChanges.Add((ModifierType.Custom, stats));
+
+        // Generate Descriptions from Changes
+
+        // Turn above datastruct into this one
+        Dictionary<Stat, List<(ModifierType, float)>> changes = new();
+        foreach ((ModifierType t, List<StatInfo> st) in statChanges)
+        {
+            foreach (StatInfo s in st)
+            {
+                if (changes.TryGetValue(s.statType, out var found))
+                {
+                    found.Add((t, s.statValue));
+                }
+                else
+                {
+                    changes.Add(s.statType, new List<(ModifierType, float)> {(t, s.statValue)});
+                }
+            }
+        }
+
+        // Generate text
+        _statChangeDescOut = "";
+        statChangeDescriptions = new();
+        foreach(Stat s in changes.Keys)
+        {
+            GetBaseStat(s, out var baseval);
+            changes.TryGetValue(s, out var values);
+            float cval = baseval;
+            
+            List<(string, float)> operations = new();
+            
+            foreach ((ModifierType t, float v) in values)
+            {
+                if (v == cval) continue;
+
+                switch (t)
+                {
+                    case ModifierType.Custom:
+                    case ModifierType.Additive:
+                        operations.Add(("+", v - cval));
+                        break;
+                    
+                    case ModifierType.Multiplicative:
+                        operations.Add(("*", v / cval));
+                        break;
+                    
+                    default:
+                        break;
+                }
+
+                cval = v;
+            }
+
+            string desc = "";
+            if (operations.Count == 0)
+            {
+                desc = "Base Value";
+            }
+            else
+            {
+                desc = baseval + "";
+
+                foreach ((string op, float v) in operations)
+                {
+                    string _op = op;
+                    float _v = v;
+                    bool isPositive = true;
+
+                    if (op == "+") isPositive = v > 0;
+                    if (op == "*") isPositive = v > 1;
+                    if (s == Stat.TowerCooldown) isPositive = !isPositive;
+                    
+                    
+                    if (op == "+" && v < 0)
+                    {
+                        _op = "-";
+                        _v = Mathf.Abs(v);
+                    }
+
+                    string color = isPositive ? "green" : "red";
+
+                    desc = $"({desc} {_op} <color={color}>{_v}</color>)";
+                }
+
+                char[] toTrim = {'(',')'};
+                desc = desc.Trim(toTrim);
+            }
+
+            _statChangeDescOut += $"{s} {desc}\n";
+            statChangeDescriptions[s] = desc;
+        }
+
     }
 
-    public string GetDescription()
+    public string GetChangeDescription()
     {
         foreach (StatInfo stat in stats.OrderBy(x => x.statType))
         {
@@ -161,7 +261,18 @@ public class Tower : MonoBehaviour
                 return true;
             }
         }
+        result = 0;
+        return false;
+    }
 
+    public bool GetBaseStat(Stat type, out float result) 
+    {
+        foreach (var s in baseStats) {
+            if (s.statType == type) {
+                result = s.statValue;
+                return true;
+            }
+        }
         result = 0;
         return false;
     }

@@ -18,7 +18,7 @@ MonoBehaviour:
   modifierMaterial: {fileID: 2100000, guid: a53d6ada98c8c46bc9200e6013eb04ab, type: 2}
   statsInfo:
   - statType: 1
-    statValue: 0.5
+    statValue: -0.5
     modifierType: 2
   - statType: 2
     statValue: 1
@@ -27,6 +27,6 @@ MonoBehaviour:
     statValue: 1.5
     modifierType: 2
   - statType: 0
-    statValue: 2
+    statValue: 1
     modifierType: 2
   height: 20
