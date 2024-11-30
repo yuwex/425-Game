@@ -43,6 +43,7 @@ public class TowerSpawner : MonoBehaviour
     [Header("UI")]
     public ObjectInfoPanel infoPanel;
     private GameObject objectDisplay;
+    public GameObject tileSelectIndicator;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +68,19 @@ public class TowerSpawner : MonoBehaviour
     {
         
         TowerIndicator.SetActive(false);
+
+        // Enable or disable tower indicator
+        if (objectDisplay)
+        {
+            Vector3 newLoc = board.NormalizePos(objectDisplay.transform.position);
+            newLoc.y = 10f + Mathf.Sin(Time.time) * 0.5f;
+            tileSelectIndicator.transform.position = newLoc;
+            tileSelectIndicator.SetActive(true);
+        }
+        else
+        {
+            tileSelectIndicator.SetActive(false);
+        }
 
         if (!buildEnabled) return;
 
@@ -95,8 +109,6 @@ public class TowerSpawner : MonoBehaviour
 
         if (!Physics.Raycast(ray, out RaycastHit hit) || EventSystem.current.IsPointerOverGameObject()) 
         {
-            if (Input.GetMouseButtonDown(0))
-                objectDisplay = null;
             return;
         }
 
