@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
-    public int enemyWave = 1;
+    public int enemyWave = 0;
 
     /******************** SINGLETON ********************/
     private static GameManager _instance;

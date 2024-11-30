@@ -66,7 +66,7 @@ public class TowerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         TowerIndicator.SetActive(false);
 
         // Enable or disable tower indicator
@@ -107,7 +107,7 @@ public class TowerSpawner : MonoBehaviour
         canPlace = GameManager.Instance.playerCoins >= currPrice;
         canPlace = canPlace && !player.bounds.Intersects(renderer.bounds);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit) || EventSystem.current.IsPointerOverGameObject()) 
+        if (!Physics.Raycast(ray, out RaycastHit hit) || EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
@@ -117,7 +117,7 @@ public class TowerSpawner : MonoBehaviour
 
         GameObject tileObject = board.GetBoard(towerX, towerY);
 
-        if (!tileObject)
+        if (!tileObject && towerX < board.BoardLength && towerY < board.BoardLength && towerX >= 0 && towerY >= 0)
         {
             HandlePlaceTower(towerX, towerY, pos, renderer);
         }
