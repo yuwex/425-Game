@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MouseControls : MonoBehaviour
@@ -31,5 +32,10 @@ public class MouseControls : MonoBehaviour
 
         player.Rotate(Vector3.up * mouseX);
         transform.localRotation = Quaternion.Euler(xRotate, 0, 0);
+    }
+
+    public void UpdateSens(float newSens)
+    {
+        sens = newSens;
     }
 }

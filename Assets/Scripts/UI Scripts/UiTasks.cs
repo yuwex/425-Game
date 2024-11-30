@@ -8,6 +8,7 @@ public class UiTasks : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject ui;
     public GameObject pauseMenu;
+    public GameObject optionsMenu;
     // private CursorLockMode originalLockState;
     private bool isPaused = false;
 
@@ -68,5 +69,17 @@ public class UiTasks : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         pauseMenu.SetActive(false);
+    }
+
+    public void optionMenu()
+    {
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+    }
+
+    public void backButton()
+    {
+        optionsMenu.SetActive(false);
+        pauseMenu.SetActive(true);
     }
 }
