@@ -34,12 +34,16 @@ public class GameBoard : MonoBehaviour
 
     public GameObject GetBoard(int x, int y)
     {
+        if (x >= BoardLength || y >= BoardLength || x < 0 || y < 0) return null;
         return Tiles[x, y];
     }
 
     public void SetBoard(int x, int y, GameObject g)
     {
-        Tiles[x, y] = g;
+        if (!(x >= BoardLength || y >= BoardLength || x < 0 || y < 0))
+        {
+            Tiles[x, y] = g;
+        }
     }
 
     private void Start()
@@ -298,6 +302,6 @@ public class GameBoard : MonoBehaviour
     public List<(int, int)> GetBaseCoords()
     {
         int middle = BoardLength / 2;
-        return new List<(int, int)> {(middle, middle), (middle - 1, middle), (middle, middle - 1), (middle - 1, middle - 1)};
+        return new List<(int, int)> { (middle, middle), (middle - 1, middle), (middle, middle - 1), (middle - 1, middle - 1) };
     }
 }
