@@ -6,9 +6,10 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> enemies;
     public List<ModifierBase> possibleModifierDrops;
     public GameObject mainBase;
-    public int waveNumber = 1;
+    public int waveNumber = 0;
     private int enemiesPerWave = 3;
-    private float timeBetweenWaves = 15;
+    // private float timeBetweenWaves = 15;
+    public bool betweenWaves;
 
     public List<Transform> spawnPoints;
 
@@ -21,6 +22,14 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
+            betweenWaves = true;
+
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+
+            betweenWaves = false;
+            // Increase the number of enemies per wave and the move speed based on the difficulty level
+            GameManager.Instance.enemyWave = ++waveNumber;
+
             // Spawn a wave of enemies
             for (int i = 0; i < enemiesPerWave; i++)
             {
@@ -28,12 +37,8 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(1);
             }
 
-            // Increase the number of enemies per wave and the move speed based on the difficulty level
-            enemiesPerWave++;
-            GameManager.Instance.enemyWave = waveNumber++;
-
             // Wait for the specified time before spawning the next wave
-            yield return new WaitForSeconds(timeBetweenWaves);
+            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
         }
     }
 
