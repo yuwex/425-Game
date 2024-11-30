@@ -23,8 +23,6 @@ public class ObjectInfoPanel : MonoBehaviour
     public GameObject upgradesBoxContainer;
     public GameObject upgradeBoxTemplate;
     public List<Stat> statsToDisplay;
-    public int towerPage = 0;
-    public int towerItemsPerPage = 4;
     public Sprite openSlot;
     // lock icon by aji nugroho
     public Sprite lockedSlot;
@@ -35,29 +33,6 @@ public class ObjectInfoPanel : MonoBehaviour
         selected = null;
     }
 
-    void Update()
-    {
-        if (selectedType == SelectedPanelType.Tower)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                towerPage = (towerPage + 1) % Mathf.CeilToInt((float)statsToDisplay.Count / towerItemsPerPage);
-                SelectTower(selected.GetComponent<Tower>());
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                towerPage = (towerPage - 1) % Mathf.CeilToInt((float)statsToDisplay.Count / towerItemsPerPage);
-                if (towerPage < 0)
-                    towerPage = Mathf.CeilToInt((float)statsToDisplay.Count / towerItemsPerPage) - 1;
-
-                SelectTower(selected.GetComponent<Tower>());
-            }
-        }
-
-
-    }
-
     public void SelectGameObject(GameObject gameObject)
     {
         panel.SetActive(gameObject != null);
@@ -66,14 +41,11 @@ public class ObjectInfoPanel : MonoBehaviour
         {
             selected = null;
             selectedType = SelectedPanelType.None;
-
-            towerPage = 0;
             return;
         };
 
         if (gameObject.TryGetComponent<Tower>(out var tower))
         {
-            if (gameObject != selected) towerPage = 0;
             SelectTower(tower);
         }
 
@@ -97,20 +69,13 @@ public class ObjectInfoPanel : MonoBehaviour
         ClearChildrenWhere(statsBoxContainer, x => x.activeSelf);
         ClearChildrenWhere(upgradesBoxContainer, x => x.activeSelf);
 
-        int item = 0;
+        // Reset size of statsbox
+        var rt = statsBoxContainer.GetComponent<RectTransform>();
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 90 * (statsToDisplay.Count + 1));
+        rt.ForceUpdateRectTransforms();
 
         foreach (Stat stat in statsToDisplay)
         {
-            if (item >= towerPage * towerItemsPerPage && item < (towerPage + 1) * towerItemsPerPage)
-            {
-                item++;
-            }
-            else
-            {
-                item++;
-                continue;
-            }
-
             tower.GetStat(stat, out float res);
             GameObject statBox = Instantiate(statBoxTemplate, statsBoxContainer.transform);
             TMP_Text[] texts = statBox.GetComponentsInChildren<TMP_Text>();
