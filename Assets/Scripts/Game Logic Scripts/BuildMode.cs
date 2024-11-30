@@ -153,7 +153,7 @@ public class TowerSpawner : MonoBehaviour
             renderer.material = IndicatorMaterialCantPlace;
         }
 
-        if (Input.GetMouseButtonDown(0) && canPlace && validPath)
+        if (Input.GetMouseButton(0) && canPlace && validPath)
         {
             var tower = Instantiate(currObject, pos, Quaternion.identity);
             board.SetBoard(towerX, towerY, tower);

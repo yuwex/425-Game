@@ -8,14 +8,14 @@ public class UiTasks : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject ui;
     public GameObject pauseMenu;
-    private CursorLockMode originalLockState;
+    // private CursorLockMode originalLockState;
     private bool isPaused = false;
 
 
-    public void Start()
-    {
-        originalLockState = Cursor.lockState;
-    }
+    // public void Start()
+    // {
+    //     originalLockState = Cursor.lockState;
+    // }
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape))
@@ -63,7 +63,7 @@ public class UiTasks : MonoBehaviour
     public void resumeGame()
     {
         Cursor.visible = false;
-        Cursor.lockState = originalLockState;
+        Cursor.lockState = CursorLockMode.Locked;
         ui.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
