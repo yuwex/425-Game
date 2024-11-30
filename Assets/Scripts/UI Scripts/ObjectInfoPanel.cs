@@ -81,8 +81,11 @@ public class ObjectInfoPanel : MonoBehaviour
         for (int i = 0; i < tower.maxModifierSlots; i ++)
         {
             GameObject upgradeBox = Instantiate(upgradeBoxTemplate, upgradesBoxContainer.transform);
+            
             UnityEngine.UI.Image[] images = upgradeBox.GetComponentsInChildren<UnityEngine.UI.Image>();
             UnityEngine.UI.Image image = null;
+
+            Tooltip tooltip = upgradeBox.GetComponent<Tooltip>();
 
             // Find first image of child
             foreach (UnityEngine.UI.Image im in images)
@@ -94,19 +97,32 @@ public class ObjectInfoPanel : MonoBehaviour
                 }
             }
 
-            image.sprite = (i < tower.unlockedModifierSlots) ? openSlot : lockedSlot;
+            if (i < tower.unlockedModifierSlots)
+            {
+                image.sprite = openSlot;
+                tooltip.title = "Unlocked";
+                tooltip.message = "Click to apply an upgrade!";
+            }
+            else
+            {
+                image.sprite = lockedSlot;
+                tooltip.title = "Locked";
+                tooltip.message = "Upgrade this tower to unlock this slot!";
+            }
 
             if (tower.modifiers.Count > i)
             {
                 image.sprite = null;
-                image.material = tower.modifiers[i].modifierMaterial;
+                var modifier = tower.modifiers[i];
+                image.material = modifier.modifierMaterial;
+                upgradeBox.GetComponent<ModifierHolder>().modifier = modifier;
+
+                tooltip.title = $"Upgrade: {modifier.modifierName}";
+                tooltip.message = modifier.description;
             }
 
             upgradeBox.SetActive(true);
         }
-
-
-
     }
 
     public delegate bool delFilter(GameObject gameObject);
