@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   attacking: 0
-  prefab: {fileID: 100000, guid: af8eb157f3b77c049a9e09dc40349dd4, type: 3}
-  position: {x: 0.445, y: -0.28, z: 0.596}
-  scale: {x: 20, y: 20, z: 20}
-  animateRotation: 90
+  prefab: {fileID: 8438000393761176678, guid: 4ee339c6155b42a4bb658a1d24e43328, type: 3}
+  position: {x: 2.84, y: -0.1, z: 1.36}
+  scale: {x: 1, y: 1, z: 1}
+  animateRotation: 75
   attackDistance: 5
   attackDelay: 0.3
   attackSpeed: 0.4

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BowPlaceholder
   m_EditorClassIdentifier: 
   attacking: 0
-  prefab: {fileID: 100006, guid: e28d41bd6402fcc46b30fb30c73caa90, type: 3}
+  prefab: {fileID: 3355210166214057702, guid: 895d9f9d1106b1e4eb0249ccbb4dab44, type: 3}
   position: {x: 1.11, y: -0.45, z: 1.1}
-  scale: {x: 20, y: 20, z: 20}
+  scale: {x: 1, y: 1, z: 1}
   animateRotation: -40
   maxChargeTime: 1.5
   maxChargeVelocity: 100
