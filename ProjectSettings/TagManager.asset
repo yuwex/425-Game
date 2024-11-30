@@ -10,6 +10,8 @@ TagManager:
   - ConnectorWall
   - Terrain
   - Pickup
+  - GameBoard
+  - Tower
   layers:
   - Default
   - TransparentFX

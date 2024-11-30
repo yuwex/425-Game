@@ -20,6 +20,8 @@ public class EnemyData : ScriptableObject
     public float speed;
     public float attackDamage;
     public float baseDamage;
+    public float attackRange;
+    public float attackDelay;
     public int coinReward;
     
     public void SetupNavMeshAgent(NavMeshAgent agent)

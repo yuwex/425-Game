@@ -97,23 +97,26 @@ public class GameBoard : MonoBehaviour
 
     public void UpdateWalls(Vector3 pos)
     {
-        var mid = GetCoordinateFromPos(pos);
-        (int, int)[] neighbors = { (0, 1), (1, 0), (-1, 0), (0, -1) };
-        foreach ((int, int) diff in neighbors)
+        (int x, int y) mid = GetCoordinateFromPos(pos);
+        (int x, int y)[] neighbors = { (0, 1), (1, 0), (-1, 0), (0, -1) };
+        foreach ((int x, int y) diff in neighbors)
         {
-            (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
-            var obj = GetBoard(coord.Item1, coord.Item2);
+            (int x, int y) coord = (mid.x + diff.x, mid.y + diff.y);
+            var obj = GetBoard(coord.x, coord.y);
             if (obj != null && !obj.CompareTag("Terrain"))
             {
                 UpdateWall(coord);
             }
         }
-        UpdateWall(mid);
+        if (GetBoard(mid.x, mid.y) != null)
+        {
+            UpdateWall(mid);
+        }
     }
 
-    void UpdateWall((int, int) mid)
+    void UpdateWall((int x, int y) mid)
     {
-        GameObject midWall = GetBoard(mid.Item1, mid.Item2);
+        GameObject midWall = GetBoard(mid.x, mid.y);
         Transform[] Children = midWall.GetComponentsInChildren<Transform>();
 
         foreach (Transform Child in Children)
@@ -124,12 +127,12 @@ public class GameBoard : MonoBehaviour
             }
         }
 
-        (int, int)[] diffs = { (0, 1), (1, 0), (0, -1), (-1, 0) };
-        List<(int, int)> neighbors = new List<(int, int)>();
-        foreach ((int, int) diff in diffs)
+        (int x, int y)[] diffs = { (0, 1), (1, 0), (0, -1), (-1, 0) };
+        List<(int x, int y)> neighbors = new List<(int, int)>();
+        foreach ((int x, int y) diff in diffs)
         {
-            (int, int) coord = (mid.Item1 + diff.Item1, mid.Item2 + diff.Item2);
-            var obj = GetBoard(coord.Item1, coord.Item2);
+            (int x, int y) coord = (mid.x + diff.x, mid.y + diff.y);
+            var obj = GetBoard(coord.x, coord.y);
             if (obj != null && !obj.CompareTag("Terrain"))
             {
                 neighbors.Add(diff);
@@ -149,7 +152,7 @@ public class GameBoard : MonoBehaviour
             }
             else if (neighbors.Count == 2)
             {
-                if (neighbors[0].Item1 == -neighbors[1].Item1 && neighbors[0].Item2 == -neighbors[1].Item2)
+                if (neighbors[0].x == -neighbors[1].x && neighbors[0].y == -neighbors[1].y)
                 {
                     UpdateWallTexture(midWall, TwoConnections, neighbors[0]);
                 }
@@ -182,9 +185,9 @@ public class GameBoard : MonoBehaviour
             }
         }
 
-        foreach ((int, int) neighbor in neighbors)
+        foreach ((int x, int y) neighbor in neighbors)
         {
-            var connectPos = new Vector3(midWall.transform.position.x + neighbor.Item1 * 2.5f, midWall.transform.position.y, midWall.transform.position.z + neighbor.Item2 * 2.5f);
+            var connectPos = new Vector3(midWall.transform.position.x + neighbor.x * 2.5f, midWall.transform.position.y, midWall.transform.position.z + neighbor.y * 2.5f);
             Quaternion direction = new Quaternion();
             switch (neighbor)
             {
@@ -206,7 +209,7 @@ public class GameBoard : MonoBehaviour
         }
     }
 
-    void UpdateWallTexture(GameObject wall, Mesh mesh, (int, int) direction)
+    void UpdateWallTexture(GameObject wall, Mesh mesh, (int x, int y) direction)
     {
         wall.GetComponent<MeshFilter>().sharedMesh = mesh;
         wall.GetComponent<MeshCollider>().sharedMesh = mesh;
