@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FireballShooter
   m_EditorClassIdentifier: 
   attacking: 0
-  prefab: {fileID: 100004, guid: bc5d76f3ac4971e4b8bddf1909dbe3eb, type: 3}
+  prefab: {fileID: 3530653574631373592, guid: 6ccccdbe0e9788f4c98195e6210c592e, type: 3}
   position: {x: 0.8, y: -0.45000005, z: 0.8}
-  scale: {x: 20, y: 20, z: 20}
+  scale: {x: 2, y: 2, z: 2}
   animateRotation: -10
   velocity: 60
   attackDelay: 0
