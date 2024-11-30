@@ -26,6 +26,7 @@ public class GameBoard : MonoBehaviour
 
     public List<GameObject> TerrainObjects;
     public int numObjects;
+    public GameObject terrainParent;
 
     void Awake()
     {
@@ -246,6 +247,7 @@ public class GameBoard : MonoBehaviour
                 Vector3 spawnPos = new Vector3(x * TileSize - offset, 0, y * TileSize - offset);
 
                 GameObject spawnedObject = Instantiate(randomObject, spawnPos, Quaternion.identity);
+                spawnedObject.transform.parent = terrainParent.transform;
                 SetBoard(x, y, spawnedObject);
 
                 objectsSpawned++;
