@@ -9,7 +9,7 @@ public class StartRoundText : MonoBehaviour
     public GameObject ememySpawner;
     private bool roundStarted;
 
-    void start()
+    void Start()
     {
         startWaveText.enabled = false;
         roundStarted = false;
