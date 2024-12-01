@@ -18,7 +18,7 @@ public class WeaponBase : ScriptableObject
     protected LayerMask attackLayer;
     protected string enemyTag;
     protected TowerSpawner towerSpawner;
-    protected PlayerController player;
+    protected PlayerMovement player;
 
     protected GameObject gameObject;
     protected MeshRenderer[] meshes;
@@ -32,7 +32,7 @@ public class WeaponBase : ScriptableObject
         }
     }
 
-    public void Init(LayerMask attackLayer, string enemyTag, TowerSpawner towerSpawner, PlayerController player) {
+    public void Init(LayerMask attackLayer, string enemyTag, TowerSpawner towerSpawner, PlayerMovement player) {
         this.attackLayer = attackLayer;
         this.enemyTag = enemyTag;
         this.towerSpawner = towerSpawner;
