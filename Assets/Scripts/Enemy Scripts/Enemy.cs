@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                Debug.Log("Help me bro I'm stuck!");
+                // Debug.Log("Help me bro I'm stuck!");
             }
         }
 

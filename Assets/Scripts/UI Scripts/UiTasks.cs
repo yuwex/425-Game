@@ -82,4 +82,12 @@ public class UiTasks : MonoBehaviour
         optionsMenu.SetActive(false);
         pauseMenu.SetActive(true);
     }
+
+    public void quitGame()
+    {
+        // Editor only will remove once game is built
+        UnityEditor.EditorApplication.isPlaying = false;
+
+        Application.Quit();
+    }
 }

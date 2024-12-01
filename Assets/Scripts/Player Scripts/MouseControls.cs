@@ -22,8 +22,8 @@ public class MouseControls : MonoBehaviour
     void Update()
     {
         // retrieve mouse inputs
-        float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * sens;
+        float mouseY = Input.GetAxis("Mouse Y") * sens;
 
         xRotate -= mouseY;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GamePlayerMovement : PlayerMovement
 {
-    
+
     [Header("Attacking")]
     public List<WeaponBase> weapons;
     public LayerMask attackLayer;
@@ -42,11 +42,26 @@ public class GamePlayerMovement : PlayerMovement
             weapons[currWeapon].Animate();
         }
 
-        if (!weapons[currWeapon].attacking && Input.GetKeyDown(KeyCode.E))
+        if (!weapons[currWeapon].attacking && !towerSpawner.buildEnabled)
         {
-            weapons[currWeapon].ToggleMesh();
-            currWeapon = (currWeapon + 1) % weapons.Count;
-            weapons[currWeapon].ToggleMesh();
+            if (Input.GetKeyDown(KeyCode.Alpha1) && currWeapon != 0 && weapons.Count >= 1)
+            {
+                weapons[currWeapon].ToggleMesh();
+                currWeapon = 0;
+                weapons[currWeapon].ToggleMesh();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && currWeapon != 1 && weapons.Count >= 2)
+            {
+                weapons[currWeapon].ToggleMesh();
+                currWeapon = 1;
+                weapons[currWeapon].ToggleMesh();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && currWeapon != 2 && weapons.Count >= 3)
+            {
+                weapons[currWeapon].ToggleMesh();
+                currWeapon = 2;
+                weapons[currWeapon].ToggleMesh();
+            }
         }
     }
 }

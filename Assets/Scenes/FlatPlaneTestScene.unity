@@ -5548,25 +5548,13 @@ MonoBehaviour:
   m_FillRect: {fileID: 578571065}
   m_HandleRect: {fileID: 1115933089}
   m_Direction: 0
-  m_MinValue: 150
-  m_MaxValue: 500
-  m_WholeNumbers: 1
-  m_Value: 150
+  m_MinValue: 0.5
+  m_MaxValue: 20
+  m_WholeNumbers: 0
+  m_Value: 1.95
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1180649003}
-        m_TargetAssemblyTypeName: MouseControls, Assembly-CSharp
-        m_MethodName: UpdateSens
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 50
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &971558839
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6488,7 +6476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33140f1e808e38040b97050b7c7c1e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 250
+  sens: 2
   player: {fileID: 137966334}
 --- !u!1 &1199638120
 GameObject:
@@ -8721,6 +8709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivityText: {fileID: 1740401378}
   sensSlider: {fileID: 971558838}
+  mouseControls: {fileID: 1180649003}
 --- !u!114 &1740401378
 MonoBehaviour:
   m_ObjectHideFlags: 0

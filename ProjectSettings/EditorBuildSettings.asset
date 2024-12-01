@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FlatPlaneTestScene.unity
     guid: d9a8d7078d5e1491294594a090d99458
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainHub.unity
     guid: a9e3a33c0066e04459a00ce591a6ea5f
   m_configObjects:
