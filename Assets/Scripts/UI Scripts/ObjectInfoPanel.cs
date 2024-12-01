@@ -123,7 +123,21 @@ public class ObjectInfoPanel : MonoBehaviour
             var image = FindFirstComponentOfChild<UnityEngine.UI.Image>(upgradeBox);
             Tooltip tooltip = upgradeBox.GetComponent<Tooltip>();
 
-            if (i < tower.unlockedModifierSlots)
+            if (tower.modifiers.Count > i)
+            {
+                var mod = tower.modifiers[i];
+
+                ApplyModifierToGameObject(mod, image, tooltip, upgradeBox.GetComponent<ModifierHolder>());
+                button.onClick.AddListener(() => {
+                    tower.modifiers.Remove(mod);
+                    inventory.inventory.Add(mod);
+                    tower.UpdateModifiers();
+                    DisplayTowerUI(tower);
+                    DisplayModifiersUI(tower);
+                    modifierInventoryPanel.SetActive(true);
+                });
+            }
+            else if (i < tower.unlockedModifierSlots)
             {
                 image.sprite = openSlot;
                 tooltip.title = "Unlocked";
@@ -147,10 +161,7 @@ public class ObjectInfoPanel : MonoBehaviour
                 tooltip.message = "Upgrade this tower to unlock this slot!";
             }
 
-            if (tower.modifiers.Count > i)
-            {
-                ApplyModifierToGameObject(tower.modifiers[i], image, tooltip, upgradeBox.GetComponent<ModifierHolder>());
-            }
+
 
             upgradeBox.SetActive(true);
         }

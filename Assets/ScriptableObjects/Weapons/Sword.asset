@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7193ef1747138fb4789a336ceface40e, type: 3}
-  m_Name: Knife
+  m_Name: Sword
   m_EditorClassIdentifier: 
   attacking: 0
   prefab: {fileID: 8438000393761176678, guid: 4ee339c6155b42a4bb658a1d24e43328, type: 3}
-  position: {x: 2.84, y: -0.1, z: 1.36}
+  position: {x: 2.84, y: -1.42, z: 1.36}
   scale: {x: 1, y: 1, z: 1}
   animateRotation: 75
   attackDistance: 5

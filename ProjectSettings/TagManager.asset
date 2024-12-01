@@ -12,6 +12,7 @@ TagManager:
   - Pickup
   - GameBoard
   - Tower
+  - ChargeBar
   layers:
   - Default
   - TransparentFX
