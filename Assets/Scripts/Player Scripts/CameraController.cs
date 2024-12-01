@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,6 +7,8 @@ public class CameraController : MonoBehaviour
     public GameObject buildCamera;
     public GameObject pauseCamera;
     bool buildCameraOn = false;
+    public UnityEvent onBuildMode;
+    public UnityEvent onMainMode;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,15 @@ public class CameraController : MonoBehaviour
             mainCamera.SetActive(!mainCamera.activeSelf);
             buildCamera.SetActive(!buildCamera.activeSelf);
             buildCameraOn = !buildCameraOn;
+
+            if (buildCameraOn)
+            {
+                onBuildMode.Invoke();
+            }
+            else
+            {
+                onMainMode.Invoke();
+            }
         }
         else if (Input.GetKeyUp(KeyCode.Escape))
         {

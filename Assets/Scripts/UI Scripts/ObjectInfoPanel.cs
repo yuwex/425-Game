@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SelectedPanelType
 {
@@ -16,14 +18,13 @@ public class ObjectInfoPanel : MonoBehaviour
     public SelectedPanelType selectedType;
 
     [Header("Tower Panel")]
-    public GameObject TowerPanel;
+    public GameObject towerPanel;
     public GameObject statsBoxContainer;
     public GameObject statBoxTemplate;
     public GameObject upgradesBoxContainer;
     public GameObject upgradeBoxTemplate;
     public List<Stat> statsToDisplay;
     public Sprite openSlot;
-    // lock icon by aji nugroho
     public Sprite lockedSlot;
 
     [Header("Modifier Inventory")]
@@ -51,25 +52,27 @@ public class ObjectInfoPanel : MonoBehaviour
 
         if (gameObject.TryGetComponent<Tower>(out var tower))
         {
+            modifierInventoryPanel.SetActive(false);
+            towerPanel.SetActive(true);
             DisplayTowerUI(tower);
         }
 
         else
         {
-            TowerPanel.SetActive(false);
+            towerPanel.SetActive(false);
+            modifierInventoryPanel.SetActive(false);
             panel.SetActive(false);
         }
     }
 
     public void DisplayTowerUI(Tower tower)
     {
-        DisplayModifiersUI();
+        DisplayModifiersUI(tower);
         selected = tower.gameObject;
         selectedType = SelectedPanelType.Tower;
 
         title.text = "Tower";
-
-        TowerPanel.SetActive(true);    
+    
         // Clear both containers
         ClearChildrenWhere(statsBoxContainer, x => x.activeSelf);
         ClearChildrenWhere(upgradesBoxContainer, x => x.activeSelf);
@@ -116,6 +119,7 @@ public class ObjectInfoPanel : MonoBehaviour
         {
             GameObject upgradeBox = Instantiate(upgradeBoxTemplate, upgradesBoxContainer.transform);
             
+            var button = upgradeBox.GetComponent<Button>();
             var image = FindFirstComponentOfChild<UnityEngine.UI.Image>(upgradeBox);
             Tooltip tooltip = upgradeBox.GetComponent<Tooltip>();
 
@@ -124,6 +128,17 @@ public class ObjectInfoPanel : MonoBehaviour
                 image.sprite = openSlot;
                 tooltip.title = "Unlocked";
                 tooltip.message = "Click to apply an upgrade!";
+
+                if (inventory.inventory.Count == 0)
+                {
+                    tooltip.message = "Once you find an upgrade,\nclick this button to equip it!";
+                }
+                else
+                {
+                    button.onClick.AddListener(() => {
+                        modifierInventoryPanel.SetActive(true);
+                    });
+                }
             }
             else
             {
@@ -141,7 +156,7 @@ public class ObjectInfoPanel : MonoBehaviour
         }
     }
 
-    public void DisplayModifiersUI()
+    public void DisplayModifiersUI(Tower tower)
     {
         var modifiers = inventory.inventory;
 
@@ -155,6 +170,32 @@ public class ObjectInfoPanel : MonoBehaviour
             var image = FindFirstComponentOfChild<UnityEngine.UI.Image>(upgradeBox);
             var tooltip = upgradeBox.GetComponent<Tooltip>();
             var holder = upgradeBox.GetComponent<ModifierHolder>();
+            var button = upgradeBox.GetComponent<Button>();
+
+            button.onClick.AddListener(() => {
+                if (tower.unlockedModifierSlots > tower.modifiers.Count)
+                {
+                    tower.modifiers.Add(mod);
+                    inventory.inventory.Remove(mod);
+                    tower.UpdateModifiers();
+                    DisplayTowerUI(tower);
+                    DisplayModifiersUI(tower);
+
+                    if (tower.unlockedModifierSlots <= tower.modifiers.Count || inventory.inventory.Count == 0)
+                        modifierInventoryPanel.SetActive(false);
+                    
+                    TooltipManager.Instance.HideTooltip();
+                }
+                else
+                {
+                    TooltipPopup(
+                        "Error",
+                        "<color=red>Not enough slots.</color>",
+                        3
+                    );
+                }
+                
+            });
 
             ApplyModifierToGameObject(mod, image, tooltip, holder);
             upgradeBox.SetActive(true);
@@ -201,5 +242,47 @@ public class ObjectInfoPanel : MonoBehaviour
             }
         }
     }
+
+    public void TooltipPopup(string title, string message, float time, int priority = 10)
+    {
+        TooltipManager tooltip = TooltipManager.Instance;
+
+        IEnumerator _TooltipPopup(string title, string message, float time, int priority = 10)
+        {
+            tooltip.ShowTooltip(title, message, priority);
+            yield return new WaitForSeconds(time);
+            tooltip.HideTooltip(priority);
+        }
+
+        StartCoroutine(_TooltipPopup(title, message, time, priority));
+    }
+
+    public void HideTooltip()
+    {
+        TooltipManager.Instance.HideTooltip();
+    }
+
+    public void DisableObjectInfoPanel()
+    {
+        panel.SetActive(false);
+    }
+
+    public void EnableIfSelected()
+    {
+        if (!selected) return;
+        
+        panel.SetActive(true);
+        RefreshDisplayedElements();
+    }
+
+    public void RefreshDisplayedElements()
+    {
+        if (selectedType == SelectedPanelType.Tower)
+        {
+            DisplayTowerUI(selected.GetComponent<Tower>());
+        }
+    }
+
+
 
 }

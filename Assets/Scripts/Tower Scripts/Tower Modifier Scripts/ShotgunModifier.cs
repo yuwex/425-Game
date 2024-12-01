@@ -14,6 +14,6 @@ public class ShotgunModifier : AdditiveMaximumModifier
         projectile.GetStat(Stat.ProjectileVelocity, out float velocity);
 
         rigidbody.velocity += Random.insideUnitSphere * velocity / 4;
-        projectile.transform.localScale /= 2;
+        // projectile.transform.localScale /= 2;
     }
 }

@@ -24,7 +24,7 @@ MonoBehaviour:
     statValue: 1
     modifierType: 2
   - statType: 4
-    statValue: 1.5
+    statValue: 1.8
     modifierType: 2
   - statType: 0
     statValue: 1

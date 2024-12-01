@@ -89,7 +89,7 @@ public class Tower : MonoBehaviour
         UpdateModifiers();
     }
 
-    private void UpdateModifiers() 
+    public void UpdateModifiers() 
     {
         stats = new(baseStats);
 
@@ -243,16 +243,6 @@ public class Tower : MonoBehaviour
         }
 
     }
-
-    public string GetChangeDescription()
-    {
-        foreach (StatInfo stat in stats.OrderBy(x => x.statType))
-        {
-            
-        }
-        
-        return "";
-    }
     public bool GetStat(Stat type, out float result) 
     {
         foreach (var s in stats) {
@@ -276,7 +266,6 @@ public class Tower : MonoBehaviour
         result = 0;
         return false;
     }
-
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -306,7 +295,6 @@ public class Tower : MonoBehaviour
             target = null;
         }
     }
-
     void Update()
     {
         if (target == null)
@@ -323,7 +311,6 @@ public class Tower : MonoBehaviour
 
         fireCountdown -= Time.deltaTime;
     }
-
     void CreateProjectile()
     {
         
@@ -343,12 +330,11 @@ public class Tower : MonoBehaviour
         }
 
     }
-
     void OnDrawGizmosSelected()
     {
         UpdateModifiers();
         GetStat(Stat.TowerRange, out float range);
 
         Gizmos.DrawWireSphere(transform.position, range);
-    }
+    }    
 }

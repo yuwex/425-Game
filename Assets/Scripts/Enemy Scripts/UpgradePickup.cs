@@ -44,7 +44,7 @@ public class UpgradePickup : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
-            other.GetComponent<PlayerInventory>().inventory.Add(modifier);
+            other.GetComponent<PlayerInventory>().Add(modifier);
             Destroy(gameObject);
         }
     }
