@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
 
     // currency 
-    public int playerCoins = 100;
+    public int playerCoins = 150;
     public void updateCoins(int coins)
     {
         playerCoins += coins;
