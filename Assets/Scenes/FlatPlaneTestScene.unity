@@ -1901,6 +1901,17 @@ MonoBehaviour:
   - {fileID: 2143683652}
   waves:
   - {fileID: 11400000, guid: 9f50357a5f9427c46ac2e0118e410bd7, type: 2}
+  - {fileID: 11400000, guid: ce416f56db9a34dd3a57e4f78e2a3b9d, type: 2}
+  - {fileID: 11400000, guid: 7fb5fcc304a5a4962a3cbb7fa41bc964, type: 2}
+  - {fileID: 11400000, guid: e76e6f48c0a624eae9dd07a18298ff49, type: 2}
+  - {fileID: 11400000, guid: 0a4a0c7e56f7c4ad5b5a6ff6bace4e6b, type: 2}
+  - {fileID: 11400000, guid: dddc8668200394b68ad0369c6913074d, type: 2}
+  - {fileID: 11400000, guid: 8fcbf3edebe3549daaf8b97f57134f0c, type: 2}
+  - {fileID: 11400000, guid: 52221e010fec644b9a7ff8e1068c7ee5, type: 2}
+  - {fileID: 11400000, guid: 63493e43b3a0d413fb2e25be36d79852, type: 2}
+  - {fileID: 11400000, guid: 2895dc0ee2a444f119040c4abb5bba4d, type: 2}
+  - {fileID: 11400000, guid: 6089518cc9df94439a2987ba7de5675a, type: 2}
+  - {fileID: 11400000, guid: d6210c514c0fa4d05a4717647f73a792, type: 2}
   counter: {fileID: 1424516340}
 --- !u!4 &162686915
 Transform:
@@ -10597,7 +10608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWave: 0
-  playerCoins: 300
+  playerCoins: 150
   trans: {fileID: 0}
 --- !u!4 &1971817243
 Transform:
