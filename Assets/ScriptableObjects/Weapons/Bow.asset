@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaa1e8c0bcdcea48b7bd54cb9d98e06, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  attacking: 0
+  attacking: 1
   prefab: {fileID: 3355210166214057702, guid: 895d9f9d1106b1e4eb0249ccbb4dab44, type: 3}
   position: {x: 3.51, y: 0.98, z: 1.77}
   scale: {x: 1, y: 1, z: 1}
@@ -21,4 +21,4 @@ MonoBehaviour:
   maxChargeVelocity: 100
   attackDelay: 0.2
   maxDamage: 100
-  projectile: {fileID: 2826926921770460256, guid: 3268f1d2d6942e144a75dbd417b619d6, type: 3}
+  projectile: {fileID: 66663079307717538, guid: 526e3267b189a2b48a8e7e99753aa7a4, type: 3}
