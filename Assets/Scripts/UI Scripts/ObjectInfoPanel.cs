@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -27,6 +26,12 @@ public class ObjectInfoPanel : MonoBehaviour
     // lock icon by aji nugroho
     public Sprite lockedSlot;
 
+    [Header("Modifier Inventory")]
+    public PlayerInventory inventory;
+    public GameObject modifierInventoryPanel;
+    public RectTransform inventoryBoxContainer;
+    public GameObject invBoxTemplate;
+
     void Start()
     {
         selectedType = SelectedPanelType.None;
@@ -46,7 +51,7 @@ public class ObjectInfoPanel : MonoBehaviour
 
         if (gameObject.TryGetComponent<Tower>(out var tower))
         {
-            SelectTower(tower);
+            DisplayTowerUI(tower);
         }
 
         else
@@ -56,9 +61,9 @@ public class ObjectInfoPanel : MonoBehaviour
         }
     }
 
-    public void SelectTower(Tower tower)
+    public void DisplayTowerUI(Tower tower)
     {
-
+        DisplayModifiersUI();
         selected = tower.gameObject;
         selectedType = SelectedPanelType.Tower;
 
@@ -111,20 +116,8 @@ public class ObjectInfoPanel : MonoBehaviour
         {
             GameObject upgradeBox = Instantiate(upgradeBoxTemplate, upgradesBoxContainer.transform);
             
-            UnityEngine.UI.Image[] images = upgradeBox.GetComponentsInChildren<UnityEngine.UI.Image>();
-            UnityEngine.UI.Image image = null;
-
+            var image = FindFirstComponentOfChild<UnityEngine.UI.Image>(upgradeBox);
             Tooltip tooltip = upgradeBox.GetComponent<Tooltip>();
-
-            // Find first image of child
-            foreach (UnityEngine.UI.Image im in images)
-            {
-                if (im != upgradeBox.GetComponent<UnityEngine.UI.Image>())
-                {
-                    image = im;
-                    break;
-                }
-            }
 
             if (i < tower.unlockedModifierSlots)
             {
@@ -141,17 +134,57 @@ public class ObjectInfoPanel : MonoBehaviour
 
             if (tower.modifiers.Count > i)
             {
-                image.sprite = null;
-                var modifier = tower.modifiers[i];
-                image.material = modifier.modifierMaterial;
-                upgradeBox.GetComponent<ModifierHolder>().modifier = modifier;
-
-                tooltip.title = $"Upgrade: {modifier.modifierName}";
-                tooltip.message = modifier.description;
+                ApplyModifierToGameObject(tower.modifiers[i], image, tooltip, upgradeBox.GetComponent<ModifierHolder>());
             }
 
             upgradeBox.SetActive(true);
         }
+    }
+
+    public void DisplayModifiersUI()
+    {
+        var modifiers = inventory.inventory;
+
+        ClearChildrenWhere(inventoryBoxContainer.gameObject, x => x.activeSelf);
+        inventoryBoxContainer.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 90 * modifiers.Count);
+        inventoryBoxContainer.ForceUpdateRectTransforms();
+
+        foreach (ModifierBase mod in modifiers)
+        {
+            GameObject upgradeBox = Instantiate(invBoxTemplate, inventoryBoxContainer.transform);
+            var image = FindFirstComponentOfChild<UnityEngine.UI.Image>(upgradeBox);
+            var tooltip = upgradeBox.GetComponent<Tooltip>();
+            var holder = upgradeBox.GetComponent<ModifierHolder>();
+
+            ApplyModifierToGameObject(mod, image, tooltip, holder);
+            upgradeBox.SetActive(true);
+        }
+    }
+
+    private T FindFirstComponentOfChild<T>(GameObject g)
+    {
+            T[] childComps = g.GetComponentsInChildren<T>();
+            T parentComp = g.GetComponent<T>();
+
+            // Find first image of child
+            foreach (T child in childComps)
+            {
+                if (!child.Equals(parentComp))
+                {
+                    return child;
+                }
+            }
+
+            return default;
+    }
+
+    private void ApplyModifierToGameObject(ModifierBase modifier, UnityEngine.UI.Image image, Tooltip tooltip, ModifierHolder holder)
+    {
+        image.sprite = null;
+        image.material = modifier.modifierMaterial;
+        holder.modifier = modifier;
+        tooltip.title = modifier.modifierName;
+        tooltip.message = modifier.description;
     }
 
     public delegate bool delFilter(GameObject gameObject);

@@ -123,14 +123,7 @@ public class TowerSpawner : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            if (tileObject == objectDisplay)
-            {
-                objectDisplay = null;
-            }
-            else
-            {
-                objectDisplay = tileObject;
-            }
+            objectDisplay = tileObject == objectDisplay ? null : tileObject;
             infoPanel.SelectGameObject(objectDisplay);
         }
     }

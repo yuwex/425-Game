@@ -73,7 +73,7 @@ public class TooltipManager : MonoBehaviour
     void Update()
     {
         var pos = UICamera.ScreenToWorldPoint(Input.mousePosition);
-        pos.z = 0;
+        pos.z = transform.position.z;
 
         tooltipContainer.transform.position = pos;
     }
