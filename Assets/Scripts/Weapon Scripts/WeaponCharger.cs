@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "WeaponCharger", menuName = "Weapons/Charger")]
 public class WeaponCharger : WeaponBase
 {
+    public Vector3 recoil;
+
     [Header("Weapon Stats")]
     public float maxChargeTime;
     public float maxChargeVelocity;
@@ -14,13 +17,23 @@ public class WeaponCharger : WeaponBase
     public GameObject projectile;
 
     private float chargeTime;
-    private bool doneAnimating = false;
+    private GameObject chargeBar;
+
+    public override void uniqueInit()
+    {
+        chargeBar = GameObject.FindGameObjectWithTag("ChargeBar");
+        chargeBar.SetActive(false);
+    }
 
     public override void Attack()
     {
         if (towerSpawner.buildEnabled || (attacking && chargeTime == 0)) return;
 
-        chargeTime += Time.unscaledDeltaTime;
+        chargeBar.SetActive(true);
+        chargeBar.GetComponent<Slider>().value = 0;
+
+        chargeTime += Time.deltaTime;
+        chargeBar.GetComponent<Slider>().value = chargeTime / maxChargeTime;
         if (chargeTime >= maxChargeTime)
         {
             chargeTime = maxChargeTime;
@@ -38,25 +51,31 @@ public class WeaponCharger : WeaponBase
             projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * maxChargeVelocity * ((maxChargeTime + chargeTime) / (2 * maxChargeTime));
             projectile.GetComponent<Projectile>().damage = 5 + (int)Math.Floor(Math.Pow(Math.Pow(maxDamage - 5, 1 / 1.5f) * (chargeTime / maxChargeTime), 1.5f));
 
+            chargeBar.SetActive(false);
             chargeTime = 0;
+            gameObject.transform.localPosition = position + recoil;
+
             player.StartCoroutine(ResetAttack());
+            player.StartCoroutine(Recoil());
         }
     }
 
     private IEnumerator ResetAttack()
     {
         yield return new WaitForSeconds(attackDelay);
-        gameObject.transform.rotation = fppCamera.transform.rotation;
-        doneAnimating = false;
         attacking = false;
     }
 
-    public override void Animate()
+    private IEnumerator Recoil()
     {
-        if (!doneAnimating)
+        float totalTime = 0;
+        while (totalTime < attackDelay)
         {
-            gameObject.transform.rotation *= Quaternion.Euler(animateRotation * (Time.unscaledDeltaTime / maxChargeTime), 0, 0);
-            if (chargeTime == maxChargeTime) doneAnimating = true;
+            totalTime += Time.deltaTime;
+            gameObject.transform.localPosition = Vector3.Lerp(position + recoil, position, totalTime / attackDelay);
+            yield return null;
         }
+        gameObject.transform.localPosition = position;
     }
+
 }

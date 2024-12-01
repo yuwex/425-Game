@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponProjectile", menuName = "Weapons/Projectile")]
 public class WeaponProjectile : WeaponBase
 {
+    public Vector3 recoil; 
+
     [Header("Weapon Stats")]
     public float velocity;
     public float attackDelay;
@@ -13,11 +15,14 @@ public class WeaponProjectile : WeaponBase
     public int attackDamage;
     public GameObject projectile;
 
+    private float totalTime = 0;
+
     public override void Attack()
     {
         if (attacking || towerSpawner.buildEnabled) return;
 
         attacking = true;
+        gameObject.transform.localPosition = position + recoil;
 
         player.StartCoroutine(ResetAttack());
         player.StartCoroutine(Shoot());
@@ -34,13 +39,15 @@ public class WeaponProjectile : WeaponBase
     private IEnumerator ResetAttack()
     {
         yield return new WaitForSeconds(attackSpeed);
-        gameObject.transform.rotation = fppCamera.transform.rotation;
+        gameObject.transform.localPosition = position;
         attacking = false;
+        totalTime = 0;
     }
 
     public override void Animate()
     {
-        gameObject.transform.rotation *= Quaternion.Euler(animateRotation * Time.deltaTime / attackSpeed, 0, 0);
+        totalTime += Time.deltaTime;
+        gameObject.transform.localPosition = Vector3.Lerp(position + recoil, position, totalTime/attackSpeed);
     }
 
 }

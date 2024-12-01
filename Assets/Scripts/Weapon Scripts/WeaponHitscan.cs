@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponHitscan", menuName = "Weapons/Hitscan")]
 public class WeaponHitscan : WeaponBase
 {
+    public int animateRotation;
+
     [Header("Weapon Stats")]
     public float attackDistance;
     public float attackDelay;

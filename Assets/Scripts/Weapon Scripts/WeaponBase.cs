@@ -13,7 +13,6 @@ public class WeaponBase : ScriptableObject
     public GameObject prefab;
     public Vector3 position;
     public Vector3 scale;
-    public int animateRotation;
 
     protected LayerMask attackLayer;
     protected string enemyTag;
@@ -50,6 +49,8 @@ public class WeaponBase : ScriptableObject
         {
             mesh.enabled = false;
         }
+
+        uniqueInit();
     }
 
     public virtual void Attack() {}
@@ -57,5 +58,7 @@ public class WeaponBase : ScriptableObject
     public virtual void Release() {}
 
     public virtual void Animate() {}
+
+    public virtual void uniqueInit() {}
 
 }
