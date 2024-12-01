@@ -258,6 +258,8 @@ public class GameBoard : MonoBehaviour
         }
     }
 
+
+
     public bool PathExists(int startX, int startY, int targetX, int targetY)
     {
         // Bounds check
