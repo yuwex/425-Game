@@ -9,6 +9,8 @@ public class UiTasks : MonoBehaviour
     public GameObject ui;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
+    public GameObject statsMenu;
+    public GameObject main;
     // private CursorLockMode originalLockState;
     private bool isPaused = false;
 
@@ -89,5 +91,22 @@ public class UiTasks : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 
         Application.Quit();
+    }
+
+    public void startGame()
+    {
+        pauseMenu.SetActive(false);
+    }
+
+    public void viewStats()
+    {
+        main.SetActive(false);
+        statsMenu.SetActive(true);
+    }
+
+    public void mainMenuBack()
+    {
+        statsMenu.SetActive(false);
+        main.SetActive(true);
     }
 }

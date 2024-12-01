@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             OnEnemyDie();
-
+            GameManager.Instance.updateStats();
             GameManager.Instance.updateCoins(coinReward);
 
         }

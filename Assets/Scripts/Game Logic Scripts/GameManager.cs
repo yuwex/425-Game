@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 public class GameManager : MonoBehaviour
 {
     public int enemyWave = 0;
-
+    public static int enemiesKilled = 0;
     /******************** SINGLETON ********************/
     private static GameManager _instance;
 
@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour
         playerCoins += coins;
     }
 
+    public void updateStats()
+    {
+        enemiesKilled++;
+    }
 
 
     /*** TRANSITION HANDLING ***/

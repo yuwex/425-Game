@@ -10608,6 +10608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWave: 0
+  enemiesKilled: 0
   playerCoins: 150
   trans: {fileID: 0}
 --- !u!4 &1971817243
