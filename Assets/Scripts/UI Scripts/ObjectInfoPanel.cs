@@ -1,14 +1,20 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using System.Linq;
-using Microsoft.Unity.VisualStudio.Editor;
 
+public enum SelectedPanelType
+{
+    None,
+    Tower,
+}
 
 public class ObjectInfoPanel : MonoBehaviour
 {
     public TMP_Text title;
     public GameObject panel;
+    public GameObject selected;
+    public SelectedPanelType selectedType;
 
     [Header("Tower Panel")]
     public GameObject TowerPanel;
@@ -21,11 +27,22 @@ public class ObjectInfoPanel : MonoBehaviour
     // lock icon by aji nugroho
     public Sprite lockedSlot;
 
+    void Start()
+    {
+        selectedType = SelectedPanelType.None;
+        selected = null;
+    }
+
     public void SelectGameObject(GameObject gameObject)
     {
         panel.SetActive(gameObject != null);
 
-        if (!gameObject) return;
+        if (!gameObject)
+        {
+            selected = null;
+            selectedType = SelectedPanelType.None;
+            return;
+        };
 
         if (gameObject.TryGetComponent<Tower>(out var tower))
         {
@@ -42,6 +59,9 @@ public class ObjectInfoPanel : MonoBehaviour
     public void SelectTower(Tower tower)
     {
 
+        selected = tower.gameObject;
+        selectedType = SelectedPanelType.Tower;
+
         title.text = "Tower";
 
         TowerPanel.SetActive(true);    
@@ -49,11 +69,20 @@ public class ObjectInfoPanel : MonoBehaviour
         ClearChildrenWhere(statsBoxContainer, x => x.activeSelf);
         ClearChildrenWhere(upgradesBoxContainer, x => x.activeSelf);
 
+        // Reset size of statsbox
+        var rt = statsBoxContainer.GetComponent<RectTransform>();
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 90 * (statsToDisplay.Count + 1));
+        rt.ForceUpdateRectTransforms();
+
         foreach (Stat stat in statsToDisplay)
         {
             tower.GetStat(stat, out float res);
             GameObject statBox = Instantiate(statBoxTemplate, statsBoxContainer.transform);
             TMP_Text[] texts = statBox.GetComponentsInChildren<TMP_Text>();
+            
+            Tooltip tooltip = statBox.GetComponentInChildren<Tooltip>();
+            tooltip.title = "";
+            tooltip.message = tower.statChangeDescriptions[stat];
 
             foreach (TMP_Text t in texts)
             {
