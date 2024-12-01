@@ -8,6 +8,7 @@ public class SensUpdate : MonoBehaviour
 {
     public TMP_Text sensitivityText;
     public Slider sensSlider;
+    public MouseControls mouseControls;
 
     private void Start()
     {
@@ -18,5 +19,6 @@ public class SensUpdate : MonoBehaviour
     public void UpdateSensText(float sensVal)
     {
         sensitivityText.text = sensVal.ToString();
+        mouseControls.sens = sensVal;
     }
 }
