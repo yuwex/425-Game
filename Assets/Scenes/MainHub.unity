@@ -1686,7 +1686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesKilled: {fileID: 37402077}
-  manager: {fileID: 726039531}
 --- !u!1001 &38703659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25405,7 +25404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWave: 1
-  enemiesKilled: 0
   playerCoins: 150
   trans: {fileID: 1025288782}
 --- !u!4 &726039532
@@ -83712,6 +83710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2031473409}
   - component: {fileID: 2031473410}
+  - component: {fileID: 2031473411}
   m_Layer: 0
   m_Name: Menu Objects
   m_TagString: Untagged
@@ -83756,6 +83755,18 @@ MonoBehaviour:
   optionsMenu: {fileID: 0}
   statsMenu: {fileID: 653480224}
   main: {fileID: 2134758252}
+--- !u!114 &2031473411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031473408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8497c3fd3667e4faea981cc49d280277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2031570864
 PrefabInstance:
   m_ObjectHideFlags: 0
