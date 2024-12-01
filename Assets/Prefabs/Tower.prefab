@@ -178,7 +178,7 @@ MonoBehaviour:
     statValue: 1
     modifierType: 0
   - statType: 5
-    statValue: 20
+    statValue: 40
     modifierType: 0
   modifiers: []
   enemyTag: Enemy

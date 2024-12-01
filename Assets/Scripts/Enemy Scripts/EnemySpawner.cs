@@ -91,7 +91,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy.data = spawnInstance.enemyData;
                 enemy.target = mainBase;
                 enemy.mainBase = mainBase;
-                if (Random.value >= 0.5f)
+                if (Random.value >= 0.95f)
                     enemy.modifierDrop = possibleModifierDrops[Random.Range(0, possibleModifierDrops.Count)];
                 yield return new WaitForSeconds(0.5f);
             }
