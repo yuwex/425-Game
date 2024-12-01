@@ -19,4 +19,4 @@ MonoBehaviour:
   group3:
   - {fileID: 11400000, guid: e30f2ef07cdc54628bb4ea9342253658, type: 2}
   group4: []
-  nextRoundDelay: 25
+  nextRoundDelay: 30
