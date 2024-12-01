@@ -44,19 +44,19 @@ public class GamePlayerMovement : PlayerMovement
 
         if (!weapons[currWeapon].attacking && !towerSpawner.buildEnabled)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && currWeapon != 0)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && currWeapon != 0 && weapons.Count >= 1)
             {
                 weapons[currWeapon].ToggleMesh();
                 currWeapon = 0;
                 weapons[currWeapon].ToggleMesh();
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2) && currWeapon != 1)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && currWeapon != 1 && weapons.Count >= 2)
             {
                 weapons[currWeapon].ToggleMesh();
                 currWeapon = 1;
                 weapons[currWeapon].ToggleMesh();
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3) && currWeapon != 2)
+            if (Input.GetKeyDown(KeyCode.Alpha3) && currWeapon != 2 && weapons.Count >= 3)
             {
                 weapons[currWeapon].ToggleMesh();
                 currWeapon = 2;
