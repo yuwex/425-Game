@@ -3342,7 +3342,7 @@ PrefabInstance:
       objectReference: {fileID: 207519758}
     - target: {fileID: 6687414471579390309, guid: 8c374a0caa6f7734486120cf87213617, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: mainMenu
+      value: quitGame
       objectReference: {fileID: 0}
     - target: {fileID: 6687414471579390309, guid: 8c374a0caa6f7734486120cf87213617, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
