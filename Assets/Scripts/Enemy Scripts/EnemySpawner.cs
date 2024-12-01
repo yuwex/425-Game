@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Transform> spawnPoints;
 
+    public List<Wave> waves;
+    public WaveTimeLeft counter;
+
     void Start()
     {
         StartCoroutine(SpawnWaves());
@@ -20,32 +23,51 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
+        betweenWaves = true;
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+        betweenWaves = false;
+
+        while (waveNumber < waves.Count)
+        {
+            GameManager.Instance.enemyWave = ++waveNumber;
+
+            List<int> unassignedSpawns = new List<int> { 0, 1, 2, 3 };
+            int[] spawnVals = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                spawnVals[i] = Random.Range(0, unassignedSpawns.Count);
+                unassignedSpawns.Remove(spawnVals[i]);
+            }
+
+            StartCoroutine(SpawnGroup(waves[waveNumber - 1].group1, spawnVals[0]));
+            StartCoroutine(SpawnGroup(waves[waveNumber - 1].group2, spawnVals[1]));
+            StartCoroutine(SpawnGroup(waves[waveNumber - 1].group3, spawnVals[2]));
+            StartCoroutine(SpawnGroup(waves[waveNumber - 1].group4, spawnVals[3]));
+
+            counter.StartCountdown(waves[waveNumber - 1].nextRoundDelay);
+            yield return new WaitForSeconds(waves[waveNumber - 1].nextRoundDelay);
+        }
+
+        //endless mode
         while (true)
         {
             betweenWaves = true;
-
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
-
             betweenWaves = false;
-            // Increase the number of enemies per wave and the move speed based on the difficulty level
+
             GameManager.Instance.enemyWave = ++waveNumber;
 
             // Spawn a wave of enemies
             for (int i = 0; i < enemiesPerWave; i++)
             {
-                SpawnEnemy(enemies[Random.Range(0, enemies.Count)]);
-                yield return new WaitForSeconds(1);
+                SpawnEnemy(enemies[Random.Range(0, enemies.Count)], Random.Range(0, spawnPoints.Count));
+                yield return new WaitForSeconds(0.5f);
             }
-
-            // Wait for the specified time before spawning the next wave
-            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
         }
     }
 
-    void SpawnEnemy(GameObject prefab)
+    void SpawnEnemy(GameObject prefab, int spawnVal)
     {
-        // Randomly spawn the enemy at a random X, Y position within the defined range
-        int spawnVal = Random.Range(0, spawnPoints.Count);
 
         // Instantiate the enemy prefab at the spawn position
         Enemy enemy = Instantiate(prefab, spawnPoints[spawnVal].position, Quaternion.identity).GetComponent<Enemy>();
@@ -55,7 +77,24 @@ public class EnemySpawner : MonoBehaviour
         enemy.mainBase = mainBase;
 
         // Add possible drop
-        if (Random.value >= 0.5)
+        if (Random.value >= 0.5f)
             enemy.modifierDrop = possibleModifierDrops[Random.Range(0, possibleModifierDrops.Count)];
+    }
+
+    IEnumerator SpawnGroup(List<SpawnInstance> group, int spawnVal)
+    {
+        foreach (SpawnInstance spawnInstance in group)
+        {
+            for (int i = 0; i < spawnInstance.quantity; i++)
+            {
+                Enemy enemy = Instantiate(spawnInstance.enemyPrefab, spawnPoints[spawnVal].position, Quaternion.identity).GetComponent<Enemy>();
+                enemy.data = spawnInstance.enemyData;
+                enemy.target = mainBase;
+                enemy.mainBase = mainBase;
+                if (Random.value >= 0.5f)
+                    enemy.modifierDrop = possibleModifierDrops[Random.Range(0, possibleModifierDrops.Count)];
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
     }
 }
