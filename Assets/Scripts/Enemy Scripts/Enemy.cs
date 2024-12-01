@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     public float activationDistance = 10f;
     private float attackRange;
     private float attackDelay;
-
+    private Animator animator;
     private bool trapped = false;
 
     void Start()
@@ -43,6 +43,8 @@ public class Enemy : MonoBehaviour
         healthBar = GetComponent<InfoBar>();
         healthBar.SetMaxValue((int)health);
         healthBar.SetValue((int)health);
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -142,6 +144,7 @@ public class Enemy : MonoBehaviour
                 trapped = false;
                 agent.isStopped = false;
                 gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                animator.SetBool("isAttacking", false);
                 agent.SetDestination(target.transform.position);
                 break;
             }
@@ -173,6 +176,7 @@ public class Enemy : MonoBehaviour
             {
                 agent.isStopped = true;
                 gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                animator.SetBool("isAttacking", true);
                 bestWall.GetComponent<BuildingHealth>().Hurt((int)attackDamage);
                 yield return new WaitForSeconds(attackDelay);
             }
@@ -180,6 +184,7 @@ public class Enemy : MonoBehaviour
             {
                 agent.isStopped = false;
                 gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                animator.SetBool("isAttacking", false);
                 yield return null;
             }
         }
