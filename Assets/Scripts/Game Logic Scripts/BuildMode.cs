@@ -113,6 +113,17 @@ public class TowerSpawner : MonoBehaviour
         }
 
         Vector3 pos = board.NormalizePos(hit.point);
+        
+        Collider[] nearby = Physics.OverlapSphere(pos, 2.5f);
+        foreach (Collider collider in nearby)
+        {
+            if (collider.gameObject.CompareTag("Enemy"))
+            {
+                canPlace = false;
+                break;
+            }
+        }
+
         var (towerX, towerY) = board.GetCoordinateFromPos(pos);
 
         GameObject tileObject = board.GetBoard(towerX, towerY);
