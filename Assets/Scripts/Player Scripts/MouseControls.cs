@@ -21,15 +21,15 @@ public class MouseControls : MonoBehaviour
     void Update()
     {
         // retrieve mouse inputs
-        float mouseX = Input.GetAxis("Mouse X") * sens;
-        float mouseY = Input.GetAxis("Mouse Y") * sens;
+        float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
 
         xRotate -= mouseY;
 
         // clamp player view rotation
         xRotate = Mathf.Clamp(xRotate, -90, 90);
 
-        player.Rotate(Vector3.up * mouseX);
         transform.localRotation = Quaternion.Euler(xRotate, 0, 0);
+        player.Rotate(Vector3.up * mouseX);
     }
 }

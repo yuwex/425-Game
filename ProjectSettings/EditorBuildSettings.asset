@@ -5,10 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FlatPlaneTestScene.unity
     guid: d9a8d7078d5e1491294594a090d99458
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainHub.unity
     guid: a9e3a33c0066e04459a00ce591a6ea5f
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 3b4aadb8eb7604143b93671bd026a6a0, type: 2}

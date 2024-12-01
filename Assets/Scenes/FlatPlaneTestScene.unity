@@ -1137,7 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 137966334}
   - component: {fileID: 137966333}
-  - component: {fileID: 137966335}
+  - component: {fileID: 137966339}
   - component: {fileID: 137966336}
   - component: {fileID: 137966337}
   - component: {fileID: 137966338}
@@ -1193,34 +1193,6 @@ Transform:
   - {fileID: 834640000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &137966335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137966332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cdd936df3e0db143aa57b89370dd832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 137966333}
-  groundCheck: {fileID: 365258250}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  speed: 20
-  gravity: -9.81
-  weapons:
-  - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
-  - {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
-  - {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  enemyTag: Enemy
-  towerSpawner: {fileID: 966329818}
 --- !u!114 &137966336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1242,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: []
+--- !u!114 &137966339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137966332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54ffad596ab4334c8acb97c3afbe1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 137966333}
+  groundCheck: {fileID: 365258250}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  speed: 20
+  weapons:
+  - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
+  - {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
+  - {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  enemyTag: Enemy
+  towerSpawner: {fileID: 966329818}
 --- !u!1 &139692826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5056,7 +5055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33140f1e808e38040b97050b7c7c1e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 3
+  sens: 250
   player: {fileID: 137966334}
 --- !u!1 &1199638120
 GameObject:
