@@ -18,6 +18,9 @@ public class WeaponHitscan : WeaponBase
     // debugging
     public int totalDamage;
 
+    [Header("SFX")]
+    public List<AudioClip> attackSounds;
+
     private void OnEnable() {
         upgradedDamage = 0;
         totalDamage = attackDamage + upgradedDamage;
@@ -28,6 +31,8 @@ public class WeaponHitscan : WeaponBase
         if (attacking || towerSpawner.buildEnabled) return;
 
         attacking = true;
+
+        SoundManager.Instance.PlayRandomSFXClip(attackSounds, Camera.main.transform);
 
         player.StartCoroutine(ResetAttack());
         player.StartCoroutine(Damage());
