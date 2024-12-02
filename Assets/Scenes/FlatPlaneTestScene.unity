@@ -12194,10 +12194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyWave: 0
   playerCoins: 150
+  playerSouls: 0
   onUpdateCoins:
     m_PersistentCalls:
       m_Calls: []
-  playerSouls: 0
   trans: {fileID: 0}
 --- !u!4 &1971817243
 Transform:
@@ -12662,6 +12662,7 @@ MonoBehaviour:
   modifierInventoryPanel: {fileID: 147941219}
   inventoryBoxContainer: {fileID: 331536061}
   invBoxTemplate: {fileID: 1199638120}
+  clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!1 &2044575076
 GameObject:
   m_ObjectHideFlags: 0

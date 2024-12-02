@@ -33,6 +33,9 @@ public class ObjectInfoPanel : MonoBehaviour
     public RectTransform inventoryBoxContainer;
     public GameObject invBoxTemplate;
 
+    [Header("SFX")]
+    public AudioClip clickSound;
+
     void Start()
     {
         selectedType = SelectedPanelType.None;
@@ -42,6 +45,8 @@ public class ObjectInfoPanel : MonoBehaviour
 
     public void SelectGameObject(GameObject gameObject)
     {
+        SoundManager.Instance.PlaySFXClip(clickSound, transform);
+
         panel.SetActive(gameObject != null);
 
         if (!gameObject)
@@ -130,6 +135,7 @@ public class ObjectInfoPanel : MonoBehaviour
 
                 ApplyModifierToGameObject(mod, image, tooltip, upgradeBox.GetComponent<ModifierHolder>());
                 button.onClick.AddListener(() => {
+                    SoundManager.Instance.PlaySFXClip(clickSound, transform);
                     tower.modifiers.Remove(mod);
                     inventory.inventory.Add(mod);
                     tower.UpdateModifiers();
@@ -150,6 +156,7 @@ public class ObjectInfoPanel : MonoBehaviour
                 else
                 {
                     button.onClick.AddListener(() => {
+                        SoundManager.Instance.PlaySFXClip(clickSound, transform);
                         modifierInventoryPanel.SetActive(true);
                     });
                 }
@@ -174,6 +181,7 @@ public class ObjectInfoPanel : MonoBehaviour
                     tooltip.message = "Click to <color=green>unlock</color> this slot";
 
                     button.onClick.AddListener(() => {
+                        SoundManager.Instance.PlaySFXClip(clickSound, transform);
                         GameManager.Instance.updateCoins(-cost);
                         tower.unlockedModifierSlots += 1;
                         RefreshDisplayedElements();
@@ -206,6 +214,7 @@ public class ObjectInfoPanel : MonoBehaviour
             var button = upgradeBox.GetComponent<Button>();
 
             button.onClick.AddListener(() => {
+                SoundManager.Instance.PlaySFXClip(clickSound, transform);
                 if (tower.unlockedModifierSlots > tower.modifiers.Count)
                 {
                     tower.modifiers.Add(mod);
