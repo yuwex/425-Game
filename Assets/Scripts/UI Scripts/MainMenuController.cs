@@ -5,6 +5,7 @@ public class MainMenuController : MonoBehaviour
 {
     public GameObject playerCamera;
     public GameObject menuCamera;
+    public GameObject hubUI;
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +24,6 @@ public class MainMenuController : MonoBehaviour
     {
         playerCamera.SetActive(!playerCamera.activeSelf);
         menuCamera.SetActive(!menuCamera.activeSelf);
+        hubUI.SetActive(!hubUI.activeSelf);
     }
 }

@@ -21,3 +21,5 @@ MonoBehaviour:
   attackDelay: 0.3
   attackSpeed: 0.4
   attackDamage: 100
+  upgradedDamage: 15
+  totalDamage: 65
