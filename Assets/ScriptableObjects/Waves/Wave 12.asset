@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Wave 12
   m_EditorClassIdentifier: 
   group1:
-  - {fileID: 11400000, guid: 1c969fa5349454d0fabd35b3b6550415, type: 2}
+  - {fileID: 11400000, guid: e0915f0eafa2fd54e908dd1e433c05fd, type: 2}
   group2:
-  - {fileID: 11400000, guid: 3ae49b1c9c7c04704aff7e10372cc83a, type: 2}
-  group3:
-  - {fileID: 11400000, guid: f77d2628e7bf240cda2d3a51ec0aaa2f, type: 2}
-  group4:
-  - {fileID: 11400000, guid: d80b62a5cc16e44248869fb0bf9a53da, type: 2}
-  nextRoundDelay: 25
+  - {fileID: 11400000, guid: 4dff3120e2da54340b31d625cb0ae2f0, type: 2}
+  group3: []
+  group4: []
+  nextRoundDelay: 40
