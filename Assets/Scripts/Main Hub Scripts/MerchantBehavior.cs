@@ -13,10 +13,6 @@ public class MerchantBehavior : MonoBehaviour
     public GameObject hubUI;
     public MouseControls mouseControls;
     public TMP_Text soulCounter;
-    public WeaponHitscan sword;
-    public WeaponCharger crossbow;
-    public WeaponProjectile scepter;
-
 
     private bool merchantUIActive;
 
