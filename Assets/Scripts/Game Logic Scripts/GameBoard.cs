@@ -240,23 +240,43 @@ public class GameBoard : MonoBehaviour
             int y = UnityEngine.Random.Range(0, BoardLength);
             int boardLength = BoardLength / 2;
 
-            bool inTowerArea = x >= (boardLength - 2) && x <= (boardLength + 2) && y >= (boardLength - 2) && y <= (boardLength + 2);
+            bool inTowerArea = x >= (boardLength - 2) && x <= (boardLength + 2) &&
+                               y >= (boardLength - 2) && y <= (boardLength + 2);
 
             if (Tiles[x, y] == null && !inTowerArea)
             {
-                GameObject randomObject = TerrainObjects[UnityEngine.Random.Range(0, TerrainObjects.Count)];
-
                 float offset = (BoardLength * TileSize) / 2.0f - (TileSize / 2.0f);
                 Vector3 spawnPos = new Vector3(x * TileSize - offset, 0, y * TileSize - offset);
 
+                GameObject randomObject = TerrainObjects[UnityEngine.Random.Range(0, TerrainObjects.Count)];
                 GameObject spawnedObject = Instantiate(randomObject, spawnPos, Quaternion.identity);
                 spawnedObject.transform.parent = terrainParent.transform;
-                SetBoard(x, y, spawnedObject);
 
+                // Check if the spawned object is within a MeshCollider
+                Collider[] colliders = Physics.OverlapSphere(spawnedObject.transform.position, TileSize / 2.0f);
+                bool isInsideMeshCollider = false;
+
+                foreach (Collider collider in colliders)
+                {
+                    if (collider is MeshCollider && collider.gameObject != spawnedObject)
+                    {
+                        isInsideMeshCollider = true;
+                        break;
+                    }
+                }
+
+                if (isInsideMeshCollider)
+                {
+                    Destroy(spawnedObject); // Remove the spawned object if it overlaps
+                    continue;
+                }
+
+                SetBoard(x, y, spawnedObject);
                 objectsSpawned++;
             }
         }
     }
+
 
 
 

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public int enemyWave = 0;
     public static int enemiesKilled = 0;
+    public static float sensValue = 4f;
     /******************** SINGLETON ********************/
     private static GameManager _instance;
 
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
+        trans.SetActive(false);
     }
     /******************** SINGLETON ********************/
 
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     /*** TRANSITION HANDLING ***/
 
-    public Animator trans;
+    public GameObject trans;
 
     public void SceneTransition()
     {
@@ -78,8 +80,10 @@ public class GameManager : MonoBehaviour
             scene = "MainHub";
         }
 
+        trans.SetActive(true);
+
         // trigger fade-in animation
-        trans.SetTrigger("End");
+        trans.GetComponent<Animator>().SetTrigger("End");
 
         // wait for 1 second
         yield return new WaitForSeconds(1);
@@ -88,11 +92,13 @@ public class GameManager : MonoBehaviour
         Addressables.LoadSceneAsync(scene, LoadSceneMode.Single);
 
         // trigger fade-out animation
-        trans.SetTrigger("Start");
+        trans.GetComponent<Animator>().SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        trans.SetActive(false);
     }
     /*** TRANSITION HANDLING ***/
-
-
 
     public void quitGame()
     {

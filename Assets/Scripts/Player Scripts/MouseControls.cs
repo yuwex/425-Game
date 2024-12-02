@@ -6,7 +6,7 @@ using UnityEngine;
 public class MouseControls : MonoBehaviour
 {
 
-    public float sens = 150f;
+    public float sens;
     public Transform player;
     private float xRotate;
 
@@ -16,6 +16,8 @@ public class MouseControls : MonoBehaviour
         // lock cursor to center and make it invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        sens = GameManager.sensValue;
     }
 
     // Update is called once per frame
@@ -37,5 +39,6 @@ public class MouseControls : MonoBehaviour
     public void UpdateSens(float newSens)
     {
         sens = newSens;
+        GameManager.sensValue = sens;
     }
 }
