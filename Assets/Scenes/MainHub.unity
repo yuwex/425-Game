@@ -8372,6 +8372,7 @@ MonoBehaviour:
   buttonText: {fileID: 1288078600}
   scepter: {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
   clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
+  errSound: {fileID: 8300000, guid: 8e032e612e8c34b06bf0bb275d169ddc, type: 3}
 --- !u!1001 &193981317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32547,6 +32548,7 @@ MonoBehaviour:
   buttonText: {fileID: 920024411}
   sword: {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
   clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
+  errSound: {fileID: 8300000, guid: 8e032e612e8c34b06bf0bb275d169ddc, type: 3}
 --- !u!4 &820489330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe3b59d777646f34bad7d168d18e00f5, type: 3}
@@ -45066,6 +45068,7 @@ MonoBehaviour:
   buttonText: {fileID: 1834038106}
   crossbow: {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
   clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
+  errSound: {fileID: 8300000, guid: 8e032e612e8c34b06bf0bb275d169ddc, type: 3}
 --- !u!1001 &1110254016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49605,7 +49608,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 383
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -54425,6 +54428,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fa53103f361740046acf37c6dbe503ce, type: 3}
       propertyPath: m_Name
       value: character-male-d
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa53103f361740046acf37c6dbe503ce, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98402,6 +98409,7 @@ MonoBehaviour:
   statsMenu: {fileID: 653480224}
   main: {fileID: 2134758252}
   mainPauseOption: {fileID: 1010482849}
+  victoryMenu: {fileID: 0}
   UISound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!114 &2031473411
 MonoBehaviour:
