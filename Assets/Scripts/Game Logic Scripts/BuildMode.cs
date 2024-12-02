@@ -148,6 +148,16 @@ public class TowerSpawner : MonoBehaviour
 
         bool validPath = PathToBase(pos);
 
+        Collider[] colliders = Physics.OverlapSphere(pos, 0.5f);
+        foreach (Collider collider in colliders)
+        {
+            if (collider is MeshCollider)
+            {
+                validPath = false;
+                break;
+            }
+        }
+
         if (validPath && canPlace)
         {
             renderer.material = IndicatorMaterialCanPlace;
