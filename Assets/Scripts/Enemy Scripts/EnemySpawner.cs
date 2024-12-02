@@ -73,22 +73,19 @@ public class EnemySpawner : MonoBehaviour
 
             counter.StartCountdown(waves[waveNumber - 1].nextRoundDelay);
             yield return new WaitForSeconds(waves[waveNumber - 1].nextRoundDelay);
-
-            if (waveNumber == 20)
-            {
-                ui.GetComponent<Canvas>().enabled = false;
-                VictoryText victoryTextScript = victoryScreen.GetComponent<VictoryText>();
-                victoryTextScript.displayNewText();
-                victoryScreen.SetActive(true);
-                Time.timeScale = 0f;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                playerCamera.SetActive(false);
-                winningCamera.SetActive(true);
-                continue;
-            }
+                
         }
 
+        ui.GetComponent<Canvas>().enabled = false;
+        VictoryText victoryTextScript = victoryScreen.GetComponent<VictoryText>();
+        victoryTextScript.displayNewText();
+        victoryScreen.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        playerCamera.SetActive(false);
+        winningCamera.SetActive(true);
+        
         ui.GetComponent<Canvas>().enabled = true;
 
         //endless mode
