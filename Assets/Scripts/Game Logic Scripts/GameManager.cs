@@ -36,14 +36,15 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
-        trans.SetActive(false);
+
+        if (trans) trans.SetActive(false);
     }
     /******************** SINGLETON ********************/
 
 
 
 
-    // currency 
+    // currencies
     public int playerCoins = 150;
     public int playerSouls = 0;
 

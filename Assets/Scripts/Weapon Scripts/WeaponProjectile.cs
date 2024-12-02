@@ -13,9 +13,18 @@ public class WeaponProjectile : WeaponBase
     public float attackDelay;
     public float attackSpeed;
     public int attackDamage;
+    public int upgradedDamage = 0;
     public GameObject projectile;
 
+    // debugging 
+    public int totalDamage;
+
     private float totalTime = 0;
+
+    private void OnEnable() {
+        upgradedDamage = 0;
+        totalDamage = attackDamage + upgradedDamage;
+    }
 
     public override void Attack()
     {
@@ -30,10 +39,12 @@ public class WeaponProjectile : WeaponBase
 
     private IEnumerator Shoot()
     {
+        totalDamage = attackDamage + upgradedDamage;
+
         yield return new WaitForSeconds(attackDelay);
         GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward * 2, fppCamera.transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * velocity;
-        projectile.GetComponent<Fireball>().damage = attackDamage;
+        projectile.GetComponent<Fireball>().damage = totalDamage;
     }
 
     private IEnumerator ResetAttack()
