@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public int enemyWave = 0;
     public static int enemiesKilled = 0;
+    public static float sensValue = 4f;
     /******************** SINGLETON ********************/
     private static GameManager _instance;
 
@@ -91,8 +92,6 @@ public class GameManager : MonoBehaviour
         trans.SetTrigger("Start");
     }
     /*** TRANSITION HANDLING ***/
-
-
 
     public void quitGame()
     {
