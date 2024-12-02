@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
             counter.StartCountdown(waves[waveNumber - 1].nextRoundDelay);
             yield return new WaitForSeconds(waves[waveNumber - 1].nextRoundDelay);
 
-            if (waveNumber == 1)
+            if (waveNumber == 20)
             {
                 ui.GetComponent<Canvas>().enabled = false;
                 VictoryText victoryTextScript = victoryScreen.GetComponent<VictoryText>();
