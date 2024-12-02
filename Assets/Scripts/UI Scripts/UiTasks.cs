@@ -14,6 +14,7 @@ public class UiTasks : MonoBehaviour
     public GameObject mainPauseOption;
     // private CursorLockMode originalLockState;
     private bool isPaused = false;
+    private bool mainMenuRunning = true;
 
 
     // public void Start()
@@ -53,16 +54,20 @@ public class UiTasks : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainHub");
+        mainMenuRunning = true;
     }
 
     public void pauseGame()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        ui.GetComponent<Canvas>().enabled = false;
-        Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
-        isPaused = true;
+        if (!mainMenuRunning)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            ui.GetComponent<Canvas>().enabled = false;
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            isPaused = true;
+        }
     }
 
     public void resumeGame()
@@ -101,6 +106,7 @@ public class UiTasks : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
+        mainMenuRunning = false;
     }
 
     public void viewStats()
