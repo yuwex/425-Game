@@ -21,6 +21,8 @@ public class WeaponCharger : WeaponBase
     private float chargeTime;
     private GameObject chargeBar;
 
+    private bool resetting;
+
     // debugging
     public int totalDamage;
 
@@ -31,13 +33,14 @@ public class WeaponCharger : WeaponBase
 
     public override void uniqueInit()
     {
+        resetting = false;
         chargeBar = GameObject.FindGameObjectWithTag("ChargeBar");
         chargeBar.SetActive(false);
     }
 
     public override void Attack()
     {
-        if (towerSpawner.buildEnabled || (attacking && chargeTime == 0)) return;
+        if (towerSpawner.buildEnabled || resetting) return;
 
         chargeBar.SetActive(true);
         chargeBar.GetComponent<Slider>().value = 0;
@@ -54,7 +57,7 @@ public class WeaponCharger : WeaponBase
 
     public override void Release()
     {
-        if (attacking && chargeTime > 0)
+        if (attacking && !resetting)
         {
 
             totalDamage = maxDamage + upgradedDamage;
@@ -67,6 +70,7 @@ public class WeaponCharger : WeaponBase
             chargeBar.SetActive(false);
             chargeTime = 0;
             gameObject.transform.localPosition = position + recoil;
+            resetting = true;
 
             player.StartCoroutine(ResetAttack());
             player.StartCoroutine(Recoil());
@@ -77,6 +81,7 @@ public class WeaponCharger : WeaponBase
     {
         yield return new WaitForSeconds(attackDelay);
         attacking = false;
+        resetting = false;
     }
 
     private IEnumerator Recoil()
