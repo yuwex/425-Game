@@ -732,6 +732,11 @@ MonoBehaviour:
   target: {fileID: 0}
   mainBase: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 27345f1f3382f4ab3bc3081d9eb8b63c, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: fad005e4e635249139919c7ff2b3a321, type: 3}
+  - {fileID: 8300000, guid: 00f8846f20fbc41b28ada08d5b1213d5, type: 3}
+  - {fileID: 8300000, guid: b6b6d283682cf479682514a911a0f4b2, type: 3}
+  - {fileID: 8300000, guid: c2d6001a5c5a14215aac2693797122d0, type: 3}
   modifierDrop: {fileID: 0}
   modifierPrefab: {fileID: 4447672129588550576, guid: bffee88492c504fd1bc00a641a2b475b, type: 3}
   health: 1
