@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.UI;
 using UnityEngine;
 
 public class WaveTimeLeft : MonoBehaviour
