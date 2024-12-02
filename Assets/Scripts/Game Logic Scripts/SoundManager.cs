@@ -36,6 +36,8 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
+        volumeSFX = GameManager.SFXVolume;
+        volumeMusic = GameManager.MusicVolume;
         PlayMusic(music);
     }
 

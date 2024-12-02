@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public int enemyWave = 0;
     public static int enemiesKilled = 0;
     public static float sensValue = 4f;
+    public static float SFXVolume = 0.5f;
+    public static float MusicVolume = 0.5f;
     /******************** SINGLETON ********************/
     private static GameManager _instance;
 
