@@ -64,4 +64,20 @@ public class CameraController : MonoBehaviour
             buildCamera.SetActive(!buildCamera.activeSelf);
         }
     }
+
+    public void endlessMode()
+    {
+        if (!buildCameraOn)
+        {
+            pauseCamera.SetActive(false);
+            buildCamera.SetActive(false);
+            mainCamera.SetActive(true);
+        }
+        else
+        {
+            pauseCamera.SetActive(false);
+            mainCamera.SetActive(false);
+            buildCamera.SetActive(true);
+        }
+    }
 }
