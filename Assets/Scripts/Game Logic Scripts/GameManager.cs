@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
-        trans.SetActive(false);
+
+        if (trans) trans.SetActive(false);
     }
     /******************** SINGLETON ********************/
 
