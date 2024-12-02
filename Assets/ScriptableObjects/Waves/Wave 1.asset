@@ -17,4 +17,4 @@ MonoBehaviour:
   group2: []
   group3: []
   group4: []
-  nextRoundDelay: 30
+  nextRoundDelay: 25

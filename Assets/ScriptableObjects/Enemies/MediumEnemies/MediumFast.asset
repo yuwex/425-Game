@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a947163a547f14d63b76ca773cb806fb, type: 3}
   m_Name: MediumFast
   m_EditorClassIdentifier: 
-  baseHealth: 50
+  baseHealth: 150
   speed: 25
   attackDamage: 5
   baseDamage: 5
   attackRange: 5
-  attackDelay: 0.3
-  coinReward: 10
+  attackDelay: 0.5
+  coinReward: 20

@@ -13,17 +13,15 @@ public class MerchantBehavior : MonoBehaviour
     public GameObject hubUI;
     public MouseControls mouseControls;
     public TMP_Text soulCounter;
-    public WeaponHitscan sword;
-    public WeaponCharger crossbow;
-    public WeaponProjectile scepter;
 
-
-    private bool merchantUIActive = false;
+    private bool merchantUIActive;
 
     void Awake()
     {
         // ensure correct UI objects are opened on start
+        hubUI.SetActive(false);
         merchantUI.SetActive(false);
+        merchantUIActive = false;
     }
 
     void Start()
@@ -50,6 +48,11 @@ public class MerchantBehavior : MonoBehaviour
 
                 }
             }
+        }
+
+        if (merchantUIActive)
+        {
+            soulCounter.text = "Souls: " + GameManager.Instance.playerSouls;
         }
     }
 
@@ -93,20 +96,4 @@ public class MerchantBehavior : MonoBehaviour
         hubUI.SetActive(true);
         merchantUIActive = false;
     }
-
-    public void PurchaseSwordUpgrade()
-    {
-        sword.upgradedDamage += 5;
-    }
-
-    public void PurchaseCrossbowUpgrade()
-    {
-        crossbow.upgradedDamage += 5;
-    }
-
-    public void PurchaseScepterUpgrade()
-    {
-        scepter.upgradedDamage += 5;
-    }
-
 }

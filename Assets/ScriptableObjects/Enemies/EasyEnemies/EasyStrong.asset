@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a947163a547f14d63b76ca773cb806fb, type: 3}
   m_Name: EasyStrong
   m_EditorClassIdentifier: 
-  baseHealth: 50
+  baseHealth: 750
   speed: 8
   attackDamage: 15
   baseDamage: 10
