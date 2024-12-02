@@ -1,25 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Collections;
 
-public class CoinWarning : MonoBehaviour
+public class WaveWarning : MonoBehaviour
 {
     public TextMeshProUGUI warningText;
-    private float fadeDuration = 0.1f;
+    private float fadeDuration = 0.5f;
 
     void start()
     {
         warningText.enabled = false;
     }
-    public void ShowWarning()
+    public void ShowWarning(string waveText)
     {
+        warningText.text = waveText;
         StartCoroutine(FadeText());
     }
 
     private IEnumerator FadeText()
     {
         Color color = warningText.color;
-        color.a = 0; //Transparent
+        color.a = 0;
         warningText.color = color;
         warningText.enabled = true;
 

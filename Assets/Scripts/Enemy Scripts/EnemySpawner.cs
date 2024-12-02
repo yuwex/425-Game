@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
 
     public List<Wave> waves;
     public WaveTimeLeft counter;
+    public WaveWarning waveWarning;
+
 
     void Start()
     {
@@ -26,10 +28,10 @@ public class EnemySpawner : MonoBehaviour
         betweenWaves = true;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
         betweenWaves = false;
-
         while (waveNumber < waves.Count)
         {
             GameManager.Instance.enemyWave = ++waveNumber;
+            waveWarning.ShowWarning("Wave " + waveNumber);
 
             List<int> unassignedSpawns = new List<int> { 0, 1, 2, 3 };
             int[] spawnVals = new int[4];
@@ -52,9 +54,10 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             betweenWaves = true;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+            counter.StartCountdown(30);
+            yield return new WaitForSeconds(30);
             betweenWaves = false;
-
+            waveWarning.ShowWarning("Wave " + waveNumber);
             GameManager.Instance.enemyWave = ++waveNumber;
 
             // Spawn a wave of enemies
