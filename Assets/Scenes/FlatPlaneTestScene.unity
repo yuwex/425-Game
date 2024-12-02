@@ -8532,9 +8532,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6933cde623b9b4d35958dd1b5980accb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxPrefab: {fileID: 0}
+  sfxPrefab: {fileID: 6154532064489016195, guid: 4de975eb0d12f4e8f9a80ac1677a9818, type: 3}
   volumeSFX: 1
-  volumeMusic: 0
+  volumeMusic: 1
+  music: {fileID: 8300000, guid: 4f26e78278bd84fad8481409a8054c68, type: 3}
+  loopLength: 368
 --- !u!4 &1509708296
 Transform:
   m_ObjectHideFlags: 0
@@ -11200,7 +11202,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044575076}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!4 &2044575079
 Transform:
   m_ObjectHideFlags: 0
