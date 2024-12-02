@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     private float attackDamage;
     private float baseDamage;
     private int coinReward;
-    public float activationDistance = 10f;
+    public float activationDistance = 7f;
     private float attackRange;
     private float attackDelay;
     private Animator animator;
