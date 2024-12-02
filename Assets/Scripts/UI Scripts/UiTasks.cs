@@ -102,7 +102,7 @@ public class UiTasks : MonoBehaviour
     {
         SoundManager.Instance.PlaySFXClip(UISound, player.transform);
         // Editor only will remove once game is built
-        UnityEditor.EditorApplication.isPlaying = false;
+        // UnityEditor.EditorApplication.isPlaying = false;
 
         Application.Quit();
     }
