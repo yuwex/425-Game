@@ -14,6 +14,9 @@ public class MerchantBehavior : MonoBehaviour
     public MouseControls mouseControls;
     public TMP_Text soulCounter;
     public WeaponHitscan sword;
+    public WeaponCharger crossbow;
+    public WeaponProjectile scepter;
+
 
     private bool merchantUIActive = false;
 
@@ -94,6 +97,16 @@ public class MerchantBehavior : MonoBehaviour
     public void PurchaseSwordUpgrade()
     {
         sword.upgradedDamage += 5;
+    }
+
+    public void PurchaseCrossbowUpgrade()
+    {
+        crossbow.upgradedDamage += 5;
+    }
+
+    public void PurchaseScepterUpgrade()
+    {
+        scepter.upgradedDamage += 5;
     }
 
 }

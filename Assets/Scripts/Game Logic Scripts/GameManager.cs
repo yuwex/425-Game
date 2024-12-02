@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    // currency 
+    // currencies
     public int playerCoins = 150;
     public int playerSouls = 0;
 

@@ -42943,6 +42943,8 @@ MonoBehaviour:
   mouseControls: {fileID: 1204062549}
   soulCounter: {fileID: 1938805103}
   sword: {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
+  crossbow: {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
+  scepter: {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
 --- !u!95 &1143728428
 Animator:
   serializedVersion: 5
@@ -50863,7 +50865,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1321219893}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1143728426}
+        m_TargetAssemblyTypeName: MerchantBehavior, Assembly-CSharp
+        m_MethodName: PurchaseCrossbowUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1321219893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73186,7 +73200,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1768493961}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1143728426}
+        m_TargetAssemblyTypeName: MerchantBehavior, Assembly-CSharp
+        m_MethodName: PurchaseScepterUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1768493961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92381,6 +92407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2031473409}
   - component: {fileID: 2031473410}
+  - component: {fileID: 2031473411}
   m_Layer: 5
   m_Name: Menu Objects
   m_TagString: Untagged

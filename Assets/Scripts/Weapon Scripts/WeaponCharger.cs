@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +15,19 @@ public class WeaponCharger : WeaponBase
     public float maxChargeVelocity;
     public float attackDelay;
     public int maxDamage;
+    public int upgradedDamage;
     public GameObject projectile;
 
     private float chargeTime;
     private GameObject chargeBar;
+
+    // debugging
+    public int totalDamage;
+
+    private void OnEnable() {
+        upgradedDamage = 0;
+        totalDamage = maxDamage + upgradedDamage;   
+    }
 
     public override void uniqueInit()
     {
@@ -46,10 +56,13 @@ public class WeaponCharger : WeaponBase
     {
         if (attacking && chargeTime > 0)
         {
+
+            totalDamage = maxDamage + upgradedDamage;
+
             GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward * 2, fppCamera.transform.rotation);
 
             projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * maxChargeVelocity * ((maxChargeTime + chargeTime) / (2 * maxChargeTime));
-            projectile.GetComponent<Projectile>().damage = 5 + (int)Math.Floor(Math.Pow(Math.Pow(maxDamage - 5, 1 / 1.5f) * (chargeTime / maxChargeTime), 1.5f));
+            projectile.GetComponent<Projectile>().damage = 5 + (int)Math.Floor(Math.Pow(Math.Pow(totalDamage - 5, 1 / 1.5f) * (chargeTime / maxChargeTime), 1.5f));
 
             chargeBar.SetActive(false);
             chargeTime = 0;
