@@ -5,6 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatModifier", menuName = "TowerModifiers/Stats")]
 public class ModifierBase : ScriptableObject
 {
+    /*
+
+    All modifiers inherit from a ModifierBase. 
+    The modifierbase functions as a object that holds stat values, allows for stat customization, and creates projectile events.
+    It's very easy to make your own custom projectiles: just overwrite any of the virtual methods to do so.
+    E.g. you can make a projectile that spawns other projectiles on collision.
+
+    There is also a priority system in place for if projectiles should be destroyed.
+
+    The heavy reliance on priority systems ensures that all sorts of different modifiers work together, regardless of their pairings.
+
+    */
+    
     public string modifierName;
     public string flavorDescription;
     public string modifierDescription;
