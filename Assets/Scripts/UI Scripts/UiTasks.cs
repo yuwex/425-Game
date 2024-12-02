@@ -45,7 +45,7 @@ public class UiTasks : MonoBehaviour
     public void restartLevel()
     {
         Time.timeScale = 1f;
-        ui.SetActive(true);
+        ui.GetComponent<Canvas>().enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -59,7 +59,7 @@ public class UiTasks : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        ui.SetActive(false);
+        ui.GetComponent<Canvas>().enabled = false;
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
         isPaused = true;
@@ -69,7 +69,7 @@ public class UiTasks : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        ui.SetActive(true);
+        ui.GetComponent<Canvas>().enabled = true;
         Time.timeScale = 1f;
         isPaused = false;
         pauseMenu.SetActive(false);
