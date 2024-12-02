@@ -47,6 +47,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /* Our ScriptableObject based wave system is noteworthy because it allows for 
+    the creation of waves that feel disctinct and require different strategies, 
+    promoting a flow state within the user. */
+
     IEnumerator SpawnWaves()
     {
         betweenWaves = true;

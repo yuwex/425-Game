@@ -133,6 +133,11 @@ public class Enemy : MonoBehaviour
         if (modifierDrop) CreateModifierDrop();
     }
 
+    /* Our enemy escape algorithm is worthy of additional points because it
+    uses a variety of factors of surrounding walls to determine the optimal 
+    wall to break, emulating an intelligent being and demonstrating algorithmic
+    complexity */
+
     private IEnumerator Escape(List<GameObject> walls)
     {
         while (trapped)

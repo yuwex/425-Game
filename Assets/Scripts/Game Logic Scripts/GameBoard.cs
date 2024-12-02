@@ -114,6 +114,10 @@ public class GameBoard : MonoBehaviour
         }
     }
 
+    /* Our wall update algorithm is notable because it demonstrates algorithmic complexity
+    through recursive calls and it modifies surrounding features to provide a seemless
+    aesthetically pleaseing structure. */
+
     void UpdateWall((int x, int y) mid)
     {
         GameObject midWall = GetBoard(mid.x, mid.y);
@@ -277,8 +281,9 @@ public class GameBoard : MonoBehaviour
         }
     }
 
-
-
+    /* Our PathExsists algorithm is worthy of additional points because it utilizes our game board, 
+    which represents the position of all relevant game objects as a 2d matrix,
+    to ensure enemies have a route from their spawn to the home base. */
 
     public bool PathExists(int startX, int startY, int targetX, int targetY)
     {

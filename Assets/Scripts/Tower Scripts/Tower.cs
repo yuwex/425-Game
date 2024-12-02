@@ -42,6 +42,12 @@ public class Tower : MonoBehaviour
         modHandlers.Add(ModifierType.Multiplicative, HandleMultiplicativeModifier);
     }
 
+    /* Our modifier system is noteworthy because it allows for the intersection between the
+    rouguelike and tower defense genres, creating a unique gameplay concept. It also allows for
+    different attempts to feel unique and memorable as players will be encouraged to try new
+    modifier combinations. */
+
+
     public List<StatInfo> HandleAdditiveModifier(List<StatInfo> mods, List<StatInfo> stats)
     {
 
