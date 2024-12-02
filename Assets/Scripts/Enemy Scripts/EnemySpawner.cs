@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     // private float timeBetweenWaves = 15;
     public bool betweenWaves;
 
+    private bool started = false;
+
     public List<Transform> spawnPoints;
 
     public List<Wave> waves;
@@ -23,10 +25,25 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnWaves());
     }
 
+    void Update()
+    {
+        if (!started && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            GameManager.Instance.enemyWave = ++waveNumber;
+            GameManager.Instance.playerCoins += MoneyFromWave(waves[waveNumber]);
+        }
+        if (!started && Input.GetKeyDown(KeyCode.DownArrow) && waveNumber > 0)
+        {
+            GameManager.Instance.enemyWave = --waveNumber;
+            GameManager.Instance.playerCoins -= MoneyFromWave(waves[waveNumber+1]);
+        }
+    }
+
     IEnumerator SpawnWaves()
     {
         betweenWaves = true;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+        started = true;
         betweenWaves = false;
         while (waveNumber < waves.Count)
         {
@@ -99,5 +116,27 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+    }
+
+    int MoneyFromWave(Wave wave)
+    {
+        int res = 0;
+        foreach (SpawnInstance spawn in wave.group1)
+        {
+            res += spawn.enemyData.coinReward * spawn.quantity;
+        }
+        foreach (SpawnInstance spawn in wave.group2)
+        {
+            res += spawn.enemyData.coinReward * spawn.quantity;
+        }
+        foreach (SpawnInstance spawn in wave.group3)
+        {
+            res += spawn.enemyData.coinReward * spawn.quantity;
+        }
+        foreach (SpawnInstance spawn in wave.group4)
+        {
+            res += spawn.enemyData.coinReward * spawn.quantity;
+        }
+        return res;
     }
 }
