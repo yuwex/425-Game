@@ -26287,7 +26287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyWave: 1
   playerCoins: 150
-  trans: {fileID: 1025288782}
+  trans: {fileID: 1025288781}
 --- !u!4 &726039532
 Transform:
   m_ObjectHideFlags: 0
