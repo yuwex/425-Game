@@ -31,13 +31,13 @@ public class EnemySpawner : MonoBehaviour
         if (!started && Input.GetKeyDown(KeyCode.UpArrow))
         {
             GameManager.Instance.enemyWave = ++waveNumber;
-            GameManager.Instance.playerCoins += MoneyFromWave(waves[waveNumber]);
+            GameManager.Instance.playerCoins += MoneyFromWave(waves[waveNumber-1]);
             inventory.Add(possibleModifierDrops[Random.Range(0, possibleModifierDrops.Count)]);
         }
         if (!started && Input.GetKeyDown(KeyCode.DownArrow) && waveNumber > 0)
         {
             GameManager.Instance.enemyWave = --waveNumber;
-            GameManager.Instance.playerCoins -= MoneyFromWave(waves[waveNumber+1]);
+            GameManager.Instance.playerCoins -= MoneyFromWave(waves[waveNumber]);
         }
     }
 

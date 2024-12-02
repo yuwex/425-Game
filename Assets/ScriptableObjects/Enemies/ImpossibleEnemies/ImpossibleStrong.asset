@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a947163a547f14d63b76ca773cb806fb, type: 3}
   m_Name: ImpossibleStrong
   m_EditorClassIdentifier: 
-  baseHealth: 1000
-  speed: 5
+  baseHealth: 50000
+  speed: 3
   attackDamage: 75
   baseDamage: 100
   attackRange: 5
   attackDelay: 1
-  coinReward: 100
+  coinReward: 3000
