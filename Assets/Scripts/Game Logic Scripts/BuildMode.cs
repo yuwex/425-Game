@@ -177,10 +177,10 @@ public class TowerSpawner : MonoBehaviour
 
             // Subtract tower price from user coins
             GameManager.Instance.updateCoins(-currPrice);
-            if (move.magnitude > 0)
-            {
-                SoundManager.Instance.PlaySFXClip(towerBuildSound, currObject.transform);
-            }
+            // if (move.magnitude > 0)
+            // {
+            //     SoundManager.Instance.PlaySFXClip(towerBuildSound, currObject.transform);
+            // }
         }
         else if (Input.GetMouseButtonDown(0) && !canPlace)
         {
