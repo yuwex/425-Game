@@ -18,6 +18,7 @@ public class Tower : MonoBehaviour
     public List<int> modifierSlotCosts;
 
     public List<StatInfo> baseStats = new();
+    public List<StatInfo> minimumStats;
     public List<ModifierBase> modifiers = new();
 
     [Header("Setup")]
@@ -243,6 +244,16 @@ public class Tower : MonoBehaviour
             statChangeDescriptions[s] = desc;
         }
 
+        for (int i = 0; i < stats.Count; i++)
+        {
+            if (GetMinStat(stats[i].statType, out float res))
+            {
+                if (res > stats[i].statValue)
+                    stats[i] = new StatInfo() {statType = stats[i].statType, statValue = res};
+
+            }
+        }
+
     }
     public bool GetStat(Stat type, out float result) 
     {
@@ -267,6 +278,19 @@ public class Tower : MonoBehaviour
         result = 0;
         return false;
     }
+
+    public bool GetMinStat(Stat type, out float result) 
+    {
+        foreach (var s in minimumStats) {
+            if (s.statType == type) {
+                result = s.statValue;
+                return true;
+            }
+        }
+        result = 0;
+        return false;
+    }
+
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);

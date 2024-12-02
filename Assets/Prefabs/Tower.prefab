@@ -181,6 +181,25 @@ MonoBehaviour:
   - statType: 5
     statValue: 40
     modifierType: 0
+  minimumStats:
+  - statType: 0
+    statValue: 1
+    modifierType: 0
+  - statType: 1
+    statValue: 10
+    modifierType: 0
+  - statType: 2
+    statValue: 1
+    modifierType: 0
+  - statType: 3
+    statValue: 1
+    modifierType: 0
+  - statType: 4
+    statValue: 0.01
+    modifierType: 0
+  - statType: 5
+    statValue: 5
+    modifierType: 0
   modifiers: []
   enemyTag: Enemy
   projectilePrefab: {fileID: 4785582861802605554, guid: d4d9643ea8a33d84dbe21a09860b8dc0, type: 3}
