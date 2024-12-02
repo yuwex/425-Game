@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/FlatPlaneTestScene.unity
-    guid: d9a8d7078d5e1491294594a090d99458
-  - enabled: 1
     path: Assets/Scenes/MainHub.unity
     guid: a9e3a33c0066e04459a00ce591a6ea5f
+  - enabled: 1
+    path: Assets/Scenes/FlatPlaneTestScene.unity
+    guid: d9a8d7078d5e1491294594a090d99458
   - enabled: 1
     path: Assets/Scenes/SecretScene.unity
     guid: 679fb472814ab0040a47070d61a94555

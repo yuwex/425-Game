@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
@@ -79,7 +78,7 @@ public class GameManager : MonoBehaviour
         // find which scene to choose
         if (SceneManager.GetActiveScene().name == "MainHub")
         {
-            scene = "Game";
+            scene = "FlatPlaneTestScene";
         }
         else
         {
@@ -95,7 +94,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // load the next scene
-        Addressables.LoadSceneAsync(scene, LoadSceneMode.Single);
+        SceneManager.LoadScene(scene);
 
         // trigger fade-out animation
         trans.GetComponent<Animator>().SetTrigger("Start");
