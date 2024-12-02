@@ -2431,6 +2431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a4165898d0dd642ba1abeb995323aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 137966332}
   gameOverUI: {fileID: 955098770}
   ui: {fileID: 2034615786}
   pauseMenu: {fileID: 1992761099}
@@ -2438,6 +2439,7 @@ MonoBehaviour:
   statsMenu: {fileID: 0}
   main: {fileID: 0}
   mainPauseOption: {fileID: 0}
+  UISound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!4 &207519759
 Transform:
   m_ObjectHideFlags: 0
