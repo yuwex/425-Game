@@ -8371,6 +8371,7 @@ MonoBehaviour:
   damageText: {fileID: 1632389260}
   buttonText: {fileID: 1288078600}
   scepter: {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
+  clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!1001 &193981317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32468,6 +32469,7 @@ MonoBehaviour:
   damageText: {fileID: 37197689}
   buttonText: {fileID: 920024411}
   sword: {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
+  clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!4 &820489330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe3b59d777646f34bad7d168d18e00f5, type: 3}
@@ -44763,6 +44765,7 @@ MonoBehaviour:
   damageText: {fileID: 566351031}
   buttonText: {fileID: 1834038106}
   crossbow: {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
+  clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!1001 &1110254016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46191,6 +46194,7 @@ MonoBehaviour:
   hubUI: {fileID: 550818028}
   mouseControls: {fileID: 1204062549}
   soulCounter: {fileID: 1938805103}
+  clickSound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!95 &1143728428
 Animator:
   serializedVersion: 5
@@ -54356,7 +54360,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 3
-  walkingSounds: []
+  walkingSounds:
+  - {fileID: 8300000, guid: e39a46f6e1b4b46a7ae72c0581bb2460, type: 3}
+  - {fileID: 8300000, guid: 70218c53532ff45f890df488e0a8e85d, type: 3}
+  - {fileID: 8300000, guid: d80bbf37516f649f7b259da537f46597, type: 3}
+  - {fileID: 8300000, guid: 4cccc233e85b54858889f26432e1f4ce, type: 3}
   walkingSoundDelay: 0.25
 --- !u!114 &1312571000
 MonoBehaviour:

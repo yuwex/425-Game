@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
-using System.Linq;
 using TMPro;
 
 public class UpgradeStageManager : MonoBehaviour

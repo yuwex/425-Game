@@ -20,6 +20,12 @@ public class EnemySpawner : MonoBehaviour
     public WaveWarning waveWarning;
     public PlayerInventory inventory;
 
+    [Header("Victory Stuff")]
+    public GameObject victoryScreen;
+    public GameObject playerCamera;
+    public GameObject winningCamera;
+    public GameObject ui;
+
 
     void Start()
     {
@@ -67,7 +73,23 @@ public class EnemySpawner : MonoBehaviour
 
             counter.StartCountdown(waves[waveNumber - 1].nextRoundDelay);
             yield return new WaitForSeconds(waves[waveNumber - 1].nextRoundDelay);
+
+            if (waveNumber == 1)
+            {
+                ui.GetComponent<Canvas>().enabled = false;
+                VictoryText victoryTextScript = victoryScreen.GetComponent<VictoryText>();
+                victoryTextScript.displayNewText();
+                victoryScreen.SetActive(true);
+                Time.timeScale = 0f;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                playerCamera.SetActive(false);
+                winningCamera.SetActive(true);
+                continue;
+            }
         }
+
+        ui.GetComponent<Canvas>().enabled = true;
 
         //endless mode
         while (true)

@@ -13,6 +13,7 @@ public class UiTasks : MonoBehaviour
     public GameObject statsMenu;
     public GameObject main;
     public GameObject mainPauseOption;
+    public GameObject victoryMenu;
     public AudioClip UISound;
     // private CursorLockMode originalLockState;
     private bool isPaused = false;
@@ -155,5 +156,14 @@ public class UiTasks : MonoBehaviour
         SoundManager.Instance.PlaySFXClip(UISound, player.transform);
         mainPauseOption.SetActive(false);
         pauseMenu.SetActive(true);
+    }
+
+    public void endlessMode()
+    {
+        victoryMenu.SetActive(false);
+        ui.GetComponent<Canvas>().enabled = true;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
