@@ -50,6 +50,7 @@ public class UiTasks : MonoBehaviour
 
     public void mainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainHub");
     }
 
@@ -96,6 +97,9 @@ public class UiTasks : MonoBehaviour
     public void startGame()
     {
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
     }
 
     public void viewStats()
@@ -107,6 +111,12 @@ public class UiTasks : MonoBehaviour
     public void mainMenuBack()
     {
         statsMenu.SetActive(false);
+        main.SetActive(true);
+    }
+
+    public void mainOptionsBack()
+    {
+        optionsMenu.SetActive(false);
         main.SetActive(true);
     }
 }

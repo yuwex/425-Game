@@ -12,13 +12,16 @@ public class SensUpdate : MonoBehaviour
 
     private void Start()
     {
+        sensSlider.value = GameManager.sensValue;
         UpdateSensText(sensSlider.value);
+
+        // Add listener to the slider for changes
         sensSlider.onValueChanged.AddListener(UpdateSensText);
     }
 
     public void UpdateSensText(float sensVal)
     {
         sensitivityText.text = sensVal.ToString();
-        mouseControls.sens = sensVal;
+        GameManager.sensValue = sensVal;
     }
 }
