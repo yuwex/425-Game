@@ -14,6 +14,7 @@ public class UpgradeScepter : UpgradeStageManager
 
     [Header("SFX")]
     public AudioClip clickSound;
+    public AudioClip errSound;
 
     private void Start() {
         // retrieve image component and set color
@@ -37,6 +38,7 @@ public class UpgradeScepter : UpgradeStageManager
         }
         else
         {
+            SoundManager.Instance.PlaySFXClip(errSound, transform);
             // Button button = upgradeButton.GetComponent<Button>();
             
             // ColorBlock cb = button.colors;
