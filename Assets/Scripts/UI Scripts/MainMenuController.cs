@@ -17,7 +17,10 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            pauseGame();
+        }
     }
 
     public void playGame()
@@ -25,5 +28,11 @@ public class MainMenuController : MonoBehaviour
         playerCamera.SetActive(!playerCamera.activeSelf);
         menuCamera.SetActive(!menuCamera.activeSelf);
         hubUI.SetActive(!hubUI.activeSelf);
+    }
+
+    public void pauseGame()
+    {
+        playerCamera.SetActive(!playerCamera.activeSelf);
+        menuCamera.SetActive(!menuCamera.activeSelf);
     }
 }

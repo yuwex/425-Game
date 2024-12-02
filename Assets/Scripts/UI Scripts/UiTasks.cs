@@ -11,6 +11,7 @@ public class UiTasks : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject statsMenu;
     public GameObject main;
+    public GameObject mainPauseOption;
     // private CursorLockMode originalLockState;
     private bool isPaused = false;
 
@@ -96,7 +97,7 @@ public class UiTasks : MonoBehaviour
 
     public void startGame()
     {
-        pauseMenu.SetActive(false);
+        main.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
@@ -106,6 +107,12 @@ public class UiTasks : MonoBehaviour
     {
         main.SetActive(false);
         statsMenu.SetActive(true);
+    }
+
+    public void mainOptions()
+    {
+        main.SetActive(false);
+        optionsMenu .SetActive(true);
     }
 
     public void mainMenuBack()
@@ -118,5 +125,17 @@ public class UiTasks : MonoBehaviour
     {
         optionsMenu.SetActive(false);
         main.SetActive(true);
+    }
+
+    public void mainPauseOptions()
+    {
+        pauseMenu.SetActive(false);
+        mainPauseOption.SetActive(true);
+    }
+
+    public void menuPauseOptionsBack()
+    {
+        mainPauseOption.SetActive(false);
+        pauseMenu.SetActive(true);
     }
 }
