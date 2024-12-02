@@ -1,19 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MerchantBehavior : MonoBehaviour
 {
 
     Animator anim;
+    public GameObject merchantUI;
+    public GameObject hubUI;
+    public MouseControls mouseControls;
+    public TMP_Text soulCounter;
+    public WeaponHitscan sword;
 
-    // Start is called before the first frame update
+    private bool merchantUIActive = false;
+
+    void Awake()
+    {
+        // ensure correct UI objects are opened on start
+        merchantUI.SetActive(false);
+    }
+
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        soulCounter.text = "Souls: " + GameManager.Instance.playerSouls;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -25,10 +40,60 @@ public class MerchantBehavior : MonoBehaviour
             {
                 if (hit.transform.name == "Merchant")
                 {
+
                     anim.SetTrigger("Clicked");
-                    // open merchant UI
+                    
+                    OpenMerchantMenu();
+
                 }
             }
         }
     }
+
+
+    void OpenMerchantMenu()
+    {
+        // enable mouse controls
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        // deactivate hub UI
+        hubUI.SetActive(false);
+
+        // pause game
+        Time.timeScale = 0f;
+
+        // pause camera
+        mouseControls.enabled = false;
+
+        // activate merchant UI
+        merchantUI.SetActive(true);
+        merchantUIActive = true;
+
+    }
+
+    public void CloseMerchantMenu()
+    {
+        // disable mouse controls
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        // deactivate merchant UI
+        merchantUI.SetActive(false);
+
+        // resume game
+        Time.timeScale = 1.0f;
+
+        // resume camera motion
+        mouseControls.enabled = true;
+
+        hubUI.SetActive(true);
+        merchantUIActive = false;
+    }
+
+    public void PurchaseSwordUpgrade()
+    {
+        sword.upgradedDamage += 5;
+    }
+
 }

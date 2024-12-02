@@ -13,6 +13,15 @@ public class WeaponHitscan : WeaponBase
     public float attackDelay;
     public float attackSpeed;
     public int attackDamage;
+    public int upgradedDamage;
+
+    // debugging
+    public int totalDamage;
+
+    private void OnEnable() {
+        upgradedDamage = 0;
+        totalDamage = attackDamage + upgradedDamage;
+    }
 
     public override void Attack()
     {
@@ -25,13 +34,16 @@ public class WeaponHitscan : WeaponBase
     }
 
     private IEnumerator Damage() {
+
+        totalDamage = attackDamage + upgradedDamage;
+
         yield return new WaitForSeconds(attackDelay);
         if (Physics.Raycast(fppCamera.position, fppCamera.forward, out RaycastHit hit, attackDistance, attackLayer))
         {
             GameObject target = hit.transform.gameObject;
             if (target.CompareTag(enemyTag))
             {
-                target.GetComponent<Enemy>().Hurt(attackDamage);
+                target.GetComponent<Enemy>().Hurt(totalDamage);
             }
         }
     }
