@@ -65,25 +65,17 @@ public class Enemy : MonoBehaviour
                 trapped = true;
                 StartCoroutine(Escape(walls));
             }
-            else
-            {
-                // Debug.Log("Help me bro I'm stuck!");
-            }
         }
+    }
 
-        if (!target)
-            return;
-
-        if ((target.transform.position - transform.position).magnitude < activationDistance)
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject == mainBase)
         {
-            if (target.gameObject == mainBase)
+            if (mainBase.TryGetComponent<TowerHealth>(out var health))
             {
-                TowerHealth health = mainBase.GetComponent<TowerHealth>();
-                if (health)
-                {
-                    health.TowerDamage((int)baseDamage);
-                    Destroy(gameObject);
-                }
+                health.TowerDamage((int)baseDamage);
+                Destroy(gameObject);
             }
         }
     }

@@ -8,7 +8,7 @@ public class MortarModifier : ModifierBase
     public override void SetupProjectile(TowerProjectile projectile)
     {
 
-        Vector3 targetPos = projectile.target.GetComponent<Renderer>().bounds.center;
+        Vector3 targetPos = projectile.target.GetComponent<Collider>().bounds.center;
 
         // Get Velocity
         projectile.GetStat(Stat.ProjectileVelocity, out var velocity);
