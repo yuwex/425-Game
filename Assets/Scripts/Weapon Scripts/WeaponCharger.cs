@@ -26,6 +26,9 @@ public class WeaponCharger : WeaponBase
     // debugging
     public int totalDamage;
 
+    [Header("SFX")]
+    public List<AudioClip> attackSounds;
+
     private void OnEnable() {
         upgradedDamage = 0;
         totalDamage = maxDamage + upgradedDamage;   
@@ -63,6 +66,8 @@ public class WeaponCharger : WeaponBase
             totalDamage = maxDamage + upgradedDamage;
 
             GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward * 2, fppCamera.transform.rotation);
+            AudioSource s = SoundManager.Instance.PlayRandomSFXClip(attackSounds, projectile.transform);
+            s.transform.SetParent(projectile.transform);
 
             projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * maxChargeVelocity * ((maxChargeTime + chargeTime) / (2 * maxChargeTime));
             projectile.GetComponent<Projectile>().damage = 5 + (int)Math.Floor(Math.Pow(Math.Pow(totalDamage - 5, 1 / 1.5f) * (chargeTime / maxChargeTime), 1.5f));

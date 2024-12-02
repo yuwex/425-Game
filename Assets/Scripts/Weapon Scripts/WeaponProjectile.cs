@@ -21,6 +21,9 @@ public class WeaponProjectile : WeaponBase
 
     private float totalTime = 0;
 
+    [Header("SFX")]
+    public List<AudioClip> attackSounds;
+
     private void OnEnable() {
         upgradedDamage = 0;
         totalDamage = attackDamage + upgradedDamage;
@@ -45,6 +48,9 @@ public class WeaponProjectile : WeaponBase
         GameObject projectile = Instantiate(this.projectile, fppCamera.transform.position + fppCamera.transform.forward * 2, fppCamera.transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = fppCamera.transform.forward * velocity;
         projectile.GetComponent<Fireball>().damage = totalDamage;
+
+        SoundManager.Instance.PlayRandomSFXClip(attackSounds, projectile.transform);
+
     }
 
     private IEnumerator ResetAttack()

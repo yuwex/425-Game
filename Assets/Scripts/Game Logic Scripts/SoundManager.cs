@@ -41,15 +41,20 @@ public class SoundManager : MonoBehaviour
         PlayMusic(music);
     }
 
-    public void PlaySFXClip(AudioClip clip, Transform transform, float volume = 1f)
+    public AudioSource PlaySFXClip(AudioClip clip, Transform transform, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(clip, transform.position, volumeSFX * volume);
+        AudioSource source = Instantiate(sfxPrefab, transform.position, Quaternion.identity);
+        source.clip = clip;
+        source.volume = volumeSFX * volume;
+        source.Play();
+        Destroy(source.gameObject, clip.length);
+        return source;
     }
 
-    public void PlayRandomSFXClip(List<AudioClip> clips, Transform transform, float volume = 1f)
+    public AudioSource PlayRandomSFXClip(List<AudioClip> clips, Transform transform, float volume = 1f)
     {
         int choice = Random.Range(0, clips.Count);
-        PlaySFXClip(clips[choice], transform, volume);
+        return PlaySFXClip(clips[choice], transform, volume);
     }
 
     public void PlayMusic(AudioClip clip)

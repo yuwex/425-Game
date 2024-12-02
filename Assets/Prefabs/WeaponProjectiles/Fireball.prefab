@@ -9831,6 +9831,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   explosion: {fileID: 9085078346822805654, guid: 31f32295544474847b1026c0984e7395, type: 3}
+  attackSounds:
+  - {fileID: 8300000, guid: 5c3d00e91c8c047fcb45e0cde149144b, type: 3}
+  - {fileID: 8300000, guid: 96e80a2243e384f0fa43adced4de91ac, type: 3}
+  - {fileID: 8300000, guid: e246f51c83dd949a49472a6d8b474e77, type: 3}
+  - {fileID: 8300000, guid: c2d6001a5c5a14215aac2693797122d0, type: 3}
 --- !u!1 &6340416754899764191
 GameObject:
   m_ObjectHideFlags: 0

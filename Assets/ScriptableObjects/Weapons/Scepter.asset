@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ab6b80825170a47bf5a5cae71033c6, type: 3}
   m_Name: Scepter
   m_EditorClassIdentifier: 
-  attacking: 0
+  attacking: 1
   prefab: {fileID: 3530653574631373592, guid: 6ccccdbe0e9788f4c98195e6210c592e, type: 3}
-  position: {x: 0.21, y: -1.11, z: -0.47}
+  position: {x: 0.21, y: 2.5, z: -0.47}
   scale: {x: 2, y: 2, z: 2}
   recoil: {x: 0, y: 0, z: -0.8}
   velocity: 60
   attackDelay: 0
   attackSpeed: 1
   attackDamage: 50
+  upgradedDamage: 0
   projectile: {fileID: 5423597734023010936, guid: ea15b85e207659b45acf9da02c282be7, type: 3}
+  totalDamage: 50
+  attackSounds:
+  - {fileID: 8300000, guid: 066889a432fb34cde97477e519f0e048, type: 3}
+  - {fileID: 8300000, guid: 94b031eaffdbe4dda9ab924164fc4539, type: 3}

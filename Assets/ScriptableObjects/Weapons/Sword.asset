@@ -19,7 +19,10 @@ MonoBehaviour:
   animateRotation: 75
   attackDistance: 5
   attackDelay: 0.3
-  attackSpeed: 0.4
-  attackDamage: 100
-  upgradedDamage: 15
-  totalDamage: 65
+  attackSpeed: 0.2
+  attackDamage: 50
+  upgradedDamage: 0
+  totalDamage: 50
+  attackSounds:
+  - {fileID: 8300000, guid: 80f949d9e80954b8d802b0ecb902e95a, type: 3}
+  - {fileID: 8300000, guid: 0a3a6c29877584665a266aba6cef8eb4, type: 3}
