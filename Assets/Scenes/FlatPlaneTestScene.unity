@@ -5744,6 +5744,10 @@ PrefabInstance:
       value: WinnerWinnerScreen
       objectReference: {fileID: 0}
     - target: {fileID: 1380046193976648683, guid: fc6ac12d68e4de946b1cd4d3cbd58694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380046193976648683, guid: fc6ac12d68e4de946b1cd4d3cbd58694, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 207519758}
@@ -5757,7 +5761,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1380046193976648683, guid: fc6ac12d68e4de946b1cd4d3cbd58694, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: clickUnpause
+      value: endlessMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380046193976648683, guid: fc6ac12d68e4de946b1cd4d3cbd58694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CameraController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380046193976648683, guid: fc6ac12d68e4de946b1cd4d3cbd58694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3124408716540979794, guid: fc6ac12d68e4de946b1cd4d3cbd58694, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12358,7 +12370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20229f2441b8f1546bfcf0d5e383783f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyWave: 0
+  enemyWave: 10
   playerCoins: 150
   playerSouls: 0
   onUpdateCoins:
