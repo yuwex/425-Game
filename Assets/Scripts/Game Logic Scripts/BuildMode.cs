@@ -22,6 +22,7 @@ public class TowerSpawner : MonoBehaviour
     public int wallPrice;
 
     [Header("Other Dependencies")]
+    public List<AudioClip> towerBuildSounds;
     public GameBoard board;
     public Camera buildCamera;
     public bool buildEnabled = false;
@@ -148,6 +149,16 @@ public class TowerSpawner : MonoBehaviour
 
         bool validPath = PathToBase(pos);
 
+        Collider[] colliders = Physics.OverlapSphere(pos, 0.5f);
+        foreach (Collider collider in colliders)
+        {
+            if (collider is MeshCollider)
+            {
+                validPath = false;
+                break;
+            }
+        }
+
         if (validPath && canPlace)
         {
             renderer.material = IndicatorMaterialCanPlace;
@@ -166,6 +177,7 @@ public class TowerSpawner : MonoBehaviour
 
             // Subtract tower price from user coins
             GameManager.Instance.updateCoins(-currPrice);
+            SoundManager.Instance.PlayRandomSFXClip(towerBuildSounds, currObject.transform);
         }
         else if (Input.GetMouseButtonDown(0) && !canPlace)
         {

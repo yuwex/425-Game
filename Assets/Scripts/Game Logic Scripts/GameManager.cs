@@ -1,15 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AddressableAssets;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public int enemyWave = 0;
     public static int enemiesKilled = 0;
     public static float sensValue = 4f;
+    public static float SFXVolume = 0.5f;
+    public static float MusicVolume = 0.5f;
     /******************** SINGLETON ********************/
     private static GameManager _instance;
 
@@ -41,18 +43,17 @@ public class GameManager : MonoBehaviour
     }
     /******************** SINGLETON ********************/
 
-
-
-
     // currencies
     public int playerCoins = 150;
     public int playerSouls = 10000;
 
+    public UnityEvent onUpdateCoins;
+
     public void updateCoins(int coins)
     {
         playerCoins += coins;
+        onUpdateCoins.Invoke();
     }
-
 
     public void updateStats()
     {

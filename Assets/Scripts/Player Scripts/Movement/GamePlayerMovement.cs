@@ -12,6 +12,9 @@ public class GamePlayerMovement : PlayerMovement
 
     private int currWeapon = 0;
 
+    [Header("Sounds")]
+    public List<AudioClip> weaponSwitchSounds;
+
     private void Awake()
     {
         foreach (WeaponBase weapon in weapons)
@@ -44,24 +47,35 @@ public class GamePlayerMovement : PlayerMovement
 
         if (!weapons[currWeapon].attacking && !towerSpawner.buildEnabled)
         {
+            var weaponChanged = false;
+
             if (Input.GetKeyDown(KeyCode.Alpha1) && currWeapon != 0 && weapons.Count >= 1)
             {
+                weaponChanged = true;
+
                 weapons[currWeapon].ToggleMesh();
                 currWeapon = 0;
                 weapons[currWeapon].ToggleMesh();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && currWeapon != 1 && weapons.Count >= 2)
             {
+                weaponChanged = true;
+
                 weapons[currWeapon].ToggleMesh();
                 currWeapon = 1;
                 weapons[currWeapon].ToggleMesh();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && currWeapon != 2 && weapons.Count >= 3)
             {
+                weaponChanged = true;
+
                 weapons[currWeapon].ToggleMesh();
                 currWeapon = 2;
                 weapons[currWeapon].ToggleMesh();
             }
+
+            if (weaponChanged) 
+                SoundManager.Instance.PlayRandomSFXClip(weaponSwitchSounds, gameObject.transform);
         }
     }
 }

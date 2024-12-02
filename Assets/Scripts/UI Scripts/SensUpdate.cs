@@ -23,5 +23,6 @@ public class SensUpdate : MonoBehaviour
     {
         sensitivityText.text = sensVal.ToString();
         GameManager.sensValue = sensVal;
+        mouseControls.sens = sensVal;
     }
 }

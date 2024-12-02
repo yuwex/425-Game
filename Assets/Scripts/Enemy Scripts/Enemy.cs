@@ -7,8 +7,11 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     public EnemyData data;
+    public GameObject enemy;
     public GameObject target;
     public GameObject mainBase;
+    public AudioClip deathSound;
+    public List<AudioClip> hurtSounds;
     private NavMeshAgent agent;
     private InfoBar healthBar;
 
@@ -18,7 +21,7 @@ public class Enemy : MonoBehaviour
     private float attackDamage;
     private float baseDamage;
     private int coinReward;
-    public float activationDistance = 10f;
+    public float activationDistance = 7f;
     private float attackRange;
     private float attackDelay;
     private Animator animator;
@@ -65,25 +68,17 @@ public class Enemy : MonoBehaviour
                 trapped = true;
                 StartCoroutine(Escape(walls));
             }
-            else
-            {
-                // Debug.Log("Help me bro I'm stuck!");
-            }
         }
+    }
 
-        if (!target)
-            return;
-
-        if ((target.transform.position - transform.position).magnitude < activationDistance)
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject == mainBase)
         {
-            if (target.gameObject == mainBase)
+            if (mainBase.TryGetComponent<TowerHealth>(out var health))
             {
-                TowerHealth health = mainBase.GetComponent<TowerHealth>();
-                if (health)
-                {
-                    health.TowerDamage((int)baseDamage);
-                    Destroy(gameObject);
-                }
+                health.TowerDamage((int)baseDamage);
+                Destroy(gameObject);
             }
         }
     }
@@ -112,12 +107,17 @@ public class Enemy : MonoBehaviour
         upgradePickup.modifier = modifierDrop;
     }
 
-    public virtual void OnHurt(float dmg) { }
+    public virtual void OnHurt(float dmg)
+    {
+        SoundManager.Instance.PlayRandomSFXClip(hurtSounds, enemy.transform);
+    }
 
     public virtual void OnEnemyDie()
     {
         GetComponentInChildren<AnimationController>().isDead = true;
         StartCoroutine(PlayDeathAnimationAndDestroy());
+        SoundManager.Instance.PlaySFXClip(deathSound, enemy.transform);
+
     }
 
     private IEnumerator PlayDeathAnimationAndDestroy()

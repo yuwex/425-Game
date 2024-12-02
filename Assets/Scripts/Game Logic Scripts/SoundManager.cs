@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+
+    // THIS IS A SINGLETON!
+
+    // DO NOT CREATE INSTANCES OF THIS CLASS! Instead use the below:
+    // Please use SoundManager.Instance.PlaySFXClip or SoundManager.Instance.PlayRandomSFXClip !
     public static SoundManager Instance;
     public AudioSource sfxPrefab;
     public float volumeSFX;
@@ -19,17 +24,32 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance = null) Instance = this;
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
     }
 
     void Start()
     {
+        volumeSFX = GameManager.SFXVolume;
+        volumeMusic = GameManager.MusicVolume;
         PlayMusic(music);
     }
 
     public void PlaySFXClip(AudioClip clip, Transform transform, float volume = 1f)
     {
         AudioSource.PlayClipAtPoint(clip, transform.position, volumeSFX * volume);
+    }
+
+    public void PlayRandomSFXClip(List<AudioClip> clips, Transform transform, float volume = 1f)
+    {
+        int choice = Random.Range(0, clips.Count);
+        PlaySFXClip(clips[choice], transform, volume);
     }
 
     public void PlayMusic(AudioClip clip)

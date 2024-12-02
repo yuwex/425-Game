@@ -57,12 +57,15 @@ public class UiTasks : MonoBehaviour
 
     public void pauseGame()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        ui.GetComponent<Canvas>().enabled = false;
-        Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
-        isPaused = true;
+        if (main == null || !main.activeSelf)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            ui.GetComponent<Canvas>().enabled = false;
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            isPaused = true;
+        }
     }
 
     public void resumeGame()

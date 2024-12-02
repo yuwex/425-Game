@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group1:
   - {fileID: 11400000, guid: 43dcd4a3f5e8f414794be8bb86be84ca, type: 2}
-  group2:
   - {fileID: 11400000, guid: 8cc16f3ce74a24fe19c3dbe7c6695ebc, type: 2}
+  group2: []
   group3: []
   group4: []
   nextRoundDelay: 30
