@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Teleport : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class Teleport : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.SceneTransition();
+            SceneManager.LoadScene("FlatPlaneTestScene");
+            // GameManager.Instance.SceneTransition();
         }
     }
 
