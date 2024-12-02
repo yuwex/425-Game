@@ -37,6 +37,7 @@ public class ObjectInfoPanel : MonoBehaviour
     {
         selectedType = SelectedPanelType.None;
         selected = null;
+        GameManager.Instance.onUpdateCoins.AddListener(() => RefreshDisplayedElements());
     }
 
     public void SelectGameObject(GameObject gameObject)
@@ -132,8 +133,7 @@ public class ObjectInfoPanel : MonoBehaviour
                     tower.modifiers.Remove(mod);
                     inventory.inventory.Add(mod);
                     tower.UpdateModifiers();
-                    DisplayTowerUI(tower);
-                    DisplayModifiersUI(tower);
+                    RefreshDisplayedElements();
                     modifierInventoryPanel.SetActive(true);
                 });
             }
@@ -157,8 +157,30 @@ public class ObjectInfoPanel : MonoBehaviour
             else
             {
                 image.sprite = lockedSlot;
-                tooltip.title = "Locked";
-                tooltip.message = "Upgrade this tower to unlock this slot!";
+
+                var cost = tower.modifierSlotCosts[i];
+                tooltip.title = $"Buy for {cost} coins";
+
+                if (i != tower.unlockedModifierSlots)
+                {
+                    tooltip.message = "Unlock all previous slots to unlock this one";
+                }
+                else if (cost > GameManager.Instance.playerCoins) 
+                {
+                    tooltip.message = "You don\'t have enough coins to <color=red>unlock</color> this slot";
+                }
+                else
+                {
+                    tooltip.message = "Click to <color=green>unlock</color> this slot";
+
+                    button.onClick.AddListener(() => {
+                        GameManager.Instance.updateCoins(-cost);
+                        tower.unlockedModifierSlots += 1;
+                        RefreshDisplayedElements();
+                    });
+                }
+
+
             }
 
 
@@ -190,7 +212,6 @@ public class ObjectInfoPanel : MonoBehaviour
                     inventory.inventory.Remove(mod);
                     tower.UpdateModifiers();
                     DisplayTowerUI(tower);
-                    DisplayModifiersUI(tower);
 
                     if (tower.unlockedModifierSlots <= tower.modifiers.Count || inventory.inventory.Count == 0)
                         modifierInventoryPanel.SetActive(false);
@@ -201,7 +222,7 @@ public class ObjectInfoPanel : MonoBehaviour
                 {
                     TooltipPopup(
                         "Error",
-                        "<color=red>Not enough slots.</color>",
+                        "<color=red>Not enough slots</color>",
                         3
                     );
                 }

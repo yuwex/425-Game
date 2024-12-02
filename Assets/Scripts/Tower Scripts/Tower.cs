@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
 
     public int unlockedModifierSlots = 1;
     public int maxModifierSlots = 4;
+    public List<int> modifierSlotCosts;
 
     public List<StatInfo> baseStats = new();
     public List<ModifierBase> modifiers = new();
