@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,7 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = -9.81f;
     private float groundDistance = 0.4f;
     private Boolean isGrounded;
-    public AudioClip walkingSound;
+
+    [Header("Sounds")]
+    public List<AudioClip> walkingSounds;
+    private float walkingSoundDebounce = 0;
+    public float walkingSoundDelay = 0.25f;
+    private int walkingSoundIdx = 0;
 
 
     protected virtual void Update()
@@ -51,9 +57,12 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         player.Move(velocity * Time.deltaTime);
 
-        if (move.magnitude > 0)
+        if (move.magnitude > 0 && Time.time > walkingSoundDebounce && Mathf.Abs(x + z) > 0.2)
         {
-            SoundManager.Instance.PlaySFXClip(walkingSound, player.transform);
+            SoundManager.Instance.PlaySFXClip(walkingSounds[walkingSoundIdx], player.transform, 0.2f);
+            walkingSoundDebounce += walkingSoundDelay;
+
+            walkingSoundIdx = (walkingSoundIdx + 1) % walkingSounds.Count;
         }
     }
 
