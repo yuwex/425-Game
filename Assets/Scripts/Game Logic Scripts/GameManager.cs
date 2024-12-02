@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     // currencies
     public int playerCoins = 150;
-    public int playerSouls = 10000;
+    public int playerSouls = 0;
 
     public UnityEvent onUpdateCoins;
 
