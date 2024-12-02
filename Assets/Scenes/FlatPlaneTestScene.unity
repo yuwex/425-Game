@@ -1625,6 +1625,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 20
+  walkingSound: {fileID: 8300000, guid: e39a46f6e1b4b46a7ae72c0581bb2460, type: 3}
   weapons:
   - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
   - {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
@@ -10693,7 +10694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 888.2, y: -114.99988}
+  m_AnchoredPosition: {x: 888.2001, y: -114.99988}
   m_SizeDelta: {x: 794.7, y: 75}
   m_Pivot: {x: 1.1, y: -0.1}
 --- !u!114 &1915962353

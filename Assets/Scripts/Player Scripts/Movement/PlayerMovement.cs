@@ -13,9 +13,10 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = -9.81f;
     private float groundDistance = 0.4f;
     private Boolean isGrounded;
+    public AudioClip walkingSound;
 
 
-    protected virtual void Update() 
+    protected virtual void Update()
     {
         // checks if player is grounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -30,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move;
-        
+
         if (Camera.main == GetComponentInChildren<Camera>())
         {
             move = transform.right * x + transform.forward * z;
@@ -50,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         player.Move(velocity * Time.deltaTime);
 
+        if (move.magnitude > 0)
+        {
+            SoundManager.Instance.PlaySFXClip(walkingSound, player.transform);
+        }
     }
 
 }
