@@ -116,7 +116,7 @@ public class GameBoard : MonoBehaviour
 
     /* Our wall update algorithm is notable because it demonstrates algorithmic complexity
     through recursive calls and it modifies surrounding features to provide a seemless
-    aesthetically pleaseing structure. */
+    aesthetically pleasing structure. */
 
     void UpdateWall((int x, int y) mid)
     {
