@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Wave> waves;
     public WaveTimeLeft counter;
     public WaveWarning waveWarning;
+    public PlayerInventory inventory;
 
 
     void Start()
@@ -31,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         {
             GameManager.Instance.enemyWave = ++waveNumber;
             GameManager.Instance.playerCoins += MoneyFromWave(waves[waveNumber]);
+            inventory.Add(possibleModifierDrops[Random.Range(0, possibleModifierDrops.Count)]);
         }
         if (!started && Input.GetKeyDown(KeyCode.DownArrow) && waveNumber > 0)
         {
