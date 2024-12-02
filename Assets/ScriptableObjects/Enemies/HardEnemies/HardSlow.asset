@@ -18,4 +18,4 @@ MonoBehaviour:
   baseDamage: 30
   attackRange: 5
   attackDelay: 1
-  coinReward: 20
+  coinReward: 30

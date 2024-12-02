@@ -20,4 +20,4 @@ MonoBehaviour:
   attackDistance: 5
   attackDelay: 0.3
   attackSpeed: 0.4
-  attackDamage: 50
+  attackDamage: 100

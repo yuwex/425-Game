@@ -20,5 +20,5 @@ MonoBehaviour:
   maxChargeTime: 1.5
   maxChargeVelocity: 100
   attackDelay: 0.2
-  maxDamage: 100
+  maxDamage: 250
   projectile: {fileID: 66663079307717538, guid: 526e3267b189a2b48a8e7e99753aa7a4, type: 3}

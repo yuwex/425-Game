@@ -20,5 +20,5 @@ MonoBehaviour:
   velocity: 60
   attackDelay: 0
   attackSpeed: 1
-  attackDamage: 25
+  attackDamage: 50
   projectile: {fileID: 5423597734023010936, guid: ea15b85e207659b45acf9da02c282be7, type: 3}

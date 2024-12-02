@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a947163a547f14d63b76ca773cb806fb, type: 3}
   m_Name: EasyNormal
   m_EditorClassIdentifier: 
-  baseHealth: 50
+  baseHealth: 25
   speed: 10
   attackDamage: 10
   baseDamage: 10
   attackRange: 5
   attackDelay: 0.5
-  coinReward: 10
+  coinReward: 15

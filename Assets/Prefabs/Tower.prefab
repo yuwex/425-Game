@@ -163,7 +163,7 @@ MonoBehaviour:
   maxModifierSlots: 4
   baseStats:
   - statType: 0
-    statValue: 50
+    statValue: 25
     modifierType: 0
   - statType: 1
     statValue: 50
@@ -175,7 +175,7 @@ MonoBehaviour:
     statValue: 1
     modifierType: 0
   - statType: 4
-    statValue: 1
+    statValue: 1.5
     modifierType: 0
   - statType: 5
     statValue: 40
