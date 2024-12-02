@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         if (move.magnitude > 0 && Time.time > walkingSoundDebounce && Mathf.Abs(x + z) > 0.2)
         {
             SoundManager.Instance.PlaySFXClip(walkingSounds[walkingSoundIdx], player.transform, 0.2f);
-            walkingSoundDebounce += walkingSoundDelay;
+            walkingSoundDebounce = Time.time + walkingSoundDelay;
 
             walkingSoundIdx = (walkingSoundIdx + 1) % walkingSounds.Count;
         }

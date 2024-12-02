@@ -2091,7 +2091,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6210c514c0fa4d05a4717647f73a792, type: 2}
   counter: {fileID: 1424516340}
   waveWarning: {fileID: 693060708}
-  inventory: {fileID: 0}
+  inventory: {fileID: 137966338}
 --- !u!4 &162686915
 Transform:
   m_ObjectHideFlags: 0

@@ -16,7 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 644d84dc9cdfb4278a8cb6460b411765, type: 2}
   group2:
   - {fileID: 11400000, guid: ae8bc384d99c64c559f32b0f0222040b, type: 2}
-  group3:
-  - {fileID: 11400000, guid: 6ee10d8629e1142ed84badbdee88e06e, type: 2}
+  group3: []
   group4: []
   nextRoundDelay: 30
