@@ -769,12 +769,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6170364210521109079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f757f7c8443b0544d8b1409b2fd7b4bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 42764f8589096484380c2fae80af7177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryText: {fileID: 147518003884435865}
-  victoryTextBackground: {fileID: 7975889695163663107}
-  enemySpawner: {fileID: 0}
+  victoryText: {fileID: 0}
+  victoryTextBackground: {fileID: 0}
 --- !u!1 &6734528379743041092
 GameObject:
   m_ObjectHideFlags: 0
