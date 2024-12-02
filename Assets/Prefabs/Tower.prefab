@@ -164,7 +164,7 @@ MonoBehaviour:
   modifierSlotCosts: 00000000320000006400000096000000
   baseStats:
   - statType: 0
-    statValue: 25
+    statValue: 50
     modifierType: 0
   - statType: 1
     statValue: 50
