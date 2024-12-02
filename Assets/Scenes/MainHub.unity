@@ -30104,7 +30104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyWave: 1
   playerCoins: 150
-  playerSouls: 1000
+  playerSouls: 0
   onUpdateCoins:
     m_PersistentCalls:
       m_Calls: []
