@@ -22,7 +22,7 @@ public class TowerSpawner : MonoBehaviour
     public int wallPrice;
 
     [Header("Other Dependencies")]
-    public AudioClip towerBuildSound;
+    public List<AudioClip> towerBuildSounds;
     public GameBoard board;
     public Camera buildCamera;
     public bool buildEnabled = false;
@@ -177,10 +177,7 @@ public class TowerSpawner : MonoBehaviour
 
             // Subtract tower price from user coins
             GameManager.Instance.updateCoins(-currPrice);
-            // if (move.magnitude > 0)
-            // {
-            //     SoundManager.Instance.PlaySFXClip(towerBuildSound, currObject.transform);
-            // }
+            SoundManager.Instance.PlayRandomSFXClip(towerBuildSounds, currObject.transform);
         }
         else if (Input.GetMouseButtonDown(0) && !canPlace)
         {

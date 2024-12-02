@@ -1591,6 +1591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bc01c0632574538895b5fc412edc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifierPickUpSounds:
+  - {fileID: 8300000, guid: b7a4036b17570436991891d5909d9495, type: 3}
+  - {fileID: 8300000, guid: ebc0afbd207e349cdac5665cb089267e, type: 3}
+  - {fileID: 8300000, guid: 228a5489f19e84325b0022bba6a9761d, type: 3}
   inventory: []
   onPickup:
     m_PersistentCalls:
@@ -1607,6 +1611,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  player: {fileID: 137966332}
 --- !u!114 &137966339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1625,7 +1630,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 20
-  walkingSound: {fileID: 8300000, guid: e39a46f6e1b4b46a7ae72c0581bb2460, type: 3}
+  walkingSound: {fileID: 8300000, guid: 70218c53532ff45f890df488e0a8e85d, type: 3}
   weapons:
   - {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
   - {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
@@ -6159,6 +6164,10 @@ MonoBehaviour:
   towerPrice: 100
   wallScale: {x: 2.5, y: 3, z: 2.5}
   wallPrice: 20
+  towerBuildSounds:
+  - {fileID: 8300000, guid: 10138e9a77c4d429084684880bd4ca42, type: 3}
+  - {fileID: 8300000, guid: aef9f599faf06475f9c6eb0112f451f4, type: 3}
+  - {fileID: 8300000, guid: b23221bd00aa0431497728339ac64986, type: 3}
   board: {fileID: 2078896064}
   buildCamera: {fileID: 2044575077}
   buildEnabled: 0

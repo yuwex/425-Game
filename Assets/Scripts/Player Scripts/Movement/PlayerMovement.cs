@@ -51,10 +51,6 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         player.Move(velocity * Time.deltaTime);
 
-        if (move.magnitude > 0)
-        {
-            SoundManager.Instance.PlaySFXClip(walkingSound, player.transform);
-        }
     }
 
 }

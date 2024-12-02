@@ -7,8 +7,10 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     public EnemyData data;
+    public GameObject enemy;
     public GameObject target;
     public GameObject mainBase;
+    public AudioClip deathSound;
     private NavMeshAgent agent;
     private InfoBar healthBar;
 
@@ -118,6 +120,8 @@ public class Enemy : MonoBehaviour
     {
         GetComponentInChildren<AnimationController>().isDead = true;
         StartCoroutine(PlayDeathAnimationAndDestroy());
+        SoundManager.Instance.PlaySFXClip(deathSound, enemy.transform);
+
     }
 
     private IEnumerator PlayDeathAnimationAndDestroy()
