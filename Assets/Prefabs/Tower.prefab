@@ -161,6 +161,7 @@ MonoBehaviour:
   stats: []
   unlockedModifierSlots: 1
   maxModifierSlots: 4
+  modifierSlotCosts: 00000000320000006400000096000000
   baseStats:
   - statType: 0
     statValue: 25

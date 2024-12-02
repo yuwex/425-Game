@@ -1,9 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AddressableAssets;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,18 +41,17 @@ public class GameManager : MonoBehaviour
     }
     /******************** SINGLETON ********************/
 
-
-
-
     // currencies
     public int playerCoins = 150;
+
+    public UnityEvent onUpdateCoins;
     public int playerSouls = 0;
 
     public void updateCoins(int coins)
     {
         playerCoins += coins;
+        onUpdateCoins.Invoke();
     }
-
 
     public void updateStats()
     {
