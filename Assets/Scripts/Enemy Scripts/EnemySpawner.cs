@@ -73,7 +73,6 @@ public class EnemySpawner : MonoBehaviour
 
             counter.StartCountdown(waves[waveNumber - 1].nextRoundDelay);
             yield return new WaitForSeconds(waves[waveNumber - 1].nextRoundDelay);
-                
         }
 
         ui.GetComponent<Canvas>().enabled = false;
@@ -86,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
         playerCamera.SetActive(false);
         winningCamera.SetActive(true);
         
-        ui.GetComponent<Canvas>().enabled = true;
+        // ui.GetComponent<Canvas>().enabled = true;
 
         //endless mode
         while (true)
