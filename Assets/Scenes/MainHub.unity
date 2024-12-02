@@ -29158,6 +29158,9 @@ MonoBehaviour:
   enemyWave: 1
   playerCoins: 150
   playerSouls: 1000
+  onUpdateCoins:
+    m_PersistentCalls:
+      m_Calls: []
   trans: {fileID: 1025288781}
 --- !u!4 &726039532
 Transform:
@@ -29542,7 +29545,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1018547796}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -46188,9 +46191,6 @@ MonoBehaviour:
   hubUI: {fileID: 550818028}
   mouseControls: {fileID: 1204062549}
   soulCounter: {fileID: 1938805103}
-  sword: {fileID: 11400000, guid: 71e3d31ed6ae42a4aa8294cd8df60520, type: 2}
-  crossbow: {fileID: 11400000, guid: 14e15a66058ae944392b656125f34106, type: 2}
-  scepter: {fileID: 11400000, guid: f3f747c77e05e124389910b24921830e, type: 2}
 --- !u!95 &1143728428
 Animator:
   serializedVersion: 5
@@ -54356,6 +54356,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 3
+  walkingSounds: []
+  walkingSoundDelay: 0.25
 --- !u!114 &1312571000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97947,6 +97949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a4165898d0dd642ba1abeb995323aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1312570996}
   gameOverUI: {fileID: 650053661}
   ui: {fileID: 550818028}
   pauseMenu: {fileID: 1176339825}
@@ -97954,6 +97957,7 @@ MonoBehaviour:
   statsMenu: {fileID: 653480224}
   main: {fileID: 2134758252}
   mainPauseOption: {fileID: 1010482849}
+  UISound: {fileID: 8300000, guid: b423ef78b55b54536a83bee37326de27, type: 3}
 --- !u!114 &2031473411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103205,3 +103209,4 @@ SceneRoots:
   - {fileID: 132644787}
   - {fileID: 616815229}
   - {fileID: 1562105040}
+  - {fileID: 740360433}
