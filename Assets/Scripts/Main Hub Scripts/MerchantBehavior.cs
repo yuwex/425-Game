@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MerchantBehavior : MonoBehaviour
 {
@@ -15,6 +11,9 @@ public class MerchantBehavior : MonoBehaviour
     public TMP_Text soulCounter;
 
     private bool merchantUIActive;
+
+    [Header("SFX")]
+    public AudioClip clickSound;
 
     void Awake()
     {
@@ -32,12 +31,11 @@ public class MerchantBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Camera.main)
         {
-            RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.transform.name == "Merchant")
                 {
@@ -45,7 +43,6 @@ public class MerchantBehavior : MonoBehaviour
                     anim.SetTrigger("Clicked");
                     
                     OpenMerchantMenu();
-
                 }
             }
         }
@@ -59,6 +56,8 @@ public class MerchantBehavior : MonoBehaviour
 
     void OpenMerchantMenu()
     {
+        SoundManager.Instance.PlaySFXClip(clickSound, transform);
+
         // enable mouse controls
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -80,6 +79,8 @@ public class MerchantBehavior : MonoBehaviour
 
     public void CloseMerchantMenu()
     {
+        SoundManager.Instance.PlaySFXClip(clickSound, transform);
+
         // disable mouse controls
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

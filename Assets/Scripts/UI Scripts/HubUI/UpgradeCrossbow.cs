@@ -11,6 +11,9 @@ public class UpgradeCrossbow : UpgradeStageManager
 
     private Image panelImage;
     private int currStage = 0;
+
+    [Header("SFX")]
+    public AudioClip clickSound;
     
     private void Start() {
         // retrieve image component and set color
@@ -44,6 +47,8 @@ public class UpgradeCrossbow : UpgradeStageManager
 
     private void UpgradeStage() 
     {
+        SoundManager.Instance.PlaySFXClip(clickSound, transform);
+
         switch (++currStage) 
         {
             case 1:

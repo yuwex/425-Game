@@ -11,7 +11,10 @@ public class UpgradeScepter : UpgradeStageManager
 
     private Image panelImage;
     private int currStage = 0;
-    
+
+    [Header("SFX")]
+    public AudioClip clickSound;
+
     private void Start() {
         // retrieve image component and set color
         panelImage = panel.GetComponent<Image>();
@@ -44,6 +47,8 @@ public class UpgradeScepter : UpgradeStageManager
 
     private void UpgradeStage() 
     {
+        SoundManager.Instance.PlaySFXClip(clickSound, transform);
+
         switch (++currStage) 
         {
             case 1:
