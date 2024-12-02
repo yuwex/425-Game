@@ -1634,6 +1634,10 @@ MonoBehaviour:
     m_Bits: 64
   enemyTag: Enemy
   towerSpawner: {fileID: 966329818}
+  weaponSwitchSounds:
+  - {fileID: 8300000, guid: 13d1361b5381947b3aabcb4f905f5605, type: 3}
+  - {fileID: 8300000, guid: 2d080298487174c6881c00b9a591567c, type: 3}
+  - {fileID: 8300000, guid: 8146e158fdf21453ab54a6515ecf6959, type: 3}
 --- !u!1 &139692826
 GameObject:
   m_ObjectHideFlags: 0
