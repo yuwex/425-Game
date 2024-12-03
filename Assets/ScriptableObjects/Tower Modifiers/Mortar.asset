@@ -29,4 +29,7 @@ MonoBehaviour:
   - statType: 0
     statValue: 1
     modifierType: 2
+  - statType: 0
+    statValue: 25
+    modifierType: 1
   height: 20
